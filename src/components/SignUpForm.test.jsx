@@ -82,7 +82,7 @@ describe('SignUpForm', () => {
       });
 
       await waitFor(() => {
-        screen.getByText(/입력해주세요/);
+        screen.getByText(/닉네임을 입력해주세요/);
       });
     });
   });
@@ -108,7 +108,7 @@ describe('SignUpForm', () => {
       });
 
       await waitFor(() => {
-        screen.getByText(/입력해주세요/);
+        screen.getByText(/이메일을 입력해주세요/);
       });
     });
   });
@@ -134,7 +134,7 @@ describe('SignUpForm', () => {
       });
 
       await waitFor(() => {
-        screen.getByText(/입력해주세요/);
+        screen.getByText(/비밀번호를 입력해주세요/);
       });
     });
   });
@@ -160,7 +160,7 @@ describe('SignUpForm', () => {
       });
 
       await waitFor(() => {
-        screen.getByText(/입력해주세요/);
+        screen.getByText(/비밀번호를 입력해주세요/);
       });
     });
   });

@@ -42,6 +42,25 @@ const server = setupServer(
       ctx.status(400),
     );
   }),
+
+  rest.post(`${baseUrl}/session`, async (req, res, ctx) => {
+    const {
+      email, password,
+    } = await req.json();
+
+    if (email === 'test@example.com'
+    && password === 'Abcdef1!') {
+      return res(
+        ctx.json({
+          accessToken: 'ACCESS.TOKEN',
+        }),
+      );
+    }
+
+    return res(
+      ctx.status(400),
+    );
+  }),
 );
 
 export default server;

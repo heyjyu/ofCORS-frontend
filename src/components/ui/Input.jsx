@@ -50,7 +50,7 @@ const Error = styled.p`
 `;
 
 export default function Input({
-  name, label, type, value, maxLength = '', handleChange, message, errorMessage, required = false,
+  name, label, type, value, maxLength = '', onChange, message, errorMessage, required = false,
 }) {
   return (
     <Container>
@@ -71,7 +71,7 @@ export default function Input({
         value={value}
         error={errorMessage}
         maxLength={maxLength}
-        onChange={handleChange}
+        onChange={onChange}
       />
       {errorMessage
         ? <Error>{errorMessage}</Error>

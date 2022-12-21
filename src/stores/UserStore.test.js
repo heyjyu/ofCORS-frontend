@@ -39,6 +39,30 @@ describe('UserStore', () => {
     });
   });
 
+  describe('login', () => {
+    context('when logged in successfully', () => {
+      it('changes loginStatus to successful', async () => {
+        const email = 'test@example.com';
+        const password = 'Abcdef1!';
+
+        await userStore.login({ email, password });
+
+        expect(userStore.isLoginSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to login', () => {
+      it('changes loginStatus to failed', async () => {
+        const email = 'wrong@email.com';
+        const password = 'Abcdef1!';
+
+        await userStore.login({ email, password });
+
+        expect(userStore.isLoginFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('resetSignUpStatus', () => {
     it('resets signUpStatus', () => {
       userStore.changeSignUpStatus('processing');
@@ -48,6 +72,18 @@ describe('UserStore', () => {
       userStore.resetSignUpStatus();
 
       expect(userStore.fields.signUpStatus).toBe('');
+    });
+  });
+
+  describe('resetLoginStatus', () => {
+    it('resets loginStatus', () => {
+      userStore.changeLoginStatus('processing');
+
+      expect(userStore.fields.loginStatus).toBe('processing');
+
+      userStore.resetLoginStatus();
+
+      expect(userStore.fields.loginStatus).toBe('');
     });
   });
 });
