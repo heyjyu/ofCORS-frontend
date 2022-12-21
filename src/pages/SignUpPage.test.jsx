@@ -5,7 +5,7 @@ import SignUpPage from './SignUpPage';
 describe('SignUpPage', () => {
   it('renders signup button', () => {
     render((
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter initialEntries={['/signup']}>
         <SignUpPage />
       </MemoryRouter>
     ));

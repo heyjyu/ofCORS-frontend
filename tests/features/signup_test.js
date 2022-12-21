@@ -1,5 +1,5 @@
 Feature('회원가입 - '
-+ '서비스를 이용하려는 사람은 로그인을 함으로써 로그인이 필요한 서비스를 이용할 수 있다.');
++ '서비스를 이용하려는 사람은 회원가입을 함으로써 로그인을 하고 로그인이 필요한 서비스를 이용할 수 있다.');
 
 Before(({ I }) => {
   I.setupDatabase();
@@ -18,7 +18,7 @@ Scenario('회원 가입 성공', ({ I }) => {
 
   I.fillField('email', 'test@example.com');
   I.fillField('password', 'Abcdef1!');
-  I.click('로그인');
+  I.submit();
 
   I.dontSee('로그인');
 });

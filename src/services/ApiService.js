@@ -12,20 +12,6 @@ export default class ApiService {
     });
   }
 
-  async postSession({
-    username, password,
-  }) {
-    const { data } = await this.instance.post('/session', {
-      username, password,
-    });
-
-    return {
-      accessToken: data.accessToken,
-      name: data.name,
-      amount: data.amount,
-    };
-  }
-
   async countUser(email) {
     const { data } = await this.instance.get(`/users?countOnly=true&email=${email}`);
 
@@ -41,6 +27,18 @@ export default class ApiService {
 
     return {
       id: data.id,
+    };
+  }
+
+  async postSession({
+    email, password,
+  }) {
+    const { data } = await this.instance.post('/session', {
+      email, password,
+    });
+
+    return {
+      accessToken: data.accessToken,
     };
   }
 }

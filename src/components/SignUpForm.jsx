@@ -43,8 +43,8 @@ export default function SignUpForm() {
           name="display-name"
           label="닉네임"
           type="text"
-          value={signUpFormStore.displayName}
-          handleChange={(e) => signUpFormStore.changeDisplayName(e.target.value)}
+          value={signUpFormStore.fields.displayName || ''}
+          onChange={(e) => signUpFormStore.changeDisplayName(e.target.value)}
           message="3자 이상 입력해주세요"
           errorMessage={signUpFormStore.errors.displayName}
         />
@@ -52,16 +52,16 @@ export default function SignUpForm() {
           name="email"
           label="이메일"
           type="email"
-          value={signUpFormStore.email}
-          handleChange={(e) => signUpFormStore.changeEmail(e.target.value)}
+          value={signUpFormStore.fields.email || ''}
+          onChange={(e) => signUpFormStore.changeEmail(e.target.value)}
           errorMessage={signUpFormStore.errors.email}
         />
         <Input
           name="password"
           label="비밀번호"
           type="password"
-          value={signUpFormStore.password}
-          handleChange={(e) => signUpFormStore.changePassword(e.target.value)}
+          value={signUpFormStore.fields.password || ''}
+          onChange={(e) => signUpFormStore.changePassword(e.target.value)}
           message="8글자 이상의 영문(대소문자), 숫자, 특수문자가 모두 포함되어야 함"
           errorMessage={signUpFormStore.errors.password}
         />
@@ -69,8 +69,8 @@ export default function SignUpForm() {
           name="password-check"
           label="비밀번호 확인"
           type="password"
-          value={signUpFormStore.passwordCheck}
-          handleChange={(e) => signUpFormStore.changePasswordCheck(e.target.value)}
+          value={signUpFormStore.fields.passwordCheck || ''}
+          onChange={(e) => signUpFormStore.changePasswordCheck(e.target.value)}
           errorMessage={signUpFormStore.errors.passwordCheck}
         />
         <button type="submit">

@@ -29,6 +29,22 @@ export default class UserStore extends Store {
     }
   }
 
+  async login({ email, password }) {
+    this.changeLoginStatus('processing');
+
+    try {
+      const { accessToken } = await apiService.postSession({ email, password });
+
+      this.changeLoginStatus('successful');
+
+      return accessToken;
+    } catch {
+      this.changeLoginStatus('failed');
+
+      return '';
+    }
+  }
+
   changeSignUpStatus(status) {
     this.fields.signUpStatus = status;
     this.publish();
@@ -39,12 +55,30 @@ export default class UserStore extends Store {
     this.publish();
   }
 
+  changeLoginStatus(status) {
+    this.fields.loginStatus = status;
+    this.publish();
+  }
+
+  resetLoginStatus() {
+    this.fields.loginStatus = '';
+    this.publish();
+  }
+
   get isSignUpSuccessful() {
     return this.fields.signUpStatus === 'successful';
   }
 
   get isSignUpFailed() {
     return this.fields.signUpStatus === 'failed';
+  }
+
+  get isLoginSuccessful() {
+    return this.fields.loginStatus === 'successful';
+  }
+
+  get isLoginFailed() {
+    return this.fields.loginStatus === 'failed';
   }
 }
 
