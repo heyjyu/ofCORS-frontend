@@ -7,6 +7,10 @@ module.exports = () => actor({
     this.amOnPage(`${backdoorBaseUrl}/setup-database`);
   },
 
+  writeQuestions() {
+    this.amOnPage(`${backdoorBaseUrl}/write-questions`);
+  },
+
   submit() {
     this.click('[type=submit]');
   },

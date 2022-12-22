@@ -10,6 +10,8 @@ const Container = styled.div`
   width: 100%;
   height: 3em;
   border-bottom: 1px solid black;
+  background-color: lightgray;
+  z-index: 100;
 
   ul {
     display: flex;

@@ -1,15 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import HomePage from './HomePage';
 
 describe('HomePage', () => {
-  it('renders message', () => {
+  it('renders message', async () => {
     render((
       <MemoryRouter initialEntries={['/']}>
         <HomePage />
       </MemoryRouter>
     ));
 
-    screen.getByText('인기 질문');
+    await waitFor(() => {
+      screen.getByText('인기 질문');
+    });
   });
 });
