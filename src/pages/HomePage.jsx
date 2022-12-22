@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import Navigator from '../components/Navigator';
+import TopQuestions from '../components/TopQuestions';
+import useTopQuestionsStore from '../hooks/useTopQuestionsStore';
 
 const Container = styled.div`
   display: flex;
@@ -16,12 +19,20 @@ const Wrapper = styled.div`
 `;
 
 export default function HomePage() {
+  const topQuestionsStore = useTopQuestionsStore();
+
+  useEffect(() => {
+    topQuestionsStore.fetchQuestions();
+  }, []);
+
   return (
     <Container>
       <LeftSideBar>
         <Navigator />
       </LeftSideBar>
-      <Wrapper>인기 질문</Wrapper>
+      <Wrapper>
+        <TopQuestions />
+      </Wrapper>
     </Container>
   );
 }

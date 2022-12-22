@@ -41,6 +41,14 @@ export default class ApiService {
       accessToken: data.accessToken,
     };
   }
+
+  async fetchTopQuestions() {
+    const { data } = await this.instance.get('/questions?filter=top');
+
+    return {
+      questions: data.questions,
+    };
+  }
 }
 
 export const apiService = new ApiService();
