@@ -2,16 +2,30 @@ import styled from 'styled-components';
 import useTopQuestionStore from '../hooks/useTopQuestionStore';
 import QuestionItem from './QuestionItem';
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
   border-bottom: 1px solid black;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 1em;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  margin: 1em;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  margin: 0 1em 1em;
 `;
 
 export default function TopQuestions() {
@@ -36,22 +50,22 @@ export default function TopQuestions() {
   return (
     <div>
       <Wrapper>
-        <div>
+        <Header>
           <Title>
             인기 질문
           </Title>
           <button type="button">
             질문하기
           </button>
-        </div>
-        <div>
+        </Header>
+        <Buttons>
           <button type="button" onClick={handleClickWeek}>
             week
           </button>
           <button type="button" onClick={handleClickMonth}>
             month
           </button>
-        </div>
+        </Buttons>
       </Wrapper>
       {topQuestionStore.questions.length
         ? (

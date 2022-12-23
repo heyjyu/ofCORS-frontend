@@ -10,7 +10,10 @@ const Container = styled.nav`
 `;
 
 const List = styled.ul`
-  padding-block: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 1em;
 `;
 
 export default function Navigator() {

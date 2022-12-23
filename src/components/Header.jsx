@@ -6,17 +6,29 @@ import useSearchStore from '../hooks/useSearchStore';
 const Container = styled.div`
   display: flex;
   align-items: center;
+  gap: 1em;
   position: fixed;
   top: 0;
   width: 100%;
   height: 3em;
-  padding-left: 1em;
+  padding-inline: 1em;
   border-bottom: 1px solid black;
   background-color: lightgray;
   z-index: 100;
 
+  form {
+    flex: 1;
+  }
+
+  input {
+    width: 100%;
+    max-width: 50em;
+  }
+
   ul {
     display: flex;
+    align-items: center;
+    gap: 1em;
     list-style: none;
   }
 `;

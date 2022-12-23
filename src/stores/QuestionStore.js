@@ -10,12 +10,12 @@ export default class QuestionStore extends Store {
     this.questions = [];
   }
 
-  async fetchQuestions() {
+  async fetchQuestions({ sort }) {
     this.isQuestionsLoaded = false;
 
     this.publish();
 
-    const { questions } = await apiService.fetchQuestions();
+    const { questions } = await apiService.fetchQuestions({ sort });
 
     this.questions = questions;
 

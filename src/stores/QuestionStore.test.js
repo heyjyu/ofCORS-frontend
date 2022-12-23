@@ -9,7 +9,7 @@ describe('QuestionStore', () => {
 
   describe('fetchQuestions', () => {
     it('loads questions', async () => {
-      await questionStore.fetchQuestions();
+      await questionStore.fetchQuestions({ sort: 'createdAt' });
 
       expect(questionStore.questions).toHaveLength(2);
     });
