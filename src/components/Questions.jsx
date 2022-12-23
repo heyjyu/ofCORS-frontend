@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import useQuestionStore from '../hooks/useQuestionStore';
 import QuestionItem from './QuestionItem';
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,15 +9,34 @@ const Wrapper = styled.div`
   border-bottom: 1px solid black;
 `;
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 1em;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  margin: 1em;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  margin: 0 1em 1em;
+`;
+
 export default function Questions() {
   const questionStore = useQuestionStore();
 
   const handleClickLatest = () => {
-    // TODO sort
+    questionStore.fetchQuestions({ sort: 'createdAt' });
   };
 
   const handleClickPoint = () => {
-    // TODO sort
+    questionStore.fetchQuestions({ sort: 'points' });
   };
 
   if (!questionStore.isQuestionsLoaded) {
@@ -36,22 +50,22 @@ export default function Questions() {
   return (
     <div>
       <Wrapper>
-        <div>
+        <Header>
           <Title>
             모든 질문
           </Title>
           <button type="button">
             질문하기
           </button>
-        </div>
-        <div>
+        </Header>
+        <Buttons>
           <button type="button" onClick={handleClickLatest}>
             최신순
           </button>
           <button type="button" onClick={handleClickPoint}>
             포인트순
           </button>
-        </div>
+        </Buttons>
       </Wrapper>
       {questionStore.questions.length
         ? (

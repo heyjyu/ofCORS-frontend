@@ -40,7 +40,7 @@ describe('Questions', () => {
 
   context('with questions', () => {
     it('renders question title', async () => {
-      await questionStore.fetchQuestions();
+      await questionStore.fetchQuestions({ sort: 'createdAt' });
       renderQuestions();
 
       screen.getByText(/Access-Control-Allow-Origin/);

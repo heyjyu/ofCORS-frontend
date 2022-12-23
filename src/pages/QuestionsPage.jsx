@@ -22,7 +22,7 @@ export default function QuestionsPage() {
   const questionStore = useQuestionStore();
 
   useEffect(() => {
-    questionStore.fetchQuestions();
+    questionStore.fetchQuestions({ sort: 'createdAt' });
   }, []);
 
   return (
