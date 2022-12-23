@@ -9,13 +9,21 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;  
+  flex-direction: column;
   gap: 1em;
   border-bottom: 1px solid black;
 `;
 
 export default function TopQuestions() {
   const topQuestionsStore = useTopQuestionsStore();
+
+  const handleClickWeek = () => {
+    topQuestionsStore.fetchQuestions({ period: 'week' });
+  };
+
+  const handleClickMonth = () => {
+    topQuestionsStore.fetchQuestions({ period: 'month' });
+  };
 
   if (!topQuestionsStore.fields.isQuestionsLoaded) {
     return (
@@ -28,12 +36,22 @@ export default function TopQuestions() {
   return (
     <div>
       <Wrapper>
-        <Title>
-          인기 질문
-        </Title>
-        <button type="button">
-          질문하기
-        </button>
+        <div>
+          <Title>
+            인기 질문
+          </Title>
+          <button type="button">
+            질문하기
+          </button>
+        </div>
+        <div>
+          <button type="button" onClick={handleClickWeek}>
+            week
+          </button>
+          <button type="button" onClick={handleClickMonth}>
+            month
+          </button>
+        </div>
       </Wrapper>
       {topQuestionsStore.fields.questions.length
         ? (

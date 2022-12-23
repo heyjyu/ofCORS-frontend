@@ -40,7 +40,7 @@ describe('TopQuestions', () => {
 
   context('with questions', () => {
     it('renders question title', async () => {
-      await topQuestionsStore.fetchQuestions();
+      await topQuestionsStore.fetchQuestions({ period: 'week' });
       renderTopQuestions();
 
       screen.getByText(/Access-Control-Allow-Origin/);

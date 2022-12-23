@@ -9,7 +9,7 @@ describe('TopQuestionsStore', () => {
 
   describe('fetchQuestions', () => {
     it('loads questions', async () => {
-      await topQuestionsStore.fetchQuestions();
+      await topQuestionsStore.fetchQuestions({ period: 'week' });
 
       expect(topQuestionsStore.fields.questions).toHaveLength(2);
     });
