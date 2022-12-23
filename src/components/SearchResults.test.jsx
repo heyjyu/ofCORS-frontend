@@ -1,26 +1,9 @@
 import {
   render, screen,
 } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { searchStore } from '../stores/SearchStore';
 import SearchResults from './SearchResults';
-
-jest.mock('react-router-dom', () => ({
-  // eslint-disable-next-line react/prop-types
-  Link({ children, to }) {
-    return (
-      <a href={to}>
-        {children}
-      </a>
-    );
-  },
-  useSearchParams() {
-    return [
-      {
-        get() {},
-      },
-    ];
-  },
-}));
 
 const context = describe;
 
@@ -31,7 +14,9 @@ describe('SearchResults', () => {
 
   function renderSearchResults() {
     render((
-      <SearchResults />
+      <MemoryRouter initialEntries={['/search']}>
+        <SearchResults />
+      </MemoryRouter>
     ));
   }
 

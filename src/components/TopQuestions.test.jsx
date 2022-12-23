@@ -1,19 +1,9 @@
 import {
   render, screen,
 } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { topQuestionStore } from '../stores/TopQuestionStore';
 import TopQuestions from './TopQuestions';
-
-jest.mock('react-router-dom', () => ({
-  // eslint-disable-next-line react/prop-types
-  Link({ children, to }) {
-    return (
-      <a href={to}>
-        {children}
-      </a>
-    );
-  },
-}));
 
 const context = describe;
 
@@ -24,7 +14,9 @@ describe('TopQuestions', () => {
 
   function renderTopQuestions() {
     render((
-      <TopQuestions />
+      <MemoryRouter initialEntries={['/']}>
+        <TopQuestions />
+      </MemoryRouter>
     ));
   }
 

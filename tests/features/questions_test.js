@@ -18,5 +18,7 @@ Scenario('질문이 있는 경우', ({ I }) => {
 });
 
 Scenario('질문이 없는 경우', ({ I }) => {
-  I.see('질문을 등록해주세요!');
+  I.amOnPage('/questions');
+
+  I.see('질문이 아직 없습니다!');
 });

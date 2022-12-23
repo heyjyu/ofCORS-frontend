@@ -58,8 +58,8 @@ export default class ApiService {
     };
   }
 
-  async fetchQuestions({ sort }) {
-    const { data } = await this.instance.get(`/questions?status=open&sort=${sort}&size=20`);
+  async fetchQuestions({ sort, keyword }) {
+    const { data } = await this.instance.get(`/questions?status=open&sort=${sort}&keyword=${keyword}&size=20`);
 
     return {
       questions: data.questions,
