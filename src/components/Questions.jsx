@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useTopQuestionStore from '../hooks/useTopQuestionStore';
+import useQuestionStore from '../hooks/useQuestionStore';
 import QuestionItem from './QuestionItem';
 
 const Title = styled.h1`
@@ -14,18 +14,18 @@ const Wrapper = styled.div`
   border-bottom: 1px solid black;
 `;
 
-export default function TopQuestions() {
-  const topQuestionStore = useTopQuestionStore();
+export default function Questions() {
+  const questionStore = useQuestionStore();
 
-  const handleClickWeek = () => {
-    topQuestionStore.fetchQuestions({ period: 'week' });
+  const handleClickLatest = () => {
+    // TODO sort
   };
 
-  const handleClickMonth = () => {
-    topQuestionStore.fetchQuestions({ period: 'month' });
+  const handleClickPoint = () => {
+    // TODO sort
   };
 
-  if (!topQuestionStore.isQuestionsLoaded) {
+  if (!questionStore.isQuestionsLoaded) {
     return (
       <p>
         Loading...
@@ -38,24 +38,24 @@ export default function TopQuestions() {
       <Wrapper>
         <div>
           <Title>
-            인기 질문
+            모든 질문
           </Title>
           <button type="button">
             질문하기
           </button>
         </div>
         <div>
-          <button type="button" onClick={handleClickWeek}>
-            week
+          <button type="button" onClick={handleClickLatest}>
+            최신순
           </button>
-          <button type="button" onClick={handleClickMonth}>
-            month
+          <button type="button" onClick={handleClickPoint}>
+            포인트순
           </button>
         </div>
       </Wrapper>
-      {topQuestionStore.questions.length
+      {questionStore.questions.length
         ? (
-          topQuestionStore.questions
+          questionStore.questions
             .map((question) => (
               <QuestionItem key={question.id} question={question} />
             ))

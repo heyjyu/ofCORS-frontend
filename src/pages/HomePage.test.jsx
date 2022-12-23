@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import HomePage from './HomePage';
 
 describe('HomePage', () => {
-  it('renders message', async () => {
+  it('renders title', async () => {
     render((
       <MemoryRouter initialEntries={['/']}>
         <HomePage />

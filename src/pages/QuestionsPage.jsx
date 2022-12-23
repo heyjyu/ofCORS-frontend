@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import Navigator from '../components/Navigator';
-import TopQuestions from '../components/TopQuestions';
-import useTopQuestionStore from '../hooks/useTopQuestionStore';
+import Questions from '../components/Questions';
+import useQuestionStore from '../hooks/useQuestionStore';
 
 const Container = styled.div`
   display: flex;
@@ -18,11 +18,11 @@ const Wrapper = styled.div`
   flex: 1;
 `;
 
-export default function HomePage() {
-  const topQuestionStore = useTopQuestionStore();
+export default function QuestionsPage() {
+  const questionStore = useQuestionStore();
 
   useEffect(() => {
-    topQuestionStore.fetchQuestions({ period: 'week' });
+    questionStore.fetchQuestions();
   }, []);
 
   return (
@@ -31,7 +31,7 @@ export default function HomePage() {
         <Navigator />
       </LeftSideBar>
       <Wrapper>
-        <TopQuestions />
+        <Questions />
       </Wrapper>
     </Container>
   );

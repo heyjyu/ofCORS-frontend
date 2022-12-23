@@ -1,8 +1,8 @@
 import {
   render, screen,
 } from '@testing-library/react';
-import { topQuestionStore } from '../stores/TopQuestionStore';
-import TopQuestions from './TopQuestions';
+import { questionStore } from '../stores/QuestionStore';
+import Questions from './Questions';
 
 jest.mock('react-router-dom', () => ({
   // eslint-disable-next-line react/prop-types
@@ -17,22 +17,22 @@ jest.mock('react-router-dom', () => ({
 
 const context = describe;
 
-describe('TopQuestions', () => {
+describe('Questions', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  function renderTopQuestions() {
+  function renderQuestions() {
     render((
-      <TopQuestions />
+      <Questions />
     ));
   }
 
   context('without question', () => {
     it('renders "질문을 등록해주세요!" message', () => {
-      topQuestionStore.isQuestionsLoaded = true;
-      topQuestionStore.questions = [];
-      renderTopQuestions();
+      questionStore.isQuestionsLoaded = true;
+      questionStore.questions = [];
+      renderQuestions();
 
       screen.getByText('질문을 등록해주세요!');
     });
@@ -40,8 +40,8 @@ describe('TopQuestions', () => {
 
   context('with questions', () => {
     it('renders question title', async () => {
-      await topQuestionStore.fetchQuestions({ period: 'week' });
-      renderTopQuestions();
+      await questionStore.fetchQuestions();
+      renderQuestions();
 
       screen.getByText(/Access-Control-Allow-Origin/);
     });
