@@ -13,6 +13,13 @@ jest.mock('react-router-dom', () => ({
       </a>
     );
   },
+  useSearchParams() {
+    return [
+      {
+        get() {},
+      },
+    ];
+  },
 }));
 
 const context = describe;
@@ -30,8 +37,8 @@ describe('SearchResults', () => {
 
   context('without result', () => {
     it('renders "검색 결과를 찾지 못했습니다" message', () => {
-      searchStore.fields.isResultsLoaded = true;
-      searchStore.fields.results = [];
+      searchStore.isResultsLoaded = true;
+      searchStore.results = [];
       renderSearchResults({ keyword: '존재하지 않는 검색어' });
 
       screen.getByText(/검색 결과를 찾지 못했습니다/);

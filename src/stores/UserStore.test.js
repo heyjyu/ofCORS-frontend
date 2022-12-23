@@ -67,11 +67,11 @@ describe('UserStore', () => {
     it('resets signUpStatus', () => {
       userStore.changeSignUpStatus('processing');
 
-      expect(userStore.fields.signUpStatus).toBe('processing');
+      expect(userStore.signUpStatus).toBe('processing');
 
       userStore.resetSignUpStatus();
 
-      expect(userStore.fields.signUpStatus).toBe('');
+      expect(userStore.signUpStatus).toBe('');
     });
   });
 
@@ -79,11 +79,11 @@ describe('UserStore', () => {
     it('resets loginStatus', () => {
       userStore.changeLoginStatus('processing');
 
-      expect(userStore.fields.loginStatus).toBe('processing');
+      expect(userStore.loginStatus).toBe('processing');
 
       userStore.resetLoginStatus();
 
-      expect(userStore.fields.loginStatus).toBe('');
+      expect(userStore.loginStatus).toBe('');
     });
   });
 });

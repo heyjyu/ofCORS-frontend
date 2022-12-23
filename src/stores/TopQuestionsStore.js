@@ -6,19 +6,20 @@ export default class TopQuestionsStore extends Store {
   constructor() {
     super();
 
-    this.fields = {};
+    this.isQuestionsLoaded = false;
+    this.questions = [];
   }
 
   async fetchQuestions({ period }) {
-    this.fields.isQuestionsLoaded = false;
+    this.isQuestionsLoaded = false;
 
     this.publish();
 
     const { questions } = await apiService.fetchTopQuestions({ period });
 
-    this.fields.questions = questions;
+    this.questions = questions;
 
-    this.fields.isQuestionsLoaded = true;
+    this.isQuestionsLoaded = true;
 
     this.publish();
   }

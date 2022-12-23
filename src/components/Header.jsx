@@ -34,7 +34,7 @@ export default function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search?q=${searchStore.fields.keyword}`);
+    navigate(`/search?q=${searchStore.keyword}`);
   };
 
   return (

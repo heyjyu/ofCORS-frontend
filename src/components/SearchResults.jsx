@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useSearchStore from '../hooks/useSearchStore';
 import QuestionItem from './QuestionItem';
@@ -16,8 +17,9 @@ const Wrapper = styled.div`
 
 export default function SearchResults() {
   const searchStore = useSearchStore();
+  const [searchParams] = useSearchParams();
 
-  if (!searchStore.fields.isResultsLoaded) {
+  if (!searchStore.isResultsLoaded) {
     return (
       <p>
         Loading...
@@ -37,14 +39,18 @@ export default function SearchResults() {
           </button>
         </div>
       </Wrapper>
-      {searchStore.fields.results.length
+      {searchStore.results.length
         ? (
-          searchStore.fields.results
+          searchStore.results
             .map((result) => (
               <QuestionItem key={result.id} question={result} />
             ))
         ) : (
-          <p>채택된 질문 중 검색 결과를 찾지 못했습니다</p>
+          <p>
+            채택된 질문 중 &apos;
+            {searchParams.get('q')}
+            &apos;에 대한 검색 결과를 찾지 못했습니다
+          </p>
         )}
     </div>
   );

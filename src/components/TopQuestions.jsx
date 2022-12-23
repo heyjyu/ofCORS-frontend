@@ -25,7 +25,7 @@ export default function TopQuestions() {
     topQuestionsStore.fetchQuestions({ period: 'month' });
   };
 
-  if (!topQuestionsStore.fields.isQuestionsLoaded) {
+  if (!topQuestionsStore.isQuestionsLoaded) {
     return (
       <p>
         Loading...
@@ -53,9 +53,9 @@ export default function TopQuestions() {
           </button>
         </div>
       </Wrapper>
-      {topQuestionsStore.fields.questions.length
+      {topQuestionsStore.questions.length
         ? (
-          topQuestionsStore.fields.questions
+          topQuestionsStore.questions
             .map((question) => (
               <QuestionItem key={question.id} question={question} />
             ))

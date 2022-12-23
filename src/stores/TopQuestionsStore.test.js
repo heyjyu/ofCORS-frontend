@@ -11,7 +11,7 @@ describe('TopQuestionsStore', () => {
     it('loads questions', async () => {
       await topQuestionsStore.fetchQuestions({ period: 'week' });
 
-      expect(topQuestionsStore.fields.questions).toHaveLength(2);
+      expect(topQuestionsStore.questions).toHaveLength(2);
     });
   });
 });

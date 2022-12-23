@@ -30,8 +30,8 @@ describe('TopQuestions', () => {
 
   context('without question', () => {
     it('renders "질문을 등록해주세요!" message', () => {
-      topQuestionsStore.fields.isQuestionsLoaded = true;
-      topQuestionsStore.fields.questions = [];
+      topQuestionsStore.isQuestionsLoaded = true;
+      topQuestionsStore.questions = [];
       renderTopQuestions();
 
       screen.getByText('질문을 등록해주세요!');
