@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLocalStorage } from 'usehooks-ts';
+import useSearchStore from '../hooks/useSearchStore';
 
 const Container = styled.div`
   display: flex;
@@ -24,9 +25,16 @@ export default function Header() {
 
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
+  const searchStore = useSearchStore();
+
   const handleLogout = () => {
     setAccessToken('');
     navigate('/');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?q=${searchStore.fields.keyword}`);
   };
 
   return (
@@ -34,8 +42,8 @@ export default function Header() {
       <a href="/">
         ofCORS
       </a>
-      <form action="/search" autoComplete="off">
-        <input type="text" />
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <input name="search" type="text" onChange={(e) => searchStore.changeKeyword(e.target.value)} />
       </form>
       <ul>
         {accessToken
