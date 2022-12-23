@@ -8,6 +8,7 @@ import SignUpPage from './pages/SignUpPage';
 import SearchPage from './pages/SearchPage';
 
 import GlobalStyle from './styles/GlobalStyles';
+import QuestionsPage from './pages/QuestionsPage';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/questions" element={<QuestionsPage />} />
         </Routes>
       </main>
     </>

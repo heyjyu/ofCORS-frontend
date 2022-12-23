@@ -2,7 +2,7 @@ import { apiService } from '../services/ApiService';
 
 import Store from './Store';
 
-export default class TopQuestionsStore extends Store {
+export default class TopQuestionStore extends Store {
   constructor() {
     super();
 
@@ -25,4 +25,4 @@ export default class TopQuestionsStore extends Store {
   }
 }
 
-export const topQuestionsStore = new TopQuestionsStore();
+export const topQuestionStore = new TopQuestionStore();

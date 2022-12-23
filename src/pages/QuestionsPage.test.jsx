@@ -1,17 +1,17 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import SearchPage from './SearchPage';
+import QuestionsPage from './QuestionsPage';
 
-describe('SearchPage', () => {
+describe('QuestionsPage', () => {
   it('renders title', async () => {
     render((
-      <MemoryRouter initialEntries={['/search']}>
-        <SearchPage />
+      <MemoryRouter initialEntries={['/questions']}>
+        <QuestionsPage />
       </MemoryRouter>
     ));
 
     await waitFor(() => {
-      screen.getByText('검색 결과');
+      screen.getByText('모든 질문');
     });
   });
 });

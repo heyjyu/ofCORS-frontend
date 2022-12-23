@@ -10,6 +10,7 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   height: 3em;
+  padding-left: 1em;
   border-bottom: 1px solid black;
   background-color: lightgray;
   z-index: 100;

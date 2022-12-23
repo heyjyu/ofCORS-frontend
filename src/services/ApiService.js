@@ -57,6 +57,14 @@ export default class ApiService {
       questions: data.questions,
     };
   }
+
+  async fetchQuestions() {
+    const { data } = await this.instance.get('/questions?status=open&size=20');
+
+    return {
+      questions: data.questions,
+    };
+  }
 }
 
 export const apiService = new ApiService();
