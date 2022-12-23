@@ -9,9 +9,17 @@ describe('QuestionStore', () => {
 
   describe('fetchQuestions', () => {
     it('loads questions', async () => {
-      await questionStore.fetchQuestions({ sort: 'createdAt' });
+      await questionStore.fetchQuestions({ sort: 'createdAt', keyword: 'CORS' });
 
       expect(questionStore.questions).toHaveLength(2);
+    });
+  });
+
+  describe('changeKeyword', () => {
+    it('changes keyword', () => {
+      questionStore.changeKeyword('CORS');
+
+      expect(questionStore.keyword).toBe('CORS');
     });
   });
 });

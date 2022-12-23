@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import useQuestionStore from '../hooks/useQuestionStore';
 import QuestionItem from './QuestionItem';
 
-const Wrapper = styled.div`
+const Header = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
   border-bottom: 1px solid black;
 `;
 
-const Header = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,6 +39,11 @@ export default function Questions() {
     questionStore.fetchQuestions({ sort: 'points' });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    questionStore.fetchQuestions({ sort: 'points', keyword: questionStore.keyword });
+  };
+
   if (!questionStore.isQuestionsLoaded) {
     return (
       <p>
@@ -49,24 +54,29 @@ export default function Questions() {
 
   return (
     <div>
-      <Wrapper>
-        <Header>
+      <Header>
+        <Wrapper>
           <Title>
             모든 질문
           </Title>
           <button type="button">
             질문하기
           </button>
-        </Header>
-        <Buttons>
-          <button type="button" onClick={handleClickLatest}>
-            최신순
-          </button>
-          <button type="button" onClick={handleClickPoint}>
-            포인트순
-          </button>
-        </Buttons>
-      </Wrapper>
+        </Wrapper>
+        <Wrapper>
+          <form autoComplete="off" onSubmit={handleSubmit}>
+            <input name="search" type="text" onChange={(e) => questionStore.changeKeyword(e.target.value)} />
+          </form>
+          <Buttons>
+            <button type="button" onClick={handleClickLatest}>
+              최신순
+            </button>
+            <button type="button" onClick={handleClickPoint}>
+              포인트순
+            </button>
+          </Buttons>
+        </Wrapper>
+      </Header>
       {questionStore.questions.length
         ? (
           questionStore.questions
@@ -74,7 +84,7 @@ export default function Questions() {
               <QuestionItem key={question.id} question={question} />
             ))
         ) : (
-          <p>질문을 등록해주세요!</p>
+          <p>질문이 아직 없습니다!</p>
         )}
     </div>
   );

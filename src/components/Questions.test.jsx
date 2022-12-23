@@ -1,19 +1,9 @@
 import {
   render, screen,
 } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { questionStore } from '../stores/QuestionStore';
 import Questions from './Questions';
-
-jest.mock('react-router-dom', () => ({
-  // eslint-disable-next-line react/prop-types
-  Link({ children, to }) {
-    return (
-      <a href={to}>
-        {children}
-      </a>
-    );
-  },
-}));
 
 const context = describe;
 
@@ -24,17 +14,19 @@ describe('Questions', () => {
 
   function renderQuestions() {
     render((
-      <Questions />
+      <MemoryRouter initialEntries={['/questions']}>
+        <Questions />
+      </MemoryRouter>
     ));
   }
 
   context('without question', () => {
-    it('renders "질문을 등록해주세요!" message', () => {
+    it('renders "질문이 아직 없습니다!" message', () => {
       questionStore.isQuestionsLoaded = true;
       questionStore.questions = [];
       renderQuestions();
 
-      screen.getByText('질문을 등록해주세요!');
+      screen.getByText('질문이 아직 없습니다!');
     });
   });
 
