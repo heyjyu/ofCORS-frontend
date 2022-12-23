@@ -9,12 +9,12 @@ export default class TopQuestionsStore extends Store {
     this.fields = {};
   }
 
-  async fetchQuestions() {
+  async fetchQuestions({ period }) {
     this.fields.isQuestionsLoaded = false;
 
     this.publish();
 
-    const { questions } = await apiService.fetchTopQuestions();
+    const { questions } = await apiService.fetchTopQuestions({ period });
 
     this.fields.questions = questions;
 

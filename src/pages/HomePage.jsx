@@ -22,7 +22,7 @@ export default function HomePage() {
   const topQuestionsStore = useTopQuestionsStore();
 
   useEffect(() => {
-    topQuestionsStore.fetchQuestions();
+    topQuestionsStore.fetchQuestions({ period: 'week' });
   }, []);
 
   return (

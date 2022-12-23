@@ -42,8 +42,8 @@ export default class ApiService {
     };
   }
 
-  async fetchTopQuestions() {
-    const { data } = await this.instance.get('/questions?filter=top');
+  async fetchTopQuestions({ period = 'week' }) {
+    const { data } = await this.instance.get(`/questions?sort=like&status=open&period=${period}&size=20`);
 
     return {
       questions: data.questions,
