@@ -11,7 +11,7 @@ describe('SearchStore', () => {
     it('changes keyword', () => {
       searchStore.changeKeyword('CORS');
 
-      expect(searchStore.fields.keyword).toBe('CORS');
+      expect(searchStore.keyword).toBe('CORS');
     });
   });
 
@@ -19,7 +19,7 @@ describe('SearchStore', () => {
     it('loads results', async () => {
       await searchStore.fetchResults({ keyword: 'CORS' });
 
-      expect(searchStore.fields.results).toHaveLength(2);
+      expect(searchStore.results).toHaveLength(2);
     });
   });
 });

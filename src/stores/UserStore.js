@@ -6,7 +6,8 @@ export default class UserStore extends Store {
   constructor() {
     super();
 
-    this.fields = {};
+    this.signUpStatus = '';
+    this.loginStatus = '';
   }
 
   async signUp({
@@ -46,39 +47,39 @@ export default class UserStore extends Store {
   }
 
   changeSignUpStatus(status) {
-    this.fields.signUpStatus = status;
+    this.signUpStatus = status;
     this.publish();
   }
 
   resetSignUpStatus() {
-    this.fields.signUpStatus = '';
+    this.signUpStatus = '';
     this.publish();
   }
 
   changeLoginStatus(status) {
-    this.fields.loginStatus = status;
+    this.loginStatus = status;
     this.publish();
   }
 
   resetLoginStatus() {
-    this.fields.loginStatus = '';
+    this.loginStatus = '';
     this.publish();
   }
 
   get isSignUpSuccessful() {
-    return this.fields.signUpStatus === 'successful';
+    return this.signUpStatus === 'successful';
   }
 
   get isSignUpFailed() {
-    return this.fields.signUpStatus === 'failed';
+    return this.signUpStatus === 'failed';
   }
 
   get isLoginSuccessful() {
-    return this.fields.loginStatus === 'successful';
+    return this.loginStatus === 'successful';
   }
 
   get isLoginFailed() {
-    return this.fields.loginStatus === 'failed';
+    return this.loginStatus === 'failed';
   }
 }
 
