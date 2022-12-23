@@ -49,6 +49,14 @@ export default class ApiService {
       questions: data.questions,
     };
   }
+
+  async fetchSearchResults({ keyword }) {
+    const { data } = await this.instance.get(`/questions?sort=like&status=closed&keyword=${keyword}&size=20`);
+
+    return {
+      questions: data.questions,
+    };
+  }
 }
 
 export const apiService = new ApiService();
