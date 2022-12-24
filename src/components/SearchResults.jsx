@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useSearchStore from '../hooks/useSearchStore';
-import QuestionItem from './QuestionItem';
+import SolutionItem from './SolutionItem';
 
 const Title = styled.h1`
   font-size: 1.5em;
@@ -43,7 +43,7 @@ export default function SearchResults() {
         ? (
           searchStore.results
             .map((result) => (
-              <QuestionItem key={result.id} question={result} />
+              <SolutionItem key={result.id} solution={result} />
             ))
         ) : (
           <p>

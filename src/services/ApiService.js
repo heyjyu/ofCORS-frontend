@@ -65,6 +65,14 @@ export default class ApiService {
       questions: data.questions,
     };
   }
+
+  async fetchSolutions({ sort }) {
+    const { data } = await this.instance.get(`/questions?status=closed&sort=${sort}&size=20`);
+
+    return {
+      solutions: data.questions,
+    };
+  }
 }
 
 export const apiService = new ApiService();
