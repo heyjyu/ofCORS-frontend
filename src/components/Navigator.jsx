@@ -31,7 +31,7 @@ export default function Navigator() {
           </Link>
         </li>
         <li>
-          <Link to="/solved-questions">
+          <Link to="/solutions">
             해결완료
           </Link>
         </li>

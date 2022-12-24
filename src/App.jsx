@@ -9,6 +9,7 @@ import SearchPage from './pages/SearchPage';
 
 import GlobalStyle from './styles/GlobalStyles';
 import QuestionsPage from './pages/QuestionsPage';
+import SolutionsPage from './pages/SolutionsPage';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/questions" element={<QuestionsPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
         </Routes>
       </main>
     </>
