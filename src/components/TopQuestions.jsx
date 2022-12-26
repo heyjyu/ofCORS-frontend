@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import useTopQuestionStore from '../hooks/useTopQuestionStore';
+import AskLink from './AskLink';
 import QuestionItem from './QuestionItem';
 
 const Wrapper = styled.div`
@@ -39,7 +40,7 @@ export default function TopQuestions() {
     topQuestionStore.fetchQuestions({ period: 'month' });
   };
 
-  if (!topQuestionStore.isQuestionsLoaded) {
+  if (topQuestionStore.isQuestionsLoading) {
     return (
       <p>
         Loading...
@@ -54,9 +55,7 @@ export default function TopQuestions() {
           <Title>
             인기 질문
           </Title>
-          <button type="button">
-            질문하기
-          </button>
+          <AskLink />
         </Header>
         <Buttons>
           <button type="button" onClick={handleClickWeek}>

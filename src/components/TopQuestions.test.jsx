@@ -22,7 +22,7 @@ describe('TopQuestions', () => {
 
   context('without question', () => {
     it('renders "질문을 등록해주세요!" message', () => {
-      topQuestionStore.isQuestionsLoaded = true;
+      topQuestionStore.isQuestionsLoading = false;
       topQuestionStore.questions = [];
       renderTopQuestions();
 

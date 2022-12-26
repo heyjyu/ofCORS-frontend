@@ -7,7 +7,7 @@ export default class SearchStore extends Store {
     super();
 
     this.keyword = '';
-    this.isResultsLoaded = false;
+    this.isResultsLoading = false;
     this.results = [];
   }
 
@@ -18,16 +18,32 @@ export default class SearchStore extends Store {
   }
 
   async fetchResults({ keyword }) {
-    this.isResultsLoaded = false;
+    this.startLoad();
 
+    try {
+      const { questions } = await apiService.fetchSearchResults({ keyword });
+
+      this.completeLoad(questions);
+    } catch (e) {
+      this.failLoad();
+    }
+  }
+
+  startLoad() {
+    this.isQuestionsLoading = true;
+    this.results = [];
     this.publish();
+  }
 
-    const { questions } = await apiService.fetchSearchResults({ keyword });
-
+  completeLoad(questions) {
+    this.isQuestionsLoading = false;
     this.results = questions;
+    this.publish();
+  }
 
-    this.isResultsLoaded = true;
-
+  failLoad() {
+    this.isQuestionsLoading = false;
+    this.results = [];
     this.publish();
   }
 }

@@ -22,6 +22,14 @@ const server = setupServer(
     }));
   }),
 
+  rest.get(`${baseUrl}/users/me`, async (req, res, ctx) => res(ctx.json({
+    displayName: 'hong',
+    about: '저는 이런 사람입니다',
+    points: 100,
+    realName: '홍길동',
+    imageUrl: 'https://www.google.com/image.jpg',
+  }))),
+
   rest.post(`${baseUrl}/users`, async (req, res, ctx) => {
     const {
       displayName, email, password,
@@ -66,14 +74,14 @@ const server = setupServer(
     const { status } = req.params;
 
     if (status === 'open') {
-      res(ctx.json({
+      return res(ctx.json({
         questions: [
           {
             id: 1,
             status: 'open',
             title: 'No \'Access-Control-Allow-Origin\'',
             body: '서버 배포 후 CORS에러가 발생합니다.',
-            tags: ['Web'],
+            tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [11],
             hits: 3,
@@ -86,7 +94,7 @@ const server = setupServer(
             status: 'open',
             title: 'CORS 에러가 발생합니다.',
             body: '서버 배포 후 CORS에러가 발생합니다.',
-            tags: ['Web'],
+            tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [11],
             hits: 3,
@@ -105,7 +113,7 @@ const server = setupServer(
           status: 'closed',
           title: 'No \'Access-Control-Allow-Origin\'',
           body: '서버 배포 후 CORS에러가 발생합니다.',
-          tags: ['Web'],
+          tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [11],
           hits: 3,
@@ -118,7 +126,7 @@ const server = setupServer(
           status: 'closed',
           title: 'CORS 에러가 발생합니다.',
           body: '서버 배포 후 CORS에러가 발생합니다.',
-          tags: ['Web'],
+          tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [11],
           hits: 3,
@@ -128,6 +136,22 @@ const server = setupServer(
         },
       ],
     }));
+  }),
+
+  rest.post(`${baseUrl}/questions`, async (req, res, ctx) => {
+    const {
+      title, body,
+    } = await req.json();
+
+    if (title && body) {
+      return res(ctx.json({
+        id: 1,
+      }));
+    }
+
+    return res(
+      ctx.status(400),
+    );
   }),
 );
 

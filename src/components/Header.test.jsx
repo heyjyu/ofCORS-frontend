@@ -26,7 +26,7 @@ describe('Header', () => {
     ));
   }
 
-  it('renders link', () => {
+  it('renders link to home page', () => {
     renderHeader();
 
     screen.getByText('ofCORS');

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import useQuestionStore from '../hooks/useQuestionStore';
+import AskLink from './AskLink';
 import QuestionItem from './QuestionItem';
 
 const Header = styled.div`
@@ -44,7 +45,7 @@ export default function Questions() {
     questionStore.fetchQuestions({ sort: 'points', keyword: questionStore.keyword });
   };
 
-  if (!questionStore.isQuestionsLoaded) {
+  if (questionStore.isQuestionsLoading) {
     return (
       <p>
         Loading...
@@ -59,9 +60,7 @@ export default function Questions() {
           <Title>
             모든 질문
           </Title>
-          <button type="button">
-            질문하기
-          </button>
+          <AskLink />
         </Wrapper>
         <Wrapper>
           <form autoComplete="off" onSubmit={handleSubmit}>

@@ -6,21 +6,37 @@ export default class TopQuestionStore extends Store {
   constructor() {
     super();
 
-    this.isQuestionsLoaded = false;
+    this.isQuestionsLoading = false;
     this.questions = [];
   }
 
   async fetchQuestions({ period }) {
-    this.isQuestionsLoaded = false;
+    this.startLoad();
 
+    try {
+      const { questions } = await apiService.fetchTopQuestions({ period });
+
+      this.completeLoad(questions);
+    } catch (e) {
+      this.failLoad();
+    }
+  }
+
+  startLoad() {
+    this.isQuestionsLoading = true;
+    this.questions = [];
     this.publish();
+  }
 
-    const { questions } = await apiService.fetchTopQuestions({ period });
-
+  completeLoad(questions) {
+    this.isQuestionsLoading = false;
     this.questions = questions;
+    this.publish();
+  }
 
-    this.isQuestionsLoaded = true;
-
+  failLoad() {
+    this.isQuestionsLoading = false;
+    this.questions = [];
     this.publish();
   }
 }

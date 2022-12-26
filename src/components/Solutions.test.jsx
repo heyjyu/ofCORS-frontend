@@ -22,7 +22,7 @@ describe('Solutions', () => {
 
   context('without solution', () => {
     it('renders "해결된 질문이 아직 없습니다!" message', () => {
-      solutionStore.isSolutionsLoaded = true;
+      solutionStore.isSolutionsLoading = false;
       solutionStore.solutions = [];
       renderSolutions();
 

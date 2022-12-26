@@ -12,6 +12,7 @@ describe('SearchPage', () => {
 
     await waitFor(() => {
       screen.getByText('검색 결과');
+      screen.getByText('No \'Access-Control-Allow-Origin\'');
     });
   });
 });
