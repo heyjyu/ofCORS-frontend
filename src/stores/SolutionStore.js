@@ -6,21 +6,37 @@ export default class SolutionStore extends Store {
   constructor() {
     super();
 
-    this.isSolutionsLoaded = false;
+    this.isSolutionsLoading = false;
     this.solutions = [];
   }
 
   async fetchSolutions({ sort }) {
-    this.isSolutionsLoaded = false;
+    this.startLoad();
 
+    try {
+      const { solutions } = await apiService.fetchSolutions({ sort });
+
+      this.completeLoad(solutions);
+    } catch (e) {
+      this.failLoad();
+    }
+  }
+
+  startLoad() {
+    this.isQuestionsLoading = true;
+    this.solutions = [];
     this.publish();
+  }
 
-    const { solutions } = await apiService.fetchSolutions({ sort });
-
+  completeLoad(solutions) {
+    this.isQuestionsLoading = false;
     this.solutions = solutions;
+    this.publish();
+  }
 
-    this.isSolutionsLoaded = true;
-
+  failLoad() {
+    this.isQuestionsLoading = false;
+    this.solutions = [];
     this.publish();
   }
 }

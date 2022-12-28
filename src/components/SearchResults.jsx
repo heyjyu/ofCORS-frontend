@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import useSearchStore from '../hooks/useSearchStore';
+import AskLink from './AskLink';
 import SolutionItem from './SolutionItem';
 
 const Title = styled.h1`
@@ -19,7 +20,7 @@ export default function SearchResults() {
   const searchStore = useSearchStore();
   const [searchParams] = useSearchParams();
 
-  if (!searchStore.isResultsLoaded) {
+  if (searchStore.isResultsLoading) {
     return (
       <p>
         Loading...
@@ -34,9 +35,7 @@ export default function SearchResults() {
           <Title>
             검색 결과
           </Title>
-          <button type="button">
-            질문하기
-          </button>
+          <AskLink />
         </div>
       </Wrapper>
       {searchStore.results.length

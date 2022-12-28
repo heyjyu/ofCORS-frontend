@@ -12,6 +12,7 @@ describe('SolutionsPage', () => {
 
     await waitFor(() => {
       screen.getByText('해결된 질문');
+      screen.getByText('No \'Access-Control-Allow-Origin\'');
     });
   });
 });

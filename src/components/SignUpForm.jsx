@@ -18,12 +18,6 @@ export default function SignUpForm() {
     displayName, email, password,
   } = signUpFormStore.fields;
 
-  useEffect(() => {
-    if (userStore.isSignUpSuccessful) {
-      navigate('/login');
-    }
-  }, [userStore.isSignUpSuccessful]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,6 +29,12 @@ export default function SignUpForm() {
       });
     }
   };
+
+  useEffect(() => {
+    if (userStore.isSignUpSuccessful) {
+      navigate('/login');
+    }
+  }, [userStore.isSignUpSuccessful]);
 
   return (
     <Container>

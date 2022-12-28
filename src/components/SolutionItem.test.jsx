@@ -31,7 +31,7 @@ describe('SolutionItem', () => {
       status: 'closed',
       title: 'No \'Access-Control-Allow-Origin\' 에러가 뜹니다',
       body: '서버 배포 후 CORS에러가 발생합니다.',
-      tags: ['Web'],
+      tags: [{ name: 'Web' }],
       points: 10,
       likeUserIds: [11],
       hits: 3,

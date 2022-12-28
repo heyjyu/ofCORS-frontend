@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Tags from './Tags';
 
 const Container = styled.div`
   display: flex;
@@ -21,16 +22,6 @@ const Point = styled.div`
   padding: 0.4em 0.5em;
   border-radius: 0.25em;
   background-color: #70C28B;
-  color: white;
-  line-height: 1em;
-`;
-
-const Tag = styled.div`
-  display: inline-block;
-  height: 1.5em;
-  padding: 0.4em 0.5em;
-  border-radius: 0.25em;
-  background-color: skyblue;
   color: white;
   line-height: 1em;
 `;
@@ -60,15 +51,7 @@ export default function QuestionItem({ question }) {
             {question.title}
           </a>
         </h2>
-        <ul>
-          {question.tags.map((tag) => (
-            <li key={tag}>
-              <Tag>
-                {tag.name}
-              </Tag>
-            </li>
-          ))}
-        </ul>
+        <Tags tags={question.tags} />
       </div>
     </Container>
   );

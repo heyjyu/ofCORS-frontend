@@ -22,7 +22,7 @@ describe('Questions', () => {
 
   context('without question', () => {
     it('renders "질문이 아직 없습니다!" message', () => {
-      questionStore.isQuestionsLoaded = true;
+      questionStore.isQuestionsLoading = false;
       questionStore.questions = [];
       renderQuestions();
 

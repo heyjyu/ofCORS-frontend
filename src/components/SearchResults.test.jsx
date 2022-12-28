@@ -22,7 +22,7 @@ describe('SearchResults', () => {
 
   context('without result', () => {
     it('renders "검색 결과를 찾지 못했습니다" message', () => {
-      searchStore.isResultsLoaded = true;
+      searchStore.isResultsLoading = false;
       searchStore.results = [];
       renderSearchResults({ keyword: '존재하지 않는 검색어' });
 

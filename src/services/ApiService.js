@@ -12,6 +12,17 @@ export default class ApiService {
     });
   }
 
+  setAccessToken(accessToken) {
+    this.accessToken = accessToken;
+
+    if (accessToken) {
+      this.instance = axios.create({
+        baseURL: baseUrl,
+        headers: { Authorization: `Bearer ${this.accessToken}` },
+      });
+    }
+  }
+
   async countUser(email) {
     const { data } = await this.instance.get(`/users?countOnly=true&email=${email}`);
 
@@ -27,6 +38,14 @@ export default class ApiService {
 
     return {
       id: data.id,
+    };
+  }
+
+  async fetchUser() {
+    const { data } = await this.instance.get('/users/me');
+
+    return {
+      points: data.points,
     };
   }
 
@@ -71,6 +90,18 @@ export default class ApiService {
 
     return {
       solutions: data.questions,
+    };
+  }
+
+  async createQuestion({
+    title, body, tags, points,
+  }) {
+    const { data } = await this.instance.post('/questions', {
+      title, body, tags: [...tags], points,
+    });
+
+    return {
+      id: data.id,
     };
   }
 }

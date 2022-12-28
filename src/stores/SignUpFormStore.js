@@ -45,11 +45,11 @@ export default class SignUpFormStore extends Store {
   changeEmail(email) {
     this.fields.email = email;
 
-    if (this.fields.timer) {
-      clearTimeout(this.fields.timer);
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
 
-    this.fields.timer = setTimeout(async () => {
+    this.timer = setTimeout(async () => {
       await this.validateEmail();
 
       this.publish();
@@ -75,6 +75,7 @@ export default class SignUpFormStore extends Store {
   reset() {
     this.fields = {};
     this.errors = {};
+    this.timer = null;
 
     this.publish();
   }

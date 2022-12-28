@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import useSolutionStore from '../hooks/useSolutionStore';
-import QuestionItem from './QuestionItem';
+import AskLink from './AskLink';
 import SolutionItem from './SolutionItem';
 
 const Header = styled.div`
@@ -40,7 +40,7 @@ export default function Solutions() {
     solutionStore.fetchSolutions({ sort: 'like' });
   };
 
-  if (!solutionStore.isSolutionsLoaded) {
+  if (solutionStore.isSolutionsLoading) {
     return (
       <p>
         Loading...
@@ -55,9 +55,7 @@ export default function Solutions() {
           <Title>
             해결된 질문
           </Title>
-          <button type="button">
-            질문하기
-          </button>
+          <AskLink />
         </Wrapper>
         <Wrapper>
           <Buttons>
