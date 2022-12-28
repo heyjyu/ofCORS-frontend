@@ -41,7 +41,7 @@ export default class ApiService {
     };
   }
 
-  async fetchUser() {
+  async fetchMe() {
     const { data } = await this.instance.get('/users/me');
 
     return {
@@ -83,6 +83,12 @@ export default class ApiService {
     return {
       questions: data.questions,
     };
+  }
+
+  async fetchQuestion(id) {
+    const { data } = await this.instance.get(`/questions/${id}`);
+
+    return data;
   }
 
   async fetchSolutions({ sort }) {

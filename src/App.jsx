@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import SearchPage from './pages/SearchPage';
 import QuestionsPage from './pages/QuestionsPage';
+import QuestionDetailPage from './pages/QuestionDetailPage';
 import SolutionsPage from './pages/SolutionsPage';
 import AskPage from './pages/AskPage';
 
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/questions" element={<QuestionsPage />} />
+          <Route path="/questions/:id" element={<QuestionDetailPage />} />
           <Route path="/ask" element={<AskPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
         </Routes>

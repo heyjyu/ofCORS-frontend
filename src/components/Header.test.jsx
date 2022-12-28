@@ -20,6 +20,10 @@ jest.mock('react-router-dom', () => ({
 const context = describe;
 
 describe('Header', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   function renderHeader() {
     render((
       <Header />

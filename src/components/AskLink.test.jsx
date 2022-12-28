@@ -18,6 +18,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('AskLink', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   function renderAskLink() {
     render((
       <AskLink />

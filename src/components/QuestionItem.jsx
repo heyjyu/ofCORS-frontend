@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Tags from './Tags';
+import Point from './Point';
 
 const Container = styled.div`
   display: flex;
@@ -17,15 +18,6 @@ const Wrapper = styled.div`
   width: 5em;
 `;
 
-const Point = styled.div`
-  height: 1.5em;
-  padding: 0.4em 0.5em;
-  border-radius: 0.25em;
-  background-color: #70C28B;
-  color: white;
-  line-height: 1em;
-`;
-
 export default function QuestionItem({ question }) {
   return (
     <Container>
@@ -35,10 +27,7 @@ export default function QuestionItem({ question }) {
           {' '}
           추천
         </div>
-        <Point>
-          {question.points}
-          pt
-        </Point>
+        <Point amount={question.points} />
         <div>
           {question.hits}
           {' '}

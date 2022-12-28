@@ -22,6 +22,7 @@ describe('QuestionForm', () => {
   }
 
   beforeEach(() => {
+    jest.clearAllMocks();
     questionFormStore.reset();
   });
 

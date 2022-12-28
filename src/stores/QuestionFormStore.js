@@ -68,7 +68,7 @@ export default class QuestionFormStore extends Store {
   }
 
   async fetchPoints() {
-    const { points } = await apiService.fetchUser();
+    const { points } = await apiService.fetchMe();
 
     this.points = points;
 
