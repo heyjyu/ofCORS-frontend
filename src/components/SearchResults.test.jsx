@@ -8,10 +8,6 @@ import SearchResults from './SearchResults';
 const context = describe;
 
 describe('SearchResults', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   function renderSearchResults() {
     render((
       <MemoryRouter initialEntries={['/search']}>

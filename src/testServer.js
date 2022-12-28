@@ -23,6 +23,7 @@ const server = setupServer(
   }),
 
   rest.get(`${baseUrl}/users/me`, async (req, res, ctx) => res(ctx.json({
+    id: 1,
     displayName: 'hong',
     about: '저는 이런 사람입니다',
     points: 100,
@@ -87,7 +88,7 @@ const server = setupServer(
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
             updatedAt: '2022-12-21T19:05:30.574542',
-            authorId: 1,
+            author: { id: 1, displayName: '홍길동' },
           },
           {
             id: 2,
@@ -100,7 +101,7 @@ const server = setupServer(
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
             updatedAt: '2022-12-21T19:05:30.574542',
-            authorId: 1,
+            author: { id: 1, displayName: '홍길동' },
           },
         ],
       }));
@@ -119,7 +120,7 @@ const server = setupServer(
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
-          authorId: 1,
+          author: { id: 1, displayName: '홍길동' },
         },
         {
           id: 2,
@@ -132,7 +133,7 @@ const server = setupServer(
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
-          authorId: 1,
+          author: { id: 1, displayName: '홍길동' },
         },
       ],
     }));
@@ -153,6 +154,20 @@ const server = setupServer(
       ctx.status(400),
     );
   }),
+
+  rest.get(`${baseUrl}/questions/1`, async (req, res, ctx) => res(ctx.json({
+    id: 1,
+    status: 'open',
+    title: 'No \'Access-Control-Allow-Origin\'',
+    body: '서버 배포 후 CORS에러가 발생합니다.',
+    tags: [{ name: 'Web' }],
+    points: 10,
+    likeUserIds: [11],
+    hits: 3,
+    createdAt: '2022-12-21T19:05:30.574542',
+    updatedAt: '2022-12-21T19:05:30.574542',
+    author: { id: 1, displayName: '홍길동' },
+  }))),
 );
 
 export default server;

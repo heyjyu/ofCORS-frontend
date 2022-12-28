@@ -8,10 +8,6 @@ import Questions from './Questions';
 const context = describe;
 
 describe('Questions', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   function renderQuestions() {
     render((
       <MemoryRouter initialEntries={['/questions']}>

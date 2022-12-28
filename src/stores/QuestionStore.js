@@ -10,15 +10,31 @@ export default class QuestionStore extends Store {
   }
 
   async fetchQuestions({ sort, keyword = '' }) {
-    this.startLoad();
+    this.startQuestionsLoad();
 
     try {
       const { questions } = await apiService.fetchQuestions({ sort, keyword });
 
-      this.completeLoad(questions);
+      this.completeQuestionsLoad(questions);
     } catch (e) {
-      this.failLoad();
+      this.failQuestionsLoad();
     }
+  }
+
+  async fetchQuestion(id) {
+    this.startQuestionLoad();
+
+    try {
+      const question = await apiService.fetchQuestion(id);
+
+      this.completeQuestionLoad(question);
+    } catch (e) {
+      this.failQuestionLoad();
+    }
+  }
+
+  isMyQuestion(userId) {
+    return this.question.author.id === userId;
   }
 
   changeKeyword(keyword) {
@@ -43,21 +59,39 @@ export default class QuestionStore extends Store {
     }
   }
 
-  startLoad() {
+  startQuestionsLoad() {
     this.isQuestionsLoading = true;
     this.questions = [];
     this.publish();
   }
 
-  completeLoad(questions) {
+  completeQuestionsLoad(questions) {
     this.isQuestionsLoading = false;
     this.questions = questions;
     this.publish();
   }
 
-  failLoad() {
+  failQuestionsLoad() {
     this.isQuestionsLoading = false;
     this.questions = [];
+    this.publish();
+  }
+
+  startQuestionLoad() {
+    this.isQuestionLoading = true;
+    this.question = null;
+    this.publish();
+  }
+
+  completeQuestionLoad(question) {
+    this.isQuestionLoading = false;
+    this.question = question;
+    this.publish();
+  }
+
+  failQuestionLoad() {
+    this.isQuestionLoading = false;
+    this.question = null;
     this.publish();
   }
 
@@ -75,7 +109,9 @@ export default class QuestionStore extends Store {
 
   reset() {
     this.isQuestionsLoading = false;
+    this.isQuestionLoading = false;
     this.questions = [];
+    this.question = null;
     this.keyword = '';
     this.createStatus = '';
   }

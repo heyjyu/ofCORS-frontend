@@ -30,6 +30,7 @@ describe('SignUpForm', () => {
   }
 
   beforeEach(() => {
+    jest.clearAllMocks();
     userStore.resetSignUpStatus();
   });
 

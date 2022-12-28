@@ -65,4 +65,28 @@ describe('QuestionStore', () => {
       expect(questionStore.createStatus).toBeFalsy();
     });
   });
+
+  describe('isMyQuestion', () => {
+    context('when the question is mine', () => {
+      it('returns true', async () => {
+        const questionId = 1;
+        const userId = 1;
+
+        await questionStore.fetchQuestion(questionId);
+
+        expect(questionStore.isMyQuestion(userId)).toBeTruthy();
+      });
+    });
+
+    context('when the question is not mine', () => {
+      it('returns false', async () => {
+        const questionId = 1;
+        const userId = 2;
+
+        await questionStore.fetchQuestion(questionId);
+
+        expect(questionStore.isMyQuestion(userId)).toBeFalsy();
+      });
+    });
+  });
 });
