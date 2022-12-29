@@ -63,6 +63,14 @@ describe('UserStore', () => {
     });
   });
 
+  describe('fetchMe', () => {
+    it('loads data of logged in user', async () => {
+      await userStore.fetchMe();
+
+      expect(userStore.user.id).toBe(1);
+    });
+  });
+
   describe('resetSignUpStatus', () => {
     it('resets signUpStatus', () => {
       userStore.changeSignUpStatus('processing');

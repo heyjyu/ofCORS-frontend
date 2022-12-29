@@ -45,7 +45,12 @@ export default class ApiService {
     const { data } = await this.instance.get('/users/me');
 
     return {
+      id: data.id,
+      displayName: data.displayName,
+      about: data.about,
       points: data.points,
+      realName: data.realName,
+      imageUrl: data.imageUrl,
     };
   }
 
@@ -99,11 +104,31 @@ export default class ApiService {
     };
   }
 
+  async fetchAnswers({ questionId }) {
+    const { data } = await this.instance.get(`/answers?questionId=${questionId}`);
+
+    return {
+      answers: data.answers,
+    };
+  }
+
   async createQuestion({
     title, body, tags, points,
   }) {
     const { data } = await this.instance.post('/questions', {
       title, body, tags: [...tags], points,
+    });
+
+    return {
+      id: data.id,
+    };
+  }
+
+  async createAnswer({
+    questionId, body,
+  }) {
+    const { data } = await this.instance.post('/answers', {
+      questionId, body,
     });
 
     return {

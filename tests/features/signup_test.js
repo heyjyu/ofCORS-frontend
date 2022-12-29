@@ -20,6 +20,8 @@ Scenario('회원 가입 성공', ({ I }) => {
   I.fillField('password', 'Abcdef1!');
   I.submit();
 
+  I.wait(5);
+
   I.dontSee('로그인');
 });
 
@@ -39,6 +41,8 @@ Scenario('존재하는 이메일을 입력한 경우', ({ I }) => {
   I.fillField('password', 'Abcdef1!');
   I.fillField('password-check', 'Abcdef1!');
   I.submit();
+
+  I.wait(2);
 
   I.see('해당 이메일은 사용할 수 없습니다');
 });

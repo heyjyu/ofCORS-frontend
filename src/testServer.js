@@ -72,7 +72,7 @@ const server = setupServer(
   }),
 
   rest.get(`${baseUrl}/questions`, async (req, res, ctx) => {
-    const { status } = req.params;
+    const status = req.url.searchParams.get('status');
 
     if (status === 'open') {
       return res(ctx.json({
@@ -168,6 +168,46 @@ const server = setupServer(
     updatedAt: '2022-12-21T19:05:30.574542',
     author: { id: 1, displayName: '홍길동' },
   }))),
+
+  rest.get(`${baseUrl}/answers`, async (req, res, ctx) => {
+    const questionId = req.url.searchParams.get('questionId');
+
+    if (!questionId) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(ctx.json({
+      answers: [
+        {
+          id: 1,
+          selected: true,
+          body: '헤더를 추가해보세요',
+          likeUserIds: [11],
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
+          author: { id: 2, displayName: '동길홍' },
+        },
+      ],
+    }));
+  }),
+
+  rest.post(`${baseUrl}/answers`, async (req, res, ctx) => {
+    const {
+      questionId, body,
+    } = await req.json();
+
+    if (questionId && body) {
+      return res(ctx.json({
+        id: 1,
+      }));
+    }
+
+    return res(
+      ctx.status(400),
+    );
+  }),
 );
 
 export default server;

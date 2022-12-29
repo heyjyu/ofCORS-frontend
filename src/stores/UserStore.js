@@ -8,6 +8,7 @@ export default class UserStore extends Store {
 
     this.signUpStatus = '';
     this.loginStatus = '';
+    this.user = null;
   }
 
   async signUp({
@@ -44,6 +45,14 @@ export default class UserStore extends Store {
 
       return '';
     }
+  }
+
+  async fetchMe() {
+    const user = await apiService.fetchMe();
+
+    this.user = user;
+
+    this.publish();
   }
 
   changeSignUpStatus(status) {
