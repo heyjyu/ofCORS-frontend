@@ -17,5 +17,4 @@ Scenario('채택하지 않은 내 질문인 경우', ({ I }) => {
 
   I.see('CORS에러는 어떻게 해결하면 좋을까요?');
   I.see('서버를 배포 후 POST요청에서 No ‘Access-Control-Allow-Origin’ header 에러 메시지가 발생합니다.');
-  I.see('조회');
 });

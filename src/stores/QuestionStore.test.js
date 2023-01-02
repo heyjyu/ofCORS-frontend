@@ -41,8 +41,8 @@ describe('QuestionStore', () => {
       });
     });
 
-    context('when failed to sign up', () => {
-      it('changes signUpStatus to failed', async () => {
+    context('when failed to create', () => {
+      it('changes createStatus to failed', async () => {
         const title = 'CORS 에러가 뜹니다.';
         const body = '';
         const tags = new Set('Web');
