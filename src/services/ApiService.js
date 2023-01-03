@@ -112,6 +112,12 @@ export default class ApiService {
     };
   }
 
+  async fetchAnswer(id) {
+    const { data } = await this.instance.get(`/answers/${id}`);
+
+    return data;
+  }
+
   async createQuestion({
     title, body, tags, points,
   }) {
@@ -134,6 +140,29 @@ export default class ApiService {
     return {
       id: data.id,
     };
+  }
+
+  async adoptAnswer({
+    questionId,
+    answerId,
+  }) {
+    await this.instance.patch(`/questions/${questionId}`, {
+      answerId,
+    });
+  }
+
+  async createAcknowledgement({
+    questionId,
+    answerId,
+    points,
+    message,
+  }) {
+    await this.instance.post('/acknowledgements', {
+      questionId,
+      answerId,
+      message,
+      points,
+    });
   }
 }
 

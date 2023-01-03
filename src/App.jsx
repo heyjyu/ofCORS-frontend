@@ -16,6 +16,7 @@ import QuestionsPage from './pages/QuestionsPage';
 import QuestionDetailPage from './pages/QuestionDetailPage';
 import SolutionsPage from './pages/SolutionsPage';
 import AskPage from './pages/AskPage';
+import AdoptPage from './pages/AdoptPage';
 
 import { apiService } from './services/ApiService';
 
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/questions" element={<QuestionsPage />} />
           <Route path="/questions/:id" element={<QuestionDetailPage />} />
+          <Route path="/questions/:id/adopt" element={<AdoptPage />} />
           <Route path="/ask" element={<AskPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
         </Routes>

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLocalStorage } from 'usehooks-ts';
 import useLoginFormStore from '../hooks/useLoginFormStore';
@@ -32,6 +32,7 @@ const Input = styled.input`
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const loginFormStore = useLoginFormStore();
   const { email, password } = loginFormStore.fields;
@@ -64,6 +65,12 @@ export default function LoginForm() {
     }
 
     setAccessToken(accessToken);
+
+    if (location.state?.previousPage === 'signUpPage') {
+      navigate('/');
+
+      return;
+    }
 
     navigate(-1);
   };

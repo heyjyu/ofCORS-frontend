@@ -32,7 +32,7 @@ export default function SignUpForm() {
 
   useEffect(() => {
     if (userStore.isSignUpSuccessful) {
-      navigate('/login');
+      navigate('/login', { state: { previousPage: 'signUpPage' } });
     }
   }, [userStore.isSignUpSuccessful]);
 

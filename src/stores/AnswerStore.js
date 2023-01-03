@@ -21,15 +21,31 @@ export default class AnswerStore extends Store {
     }
   }
 
+  async fetchAnswer(id) {
+    this.startAnswerLoad();
+
+    try {
+      const answer = await apiService.fetchAnswer(id);
+
+      this.completeAnswerLoad(answer);
+    } catch (e) {
+      this.failAnswerLoad();
+    }
+  }
+
   async write({
     questionId, body,
   }) {
     this.startWrite();
 
     try {
-      await apiService.createAnswer({
+      const { id } = await apiService.createAnswer({
         questionId, body,
       });
+
+      const answer = await apiService.fetchAnswer(id);
+
+      this.answers = [...this.answers, answer];
 
       this.completeWrite();
     } catch (e) {
@@ -55,21 +71,44 @@ export default class AnswerStore extends Store {
     this.publish();
   }
 
+  startAnswerLoad() {
+    this.isAnswerLoading = true;
+    this.answer = null;
+    this.publish();
+  }
+
+  completeAnswerLoad(answer) {
+    this.isAnswerLoading = false;
+    this.answer = answer;
+    this.publish();
+  }
+
+  failAnswerLoad() {
+    this.isAnswerLoading = false;
+    this.answer = null;
+    this.publish();
+  }
+
   startWrite() {
     this.writeStatus = 'processing';
+    this.publish();
   }
 
   completeWrite() {
     this.writeStatus = 'successful';
+    this.publish();
   }
 
   failWrite() {
     this.writeStatus = 'failed';
+    this.publish();
   }
 
   reset() {
     this.isAnswersLoading = false;
+    this.isAnswerLoading = false;
     this.answers = [];
+    this.answer = null;
     this.writeStatus = '';
   }
 

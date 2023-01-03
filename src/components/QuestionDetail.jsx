@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLocalStorage } from 'usehooks-ts';
 import useAnswerFormStore from '../hooks/useAnswerFormStore';
 import useAnswerStore from '../hooks/useAnswerStore';
 import useQuestionStore from '../hooks/useQuestionStore';
+import useSelectAnswerFormStore from '../hooks/useSelectAnswerFormStore';
 import useUserStore from '../hooks/useUserStore';
 import Likes from './Likes';
 import Point from './Point';
@@ -19,12 +20,14 @@ const Wrapper = styled.div`
 `;
 
 export default function QuestionDetail() {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [accessToken] = useLocalStorage('accessToken', '');
   const questionStore = useQuestionStore();
   const answerStore = useAnswerStore();
   const answerFormStore = useAnswerFormStore();
+  const selectAnswerFormStore = useSelectAnswerFormStore();
   const userStore = useUserStore();
-  const navigate = useNavigate();
-  const [accessToken] = useLocalStorage('accessToken', '');
 
   if (questionStore.isQuestionLoading || !questionStore.question) {
     return (
@@ -36,7 +39,7 @@ export default function QuestionDetail() {
 
   const { question } = questionStore;
   const {
-    points, title, createdAt, hits, body, author, likeUserIds,
+    points, title, createdAt, hits, body, author, likeUserIds, status, selectedAnswerId,
   } = question;
 
   const handleSubmit = (e) => {
@@ -48,9 +51,16 @@ export default function QuestionDetail() {
       return;
     }
 
-    answerStore.write({ questionId: question.id, body });
+    answerStore.write({ questionId: question.id, body: answerFormStore.fields.body });
 
     answerFormStore.reset();
+  };
+
+  const handleClickSelect = ({ answerId }) => {
+    // TODO adopt 페이지는 내가 질문 작성자가 아닌 경우 접근할 수 없다
+    selectAnswerFormStore.selectAnswerId(answerId);
+
+    navigate(`/questions/${id}/adopt`);
   };
 
   return (
@@ -73,6 +83,36 @@ export default function QuestionDetail() {
         />
         <p>{body}</p>
       </Wrapper>
+      <div>
+        {answerStore.answers.length}
+        {' '}
+        답변
+      </div>
+      {answerStore.answers.map((answer) => (
+        <Wrapper key={answer.id}>
+          <div>
+            <Likes
+              count={answer.likeUserIds.length}
+              selected={answer.likeUserIds.includes(userStore.user?.id)}
+            />
+            {status === 'open' && questionStore.isMyQuestion(userStore.user?.id)
+              ? (
+                <button type="button" onClick={() => handleClickSelect({ answerId: answer.id })}>
+                  채택
+                </button>
+              ) : null}
+            {selectedAnswerId === answer.id
+              ? (
+                <div>
+                  v
+                </div>
+              ) : null}
+          </div>
+          <p>
+            {answer.body}
+          </p>
+        </Wrapper>
+      ))}
       {questionStore.isMyQuestion(userStore.user?.id)
         ? (
           null

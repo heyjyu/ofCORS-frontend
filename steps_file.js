@@ -13,6 +13,7 @@ module.exports = () => actor({
 
   submit() {
     this.click('[type=submit]');
+    this.wait(2);
   },
 
   login(email) {

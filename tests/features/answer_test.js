@@ -19,6 +19,13 @@ Scenario('답변 등록하기', ({ I }) => {
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
 
   I.fillField('input-answer', '응답 헤더에 해당 값을 넣어보세요.');
+
+  I.click('등록');
+
+  I.wait(2);
+
+  I.see('1 답변');
+  I.see('응답 헤더에 해당 값을 넣어보세요.');
 });
 
 Scenario('내 질문에 답변 등록하기', ({ I }) => {
