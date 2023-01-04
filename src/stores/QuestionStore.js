@@ -59,6 +59,33 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async adoptAnswer({
+    questionId,
+    answerId,
+    points,
+    message,
+  }) {
+    this.startAdopt();
+
+    try {
+      await apiService.adoptAnswer({
+        questionId,
+        answerId,
+      });
+
+      await apiService.createAcknowledgement({
+        questionId,
+        answerId,
+        points,
+        message,
+      });
+
+      this.completeAdopt();
+    } catch (e) {
+      this.failAdopt();
+    }
+  }
+
   startQuestionsLoad() {
     this.isQuestionsLoading = true;
     this.questions = [];
@@ -107,6 +134,18 @@ export default class QuestionStore extends Store {
     this.createStatus = 'failed';
   }
 
+  startAdopt() {
+    this.adoptStatus = 'processing';
+  }
+
+  completeAdopt() {
+    this.adoptStatus = 'successful';
+  }
+
+  failAdopt() {
+    this.adoptStatus = 'failed';
+  }
+
   reset() {
     this.isQuestionsLoading = false;
     this.isQuestionLoading = false;
@@ -122,6 +161,14 @@ export default class QuestionStore extends Store {
 
   get isCreateFailed() {
     return this.createStatus === 'failed';
+  }
+
+  get isAdoptSuccessful() {
+    return this.adoptStatus === 'successful';
+  }
+
+  get isAdoptFailed() {
+    return this.adoptStatus === 'failed';
   }
 }
 

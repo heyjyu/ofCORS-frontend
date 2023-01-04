@@ -57,7 +57,7 @@ describe('SignUpForm', () => {
       fireEvent.click(screen.getByText('회원가입'));
 
       await waitFor(() => {
-        expect(navigate).toBeCalledWith('/login');
+        expect(navigate).toBeCalledWith('/login', { state: { previousPage: 'signUpPage' } });
       });
     });
   });

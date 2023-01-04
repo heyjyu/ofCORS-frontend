@@ -57,6 +57,44 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('adoptAnswer', () => {
+    context('when adopted successfully', () => {
+      it('changes adoptStatus to successful', async () => {
+        const questionId = 1;
+        const answerId = 1;
+        const points = 20;
+        const message = '감사합니다';
+
+        await questionStore.adoptAnswer({
+          questionId,
+          answerId,
+          points,
+          message,
+        });
+
+        expect(questionStore.isAdoptSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to adopt', () => {
+      it('changes adoptStatus to failed', async () => {
+        const questionId = 1;
+        const answerId = 1;
+        const points = 20000;
+        const message = '감사합니다';
+
+        await questionStore.adoptAnswer({
+          questionId,
+          answerId,
+          points,
+          message,
+        });
+
+        expect(questionStore.isAdoptFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('reset', () => {
     it('reset fields', () => {
       questionStore.createStatus = 'successful';

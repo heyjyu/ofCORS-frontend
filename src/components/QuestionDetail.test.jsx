@@ -19,6 +19,9 @@ jest.mock('react-router-dom', () => ({
   useNavigate() {
     return navigate;
   },
+  useParams() {
+    return { id: 1 };
+  },
 }));
 
 const context = describe;

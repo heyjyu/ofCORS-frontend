@@ -85,6 +85,7 @@ const server = setupServer(
             tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [11],
+            selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
             updatedAt: '2022-12-21T19:05:30.574542',
@@ -98,6 +99,7 @@ const server = setupServer(
             tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [11],
+            selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
             updatedAt: '2022-12-21T19:05:30.574542',
@@ -117,6 +119,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [11],
+          selectedAnswerId: 1,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
@@ -130,6 +133,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [11],
+          selectedAnswerId: 2,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
@@ -163,11 +167,28 @@ const server = setupServer(
     tags: [{ name: 'Web' }],
     points: 10,
     likeUserIds: [11],
+    selectedAnswerId: null,
     hits: 3,
     createdAt: '2022-12-21T19:05:30.574542',
     updatedAt: '2022-12-21T19:05:30.574542',
     author: { id: 1, displayName: '홍길동' },
   }))),
+
+  rest.patch(`${baseUrl}/questions/1`, async (req, res, ctx) => {
+    const {
+      answerId,
+    } = await req.json();
+
+    if (!answerId) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.status(204),
+    );
+  }),
 
   rest.get(`${baseUrl}/answers`, async (req, res, ctx) => {
     const questionId = req.url.searchParams.get('questionId');
@@ -182,7 +203,6 @@ const server = setupServer(
       answers: [
         {
           id: 1,
-          selected: true,
           body: '헤더를 추가해보세요',
           likeUserIds: [11],
           createdAt: '2022-12-21T19:05:30.574542',
@@ -193,12 +213,48 @@ const server = setupServer(
     }));
   }),
 
+  rest.get(`${baseUrl}/answers/1`, async (req, res, ctx) => res(ctx.json({
+    id: 1,
+    questionId: 1,
+    body: '헤더를 추가해보세요',
+    likeUserIds: [11],
+    createdAt: '2022-12-21T19:05:30.574542',
+    updatedAt: '2022-12-21T19:05:30.574542',
+    author: { id: 2, displayName: '동길홍' },
+  }))),
+
+  rest.get(`${baseUrl}/answers/2`, async (req, res, ctx) => res(ctx.json({
+    id: 2,
+    questionId: 2,
+    body: '헤더를 추가해보세요',
+    likeUserIds: [11],
+    createdAt: '2022-12-21T19:05:30.574542',
+    updatedAt: '2022-12-21T19:05:30.574542',
+    author: { id: 2, displayName: '동길홍' },
+  }))),
+
   rest.post(`${baseUrl}/answers`, async (req, res, ctx) => {
     const {
       questionId, body,
     } = await req.json();
 
     if (questionId && body) {
+      return res(ctx.json({
+        id: 1,
+      }));
+    }
+
+    return res(
+      ctx.status(400),
+    );
+  }),
+
+  rest.post(`${baseUrl}/acknowledgements`, async (req, res, ctx) => {
+    const {
+      questionId, answerId, points,
+    } = await req.json();
+
+    if (questionId && answerId && points < 100) {
       return res(ctx.json({
         id: 1,
       }));

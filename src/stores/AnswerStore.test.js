@@ -17,6 +17,16 @@ describe('AnswerStore', () => {
     });
   });
 
+  describe('fetchAnswer', () => {
+    it('loads answer', async () => {
+      const id = 1;
+
+      await answerStore.fetchAnswer(id);
+
+      expect(answerStore.answer.id).toBe(id);
+    });
+  });
+
   describe('write', () => {
     context('when written successfully', () => {
       it('changes writeStatus to successful', async () => {
