@@ -33,6 +33,20 @@ export default class AnswerStore extends Store {
     }
   }
 
+  async toggleLike(id) {
+    const likeUserIds = await apiService.toggleAnswerLike(id);
+
+    this.answers = this.answers.map((answer) => {
+      if (answer.id === id) {
+        return { ...answer, likeUserIds };
+      }
+
+      return answer;
+    });
+
+    this.publish();
+  }
+
   async write({
     questionId, body,
   }) {

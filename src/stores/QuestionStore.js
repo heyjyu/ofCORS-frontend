@@ -86,6 +86,14 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async toggleLike(id) {
+    const likeUserIds = await apiService.toggleQuestionLike(id);
+
+    this.question.likeUserIds = likeUserIds;
+
+    this.publish();
+  }
+
   startQuestionsLoad() {
     this.isQuestionsLoading = true;
     this.questions = [];
