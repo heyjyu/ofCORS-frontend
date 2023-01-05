@@ -16,11 +16,11 @@ const LikeButton = styled.button`
   cursor: pointer;
 `;
 
-export default function Likes({ count, selected }) {
+export default function Likes({ count, selected, onClick }) {
   return (
     <Wrapper>
       <p>{count}</p>
-      <LikeButton type="button" selected={selected} name="like">
+      <LikeButton type="button" selected={selected} name="like" onClick={onClick}>
         like
       </LikeButton>
     </Wrapper>

@@ -1,3 +1,4 @@
+import { apiService } from '../services/ApiService';
 import AnswerStore from './AnswerStore';
 
 const context = describe;
@@ -24,6 +25,20 @@ describe('AnswerStore', () => {
       await answerStore.fetchAnswer(id);
 
       expect(answerStore.answer.id).toBe(id);
+    });
+  });
+
+  describe('toggleLike', () => {
+    it('toggles like', async () => {
+      apiService.setAccessToken('ACCESS.TOKEN');
+
+      await answerStore.fetchAnswers({ questionId: 1 });
+
+      expect(answerStore.answers[0].likeUserIds.length).toBe(0);
+
+      await answerStore.toggleLike(1);
+
+      expect(answerStore.answers[0].likeUserIds.length).toBe(1);
     });
   });
 

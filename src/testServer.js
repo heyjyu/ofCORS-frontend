@@ -84,7 +84,7 @@ const server = setupServer(
             body: '서버 배포 후 CORS에러가 발생합니다.',
             tags: [{ name: 'Web' }],
             points: 10,
-            likeUserIds: [11],
+            likeUserIds: [{ id: 11 }],
             selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
@@ -98,7 +98,7 @@ const server = setupServer(
             body: '서버 배포 후 CORS에러가 발생합니다.',
             tags: [{ name: 'Web' }],
             points: 10,
-            likeUserIds: [11],
+            likeUserIds: [{ id: 11 }],
             selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
@@ -118,7 +118,7 @@ const server = setupServer(
           body: '서버 배포 후 CORS에러가 발생합니다.',
           tags: [{ name: 'Web' }],
           points: 10,
-          likeUserIds: [11],
+          likeUserIds: [{ id: 11 }],
           selectedAnswerId: 1,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -132,7 +132,7 @@ const server = setupServer(
           body: '서버 배포 후 CORS에러가 발생합니다.',
           tags: [{ name: 'Web' }],
           points: 10,
-          likeUserIds: [11],
+          likeUserIds: [{ id: 11 }],
           selectedAnswerId: 2,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -166,7 +166,7 @@ const server = setupServer(
     body: '서버 배포 후 CORS에러가 발생합니다.',
     tags: [{ name: 'Web' }],
     points: 10,
-    likeUserIds: [11],
+    likeUserIds: [],
     selectedAnswerId: null,
     hits: 3,
     createdAt: '2022-12-21T19:05:30.574542',
@@ -190,6 +190,22 @@ const server = setupServer(
     );
   }),
 
+  rest.patch(`${baseUrl}/questions/1/likeUserIds`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.json({
+        likeUserIds: [{ id: 1 }],
+      }),
+    );
+  }),
+
   rest.get(`${baseUrl}/answers`, async (req, res, ctx) => {
     const questionId = req.url.searchParams.get('questionId');
 
@@ -204,7 +220,7 @@ const server = setupServer(
         {
           id: 1,
           body: '헤더를 추가해보세요',
-          likeUserIds: [11],
+          likeUserIds: [],
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
           author: { id: 2, displayName: '동길홍' },
@@ -217,7 +233,7 @@ const server = setupServer(
     id: 1,
     questionId: 1,
     body: '헤더를 추가해보세요',
-    likeUserIds: [11],
+    likeUserIds: [],
     createdAt: '2022-12-21T19:05:30.574542',
     updatedAt: '2022-12-21T19:05:30.574542',
     author: { id: 2, displayName: '동길홍' },
@@ -227,7 +243,7 @@ const server = setupServer(
     id: 2,
     questionId: 2,
     body: '헤더를 추가해보세요',
-    likeUserIds: [11],
+    likeUserIds: [{ id: 11 }],
     createdAt: '2022-12-21T19:05:30.574542',
     updatedAt: '2022-12-21T19:05:30.574542',
     author: { id: 2, displayName: '동길홍' },
@@ -246,6 +262,22 @@ const server = setupServer(
 
     return res(
       ctx.status(400),
+    );
+  }),
+
+  rest.patch(`${baseUrl}/answers/1/likeUserIds`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.json({
+        likeUserIds: [{ id: 1 }],
+      }),
     );
   }),
 

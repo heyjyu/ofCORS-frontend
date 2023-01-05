@@ -1,3 +1,4 @@
+import { apiService } from '../services/ApiService';
 import QuestionStore from './QuestionStore';
 
 const context = describe;
@@ -17,11 +18,33 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('fetchQuestion', () => {
+    it('loads question', async () => {
+      await questionStore.fetchQuestion(1);
+
+      expect(questionStore.question).not.toBeNull();
+    });
+  });
+
   describe('changeKeyword', () => {
     it('changes keyword', () => {
       questionStore.changeKeyword('CORS');
 
       expect(questionStore.keyword).toBe('CORS');
+    });
+  });
+
+  describe('toggleLike', () => {
+    it('toggles like', async () => {
+      apiService.setAccessToken('ACCESS.TOKEN');
+
+      await questionStore.fetchQuestion(1);
+
+      expect(questionStore.question.likeUserIds.length).toBe(0);
+
+      await questionStore.toggleLike(1);
+
+      expect(questionStore.question.likeUserIds.length).toBe(1);
     });
   });
 

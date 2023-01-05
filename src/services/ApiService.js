@@ -96,6 +96,12 @@ export default class ApiService {
     return data;
   }
 
+  async toggleQuestionLike(id) {
+    const { data } = await this.instance.patch(`/questions/${id}/likeUserIds`);
+
+    return data.likeUserIds;
+  }
+
   async fetchSolutions({ sort }) {
     const { data } = await this.instance.get(`/questions?status=closed&sort=${sort}&size=20`);
 
@@ -116,6 +122,12 @@ export default class ApiService {
     const { data } = await this.instance.get(`/answers/${id}`);
 
     return data;
+  }
+
+  async toggleAnswerLike(id) {
+    const { data } = await this.instance.patch(`/answers/${id}/likeUserIds`);
+
+    return data.likeUserIds;
   }
 
   async createQuestion({
