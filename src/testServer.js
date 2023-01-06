@@ -84,7 +84,7 @@ const server = setupServer(
             body: '서버 배포 후 CORS에러가 발생합니다.',
             tags: [{ name: 'Web' }],
             points: 10,
-            likeUserIds: [{ id: 11 }],
+            likeUserIds: [],
             selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
@@ -112,7 +112,7 @@ const server = setupServer(
     return res(ctx.json({
       questions: [
         {
-          id: 1,
+          id: 3,
           status: 'closed',
           title: 'No \'Access-Control-Allow-Origin\'',
           body: '서버 배포 후 CORS에러가 발생합니다.',
@@ -126,7 +126,7 @@ const server = setupServer(
           author: { id: 1, displayName: '홍길동' },
         },
         {
-          id: 2,
+          id: 4,
           status: 'closed',
           title: 'CORS 에러가 발생합니다.',
           body: '서버 배포 후 CORS에러가 발생합니다.',
@@ -187,6 +187,22 @@ const server = setupServer(
 
     return res(
       ctx.status(204),
+    );
+  }),
+
+  rest.put(`${baseUrl}/questions/1`, async (req, res, ctx) => {
+    const {
+      title, body,
+    } = await req.json();
+
+    if (title && body) {
+      return res(ctx.json({
+        id: 1,
+      }));
+    }
+
+    return res(
+      ctx.status(400),
     );
   }),
 

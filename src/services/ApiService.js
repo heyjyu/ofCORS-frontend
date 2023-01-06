@@ -142,6 +142,16 @@ export default class ApiService {
     };
   }
 
+  async modifyQuestion(question) {
+    const { data } = await this.instance.put(`/questions/${question.id}`, {
+      ...question, tags: [...question.tags],
+    });
+
+    return {
+      id: data.id,
+    };
+  }
+
   async createAnswer({
     questionId, body,
   }) {

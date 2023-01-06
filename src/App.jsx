@@ -19,6 +19,7 @@ import AskPage from './pages/AskPage';
 import AdoptPage from './pages/AdoptPage';
 
 import { apiService } from './services/ApiService';
+import QuestionEditPage from './pages/QuestionEditPage';
 
 export default function App() {
   const [accessToken] = useLocalStorage('accessToken', '');
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/questions" element={<QuestionsPage />} />
           <Route path="/questions/:id" element={<QuestionDetailPage />} />
           <Route path="/questions/:id/adopt" element={<AdoptPage />} />
+          <Route path="/questions/:id/edit" element={<QuestionEditPage />} />
           <Route path="/ask" element={<AskPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
         </Routes>

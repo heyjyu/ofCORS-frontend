@@ -68,6 +68,11 @@ export default function Header() {
                 </Link>
               </li>
               <li>
+                <button type="button">
+                  알림
+                </button>
+              </li>
+              <li>
                 <button type="button" onClick={handleLogout}>
                   로그아웃
                 </button>
