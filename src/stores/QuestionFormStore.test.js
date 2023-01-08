@@ -73,6 +73,31 @@ describe('QuestionFormStore', () => {
     });
   });
 
+  describe('fillFields', () => {
+    it('fills fields', () => {
+      const question = {
+        id: 1,
+        status: 'open',
+        title: 'No \'Access-Control-Allow-Origin\'',
+        body: '서버 배포 후 CORS에러가 발생합니다.',
+        tags: [{ name: 'Web' }],
+        points: 10,
+        likeUserIds: [],
+        selectedAnswerId: null,
+        hits: 3,
+        createdAt: '2022-12-21T19:05:30.574542',
+        updatedAt: '2022-12-21T19:05:30.574542',
+        author: { id: 1, displayName: '홍길동' },
+      };
+
+      questionFormStore.fillFields(question);
+
+      expect(questionFormStore.tags.has('Web')).toBeTruthy();
+      expect(questionFormStore.fields.title).toBe('No \'Access-Control-Allow-Origin\'');
+      expect(questionFormStore.fields.body).toBe('서버 배포 후 CORS에러가 발생합니다.');
+    });
+  });
+
   describe('reset', () => {
     it('reset fields', () => {
       questionFormStore.changeTitle('CORS 에러가 발생합니다');

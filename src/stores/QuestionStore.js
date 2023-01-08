@@ -34,7 +34,7 @@ export default class QuestionStore extends Store {
   }
 
   isMyQuestion(userId) {
-    return this.question.author.id === userId;
+    return this.question?.author.id === userId;
   }
 
   changeKeyword(keyword) {
@@ -56,6 +56,25 @@ export default class QuestionStore extends Store {
       this.completeWrite();
     } catch (e) {
       this.failWrite();
+    }
+  }
+
+  async modify({
+    title, body, tags,
+  }) {
+    this.startModify();
+
+    try {
+      await apiService.modifyQuestion({
+        ...this.question,
+        title,
+        body,
+        tags,
+      });
+
+      this.completeModify();
+    } catch (e) {
+      this.failModify();
     }
   }
 
@@ -142,6 +161,18 @@ export default class QuestionStore extends Store {
     this.createStatus = 'failed';
   }
 
+  startModify() {
+    this.modifyStatus = 'processing';
+  }
+
+  completeModify() {
+    this.modifyStatus = 'successful';
+  }
+
+  failModify() {
+    this.modifyStatus = 'failed';
+  }
+
   startAdopt() {
     this.adoptStatus = 'processing';
   }
@@ -161,6 +192,8 @@ export default class QuestionStore extends Store {
     this.question = null;
     this.keyword = '';
     this.createStatus = '';
+    this.modifyStatus = '';
+    this.adoptStatus = '';
   }
 
   get isCreateSuccessful() {
@@ -169,6 +202,14 @@ export default class QuestionStore extends Store {
 
   get isCreateFailed() {
     return this.createStatus === 'failed';
+  }
+
+  get isModifySuccessful() {
+    return this.modifyStatus === 'successful';
+  }
+
+  get isModifyFailed() {
+    return this.modifyStatus === 'failed';
   }
 
   get isAdoptSuccessful() {

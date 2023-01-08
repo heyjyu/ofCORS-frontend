@@ -71,7 +71,23 @@ export default function QuestionDetail() {
 
   return (
     <div>
-      <Point amount={points} />
+      <Wrapper>
+        <Point amount={points} />
+        {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
+          ? (
+            <>
+              <Link to={`/questions/${question.id}/edit`}>
+                수정
+              </Link>
+              <button type="button">
+                삭제
+              </button>
+            </>
+          ) : null}
+        <button type="button">
+          스크랩
+        </button>
+      </Wrapper>
       <Title>{title}</Title>
       <Wrapper>
         <p>{createdAt.split('T')[0]}</p>
@@ -104,9 +120,7 @@ export default function QuestionDetail() {
         />
       ))}
       {questionStore.isMyQuestion(userStore.user?.id)
-        ? (
-          null
-        ) : (
+        ? null : (
           <AnswerForm onSubmit={handleSubmit} />
         )}
     </div>

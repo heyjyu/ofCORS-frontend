@@ -80,6 +80,40 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('modify', () => {
+    context('when modified successfully', () => {
+      it('changes modifyStatus to successful', async () => {
+        await questionStore.fetchQuestion(1);
+
+        const title = 'CORS 에러가 뜹니다.';
+        const body = '서버 배포 후 CORS에러가 발생합니다.';
+        const tags = new Set('Web');
+
+        await questionStore.modify({
+          title, body, tags,
+        });
+
+        expect(questionStore.isModifySuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to modify', () => {
+      it('changes modifyStatus to failed', async () => {
+        await questionStore.fetchQuestion(1);
+
+        const title = 'CORS 에러가 뜹니다.';
+        const body = '';
+        const tags = new Set('Web');
+
+        await questionStore.modify({
+          title, body, tags,
+        });
+
+        expect(questionStore.isModifyFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('adoptAnswer', () => {
     context('when adopted successfully', () => {
       it('changes adoptStatus to successful', async () => {

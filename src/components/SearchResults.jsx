@@ -11,8 +11,9 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 1em;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1em;
   border-bottom: 1px solid black;
 `;
 
@@ -31,12 +32,10 @@ export default function SearchResults() {
   return (
     <div>
       <Wrapper>
-        <div>
-          <Title>
-            검색 결과
-          </Title>
-          <AskLink />
-        </div>
+        <Title>
+          검색 결과
+        </Title>
+        <AskLink />
       </Wrapper>
       {searchStore.results.length
         ? (

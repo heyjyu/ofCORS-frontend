@@ -75,6 +75,16 @@ export default class QuestionFormStore extends Store {
     this.publish();
   }
 
+  fillFields(question) {
+    this.tags = new Set([...question.tags].map((tag) => tag.name));
+    this.fields = {
+      title: question.title,
+      body: question.body,
+    };
+
+    this.publish();
+  }
+
   reset() {
     this.fields = {};
     this.errors = {};
