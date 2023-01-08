@@ -78,6 +78,18 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async delete(id) {
+    this.startDelete();
+
+    try {
+      await apiService.deleteQuestion(id);
+
+      this.completeDelete();
+    } catch (e) {
+      this.failDelete();
+    }
+  }
+
   async adoptAnswer({
     questionId,
     answerId,
@@ -173,6 +185,18 @@ export default class QuestionStore extends Store {
     this.modifyStatus = 'failed';
   }
 
+  startDelete() {
+    this.deleteStatus = 'processing';
+  }
+
+  completeDelete() {
+    this.deleteStatus = 'successful';
+  }
+
+  failDelete() {
+    this.deleteStatus = 'failed';
+  }
+
   startAdopt() {
     this.adoptStatus = 'processing';
   }
@@ -193,6 +217,7 @@ export default class QuestionStore extends Store {
     this.keyword = '';
     this.createStatus = '';
     this.modifyStatus = '';
+    this.deleteStatus = '';
     this.adoptStatus = '';
   }
 
@@ -210,6 +235,14 @@ export default class QuestionStore extends Store {
 
   get isModifyFailed() {
     return this.modifyStatus === 'failed';
+  }
+
+  get isDeleteSuccessful() {
+    return this.deleteStatus === 'successful';
+  }
+
+  get isDeleteFailed() {
+    return this.deleteStatus === 'failed';
   }
 
   get isAdoptSuccessful() {

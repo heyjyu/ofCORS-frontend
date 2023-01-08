@@ -114,6 +114,32 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('delete', () => {
+    context('when deleted successfully', () => {
+      it('changes deleteStatus to successful', async () => {
+        apiService.setAccessToken('ACCESS.TOKEN');
+
+        const questionId = 1;
+
+        await questionStore.delete(questionId);
+
+        expect(questionStore.isDeleteSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to delete', () => {
+      it('changes deleteStatus to failed', async () => {
+        apiService.setAccessToken('');
+
+        const questionId = 1;
+
+        await questionStore.delete(questionId);
+
+        expect(questionStore.isDeleteFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('adoptAnswer', () => {
     context('when adopted successfully', () => {
       it('changes adoptStatus to successful', async () => {
