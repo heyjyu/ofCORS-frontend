@@ -71,6 +71,22 @@ describe('UserStore', () => {
     });
   });
 
+  describe('fetchUsers', () => {
+    it('loads users', async () => {
+      await userStore.fetchUsers({ sort: 'like' });
+
+      expect(userStore.users).toHaveLength(2);
+    });
+  });
+
+  describe('changeKeyword', () => {
+    it('changes keyword', () => {
+      userStore.changeKeyword('CORS');
+
+      expect(userStore.keyword).toBe('CORS');
+    });
+  });
+
   describe('resetSignUpStatus', () => {
     it('resets signUpStatus', () => {
       userStore.changeSignUpStatus('processing');

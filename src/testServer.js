@@ -7,11 +7,35 @@ import config from './config';
 const baseUrl = config.apiBaseUrl;
 
 const server = setupServer(
-  rest.get(`${baseUrl}/users`, async (req, res, ctx) => {
-    const countOnly = req.url.searchParams.get('countOnly');
+  rest.get(`${baseUrl}/users`, async (req, res, ctx) => res(ctx.json({
+    users: [
+      {
+        id: 1,
+        displayName: 'hong',
+        about: '저는 이런 사람입니다',
+        points: 100,
+        realName: '홍길동',
+        imageUrl: 'https://www.google.com/image.jpg',
+        countOfLikes: 20,
+        tags: [{ name: 'Web' }],
+      },
+      {
+        id: 2,
+        displayName: 'hong2',
+        about: '저는 이런 사람입니다',
+        points: 100,
+        realName: '홍길동',
+        imageUrl: 'https://www.google.com/image.jpg',
+        countOfLikes: 20,
+        tags: [{ name: 'Web' }],
+      },
+    ],
+  }))),
+
+  rest.get(`${baseUrl}/users/count`, async (req, res, ctx) => {
     const email = req.url.searchParams.get('email');
 
-    if (countOnly && email === 'exist@email.com') {
+    if (email === 'exist@email.com') {
       return res(ctx.json({
         count: 1,
       }));
@@ -29,6 +53,8 @@ const server = setupServer(
     points: 100,
     realName: '홍길동',
     imageUrl: 'https://www.google.com/image.jpg',
+    countOfLikes: 20,
+    tags: [{ name: 'Web' }],
   }))),
 
   rest.post(`${baseUrl}/users`, async (req, res, ctx) => {

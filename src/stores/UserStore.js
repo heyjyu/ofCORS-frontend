@@ -8,7 +8,10 @@ export default class UserStore extends Store {
 
     this.signUpStatus = '';
     this.loginStatus = '';
+    this.users = [];
     this.user = null;
+    this.keyword = '';
+    this.searching = false;
   }
 
   async signUp({
@@ -55,6 +58,24 @@ export default class UserStore extends Store {
     this.publish();
   }
 
+  changeKeyword(keyword) {
+    this.keyword = keyword;
+
+    this.publish();
+  }
+
+  async fetchUsers({ sort, keyword = '' }) {
+    this.startUsersLoad();
+
+    try {
+      const { users } = await apiService.fetchUsers({ sort, keyword });
+
+      this.completeUsersLoad(users, keyword);
+    } catch (e) {
+      this.failUsersLoad();
+    }
+  }
+
   changeSignUpStatus(status) {
     this.signUpStatus = status;
     this.publish();
@@ -72,6 +93,32 @@ export default class UserStore extends Store {
 
   resetLoginStatus() {
     this.loginStatus = '';
+    this.publish();
+  }
+
+  startUsersLoad() {
+    this.isUsersLoading = true;
+    this.users = [];
+    this.publish();
+  }
+
+  completeUsersLoad(users, keyword) {
+    if (keyword) {
+      this.searching = true;
+    }
+
+    if (!keyword) {
+      this.searching = false;
+    }
+
+    this.isUsersLoading = false;
+    this.users = users;
+    this.publish();
+  }
+
+  failUsersLoad() {
+    this.isUsersLoading = false;
+    this.users = [];
     this.publish();
   }
 
