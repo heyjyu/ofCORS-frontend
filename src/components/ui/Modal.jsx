@@ -5,17 +5,17 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: calc(50% - 1.5em);
+  position: fixed;
+  top: 50%;
   left: 50%;
   width: 100%;
-  height: calc(100% + 3em);
+  height: 100%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 999;
 `;
 
-const Wrapper = styled.div`
+const Dialog = styled.div`
   height: 10em;
   width: 18em;
   background-color: white;
@@ -61,12 +61,12 @@ export default function Modal({ buttonName, content, onClose }) {
       <button type="button" onClick={() => setIsOpen(true)}>{buttonName}</button>
       {isOpen && (
         <Container>
-          <Wrapper ref={modalRef}>
+          <Dialog ref={modalRef}>
             <div>
               {content}
             </div>
             <button type="button" onClick={handleClose}>예</button>
-          </Wrapper>
+          </Dialog>
         </Container>
       )}
     </>

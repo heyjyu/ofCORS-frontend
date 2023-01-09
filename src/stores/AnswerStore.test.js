@@ -70,6 +70,36 @@ describe('AnswerStore', () => {
     });
   });
 
+  describe('modify', () => {
+    context('when modified successfully', () => {
+      it('changes modifyStatus to successful', async () => {
+        const answerId = 1;
+        const body = '수정한 답변입니다';
+
+        await answerStore.modify({
+          answerId,
+          body,
+        });
+
+        expect(answerStore.isModifySuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to modify', () => {
+      it('changes modifyStatus to failed', async () => {
+        const answerId = 1;
+        const body = '';
+
+        await answerStore.modify({
+          answerId,
+          body,
+        });
+
+        expect(answerStore.isModifyFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('reset', () => {
     it('reset fields', () => {
       answerStore.writeStatus = 'successful';

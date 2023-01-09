@@ -67,6 +67,31 @@ export default class AnswerStore extends Store {
     }
   }
 
+  async modify({
+    answerId, body,
+  }) {
+    this.startModify();
+
+    try {
+      await apiService.modifyAnswer({
+        answerId,
+        body,
+      });
+
+      this.answers = this.answers.map((answer) => {
+        if (answer.id === answerId) {
+          return { ...answer, body };
+        }
+
+        return answer;
+      });
+
+      this.completeModify();
+    } catch (e) {
+      this.failModify();
+    }
+  }
+
   startAnswersLoad() {
     this.isAnswersLoading = true;
     this.answers = [];
@@ -118,12 +143,28 @@ export default class AnswerStore extends Store {
     this.publish();
   }
 
+  startModify() {
+    this.modifyStatus = 'processing';
+    this.publish();
+  }
+
+  completeModify() {
+    this.modifyStatus = 'successful';
+    this.publish();
+  }
+
+  failModify() {
+    this.modifyStatus = 'failed';
+    this.publish();
+  }
+
   reset() {
     this.isAnswersLoading = false;
     this.isAnswerLoading = false;
     this.answers = [];
     this.answer = null;
     this.writeStatus = '';
+    this.modifyStatus = '';
   }
 
   get isWriteSuccessful() {
@@ -132,6 +173,14 @@ export default class AnswerStore extends Store {
 
   get isWriteFailed() {
     return this.writeStatus === 'failed';
+  }
+
+  get isModifySuccessful() {
+    return this.modifyStatus === 'successful';
+  }
+
+  get isModifyFailed() {
+    return this.modifyStatus === 'failed';
   }
 }
 

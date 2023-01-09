@@ -183,6 +183,15 @@ export default class ApiService {
     });
   }
 
+  async modifyAnswer({
+    answerId,
+    body,
+  }) {
+    await this.instance.patch(`/answers/${answerId}`, {
+      body,
+    });
+  }
+
   async createAcknowledgement({
     questionId,
     answerId,

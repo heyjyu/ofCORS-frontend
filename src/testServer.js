@@ -293,6 +293,20 @@ const server = setupServer(
     );
   }),
 
+  rest.patch(`${baseUrl}/answers/1`, async (req, res, ctx) => {
+    const { body } = await req.json();
+
+    if (!body) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.status(200),
+    );
+  }),
+
   rest.patch(`${baseUrl}/answers/1/likeUserIds`, async (req, res, ctx) => {
     const authorization = req.headers.get('Authorization');
 

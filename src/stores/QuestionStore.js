@@ -83,6 +83,7 @@ export default class QuestionStore extends Store {
 
     try {
       await apiService.deleteQuestion(id);
+      this.questions = this.questions.filter((question) => question.id !== id);
 
       this.completeDelete();
     } catch (e) {
