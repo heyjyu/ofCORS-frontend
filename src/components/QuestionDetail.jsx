@@ -9,6 +9,11 @@ import Answer from './Answer';
 import AnswerForm from './AnswerForm';
 import Likes from './Likes';
 import Point from './Point';
+import Modal from './ui/Modal';
+
+const Container = styled.div`
+  height: 100%;
+`;
 
 const Title = styled.h1`
   font-weight: bold;
@@ -52,6 +57,11 @@ export default function QuestionDetail() {
     questionStore.toggleLike(id);
   };
 
+  const handleClickDelete = () => {
+    questionStore.delete(id);
+    navigate('/');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -70,7 +80,7 @@ export default function QuestionDetail() {
   };
 
   return (
-    <div>
+    <Container>
       <Wrapper>
         <Point amount={points} />
         {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
@@ -79,9 +89,11 @@ export default function QuestionDetail() {
               <Link to={`/questions/${question.id}/edit`}>
                 수정
               </Link>
-              <button type="button">
-                삭제
-              </button>
+              <Modal
+                buttonName="삭제"
+                content="질문을 정말 삭제하시겠습니까?"
+                onClose={handleClickDelete}
+              />
             </>
           ) : null}
         <button type="button">
@@ -123,6 +135,6 @@ export default function QuestionDetail() {
         ? null : (
           <AnswerForm onSubmit={handleSubmit} />
         )}
-    </div>
+    </Container>
   );
 }

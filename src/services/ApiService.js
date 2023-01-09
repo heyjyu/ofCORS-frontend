@@ -20,7 +20,13 @@ export default class ApiService {
         baseURL: baseUrl,
         headers: { Authorization: `Bearer ${this.accessToken}` },
       });
+
+      return;
     }
+
+    this.instance = axios.create({
+      baseURL: baseUrl,
+    });
   }
 
   async countUser(email) {
@@ -150,6 +156,10 @@ export default class ApiService {
     return {
       id: data.id,
     };
+  }
+
+  async deleteQuestion(id) {
+    await this.instance.delete(`/questions/${id}`);
   }
 
   async createAnswer({

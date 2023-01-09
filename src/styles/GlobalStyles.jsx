@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding-top: 3em;
   }
+
+  button {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;

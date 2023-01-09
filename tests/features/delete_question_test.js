@@ -1,5 +1,5 @@
-Feature('질문 수정하기 - '
-+ '자신의 질문에 오타를 발견한 사람은 질문을 수정함으로써 질문의 의도를 잘 전달해서 더 많은 답변을 받을 수 있다.');
+Feature('질문 삭제하기 - '
++ '질문을 실수로 올린 사람은 답변이 올라오기 전에 질문을 삭제하여 필요한 질문만 남길 수 있다.');
 
 Before(({ I }) => {
   I.setupDatabase();
@@ -7,24 +7,21 @@ Before(({ I }) => {
   I.amOnPage('/');
 });
 
-Scenario('답변이 달리기 전 질문 수정하는 경우', ({ I }) => {
+Scenario('답변이 달리기 전 질문 삭제하는 경우', ({ I }) => {
   I.login('tester@example.com');
 
   I.askQuestion();
 
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
 
-  I.click('수정');
+  I.click('삭제');
 
-  I.fillField('title', 'CORS에러는 어떻게 해결하면 좋을까요!');
-
-  I.click('수정');
   I.click('예');
 
-  I.see('CORS에러는 어떻게 해결하면 좋을까요!');
+  I.see('질문을 등록해주세요');
 });
 
-Scenario('답변이 달린 후 질문 수정하기', ({ I }) => {
+Scenario('답변이 달린 후 질문 삭제하기', ({ I }) => {
   I.login('tester@example.com');
 
   I.askQuestion();
@@ -47,5 +44,5 @@ Scenario('답변이 달린 후 질문 수정하기', ({ I }) => {
 
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
 
-  I.dontSee('수정');
+  I.dontSee('삭제');
 });

@@ -206,6 +206,18 @@ const server = setupServer(
     );
   }),
 
+  rest.delete(`${baseUrl}/questions/1`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res();
+  }),
+
   rest.patch(`${baseUrl}/questions/1/likeUserIds`, async (req, res, ctx) => {
     const authorization = req.headers.get('Authorization');
 
