@@ -13,6 +13,7 @@ import Modal from './ui/Modal';
 
 const Container = styled.div`
   height: 100%;
+  padding: 0.5em 1em;
 `;
 
 const Title = styled.h1`
@@ -23,6 +24,20 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
+  width: 100%;
+  margin-block: 1em;
+`;
+
+const RightGroup = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const QuestionBody = styled.p`
+  width: 100%;
+  padding-block: 1em;
+  border-bottom: 1px solid black;
 `;
 
 export default function QuestionDetail() {
@@ -83,22 +98,24 @@ export default function QuestionDetail() {
     <Container>
       <Wrapper>
         <Point amount={points} />
-        {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
-          ? (
-            <>
-              <Link to={`/questions/${question.id}/edit`}>
-                수정
-              </Link>
-              <Modal
-                buttonName="삭제"
-                content="질문을 정말 삭제하시겠습니까?"
-                onClose={handleClickDelete}
-              />
-            </>
-          ) : null}
-        <button type="button">
-          스크랩
-        </button>
+        <RightGroup>
+          {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
+            ? (
+              <>
+                <Link to={`/questions/${question.id}/edit`}>
+                  수정
+                </Link>
+                <Modal
+                  buttonName="삭제"
+                  content="질문을 정말 삭제하시겠습니까?"
+                  onClose={handleClickDelete}
+                />
+              </>
+            ) : null}
+          <button type="button">
+            스크랩
+          </button>
+        </RightGroup>
       </Wrapper>
       <Title>{title}</Title>
       <Wrapper>
@@ -110,19 +127,22 @@ export default function QuestionDetail() {
         </p>
         <Link to={`/users/${author.id}`}>{author.displayName}</Link>
       </Wrapper>
+      <hr />
       <Wrapper>
         <Likes
           count={likeUserIds.length}
           selected={likeUserIds.map((i) => i.id).includes(userStore.user?.id)}
           onClick={handleClickLike}
         />
-        <p>{body}</p>
+        <QuestionBody>{body}</QuestionBody>
       </Wrapper>
-      <div>
-        {answerStore.answers.length}
-        {' '}
-        답변
-      </div>
+      <Wrapper>
+        <div>
+          {answerStore.answers.length}
+          {' '}
+          답변
+        </div>
+      </Wrapper>
       {answerStore.answers.map((answer) => (
         <Answer
           key={answer.id}
