@@ -17,6 +17,7 @@ import QuestionDetailPage from './pages/QuestionDetailPage';
 import SolutionsPage from './pages/SolutionsPage';
 import AskPage from './pages/AskPage';
 import AdoptPage from './pages/AdoptPage';
+import UsersPage from './pages/UsersPage';
 
 import { apiService } from './services/ApiService';
 import QuestionEditPage from './pages/QuestionEditPage';
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/questions/:id/edit" element={<QuestionEditPage />} />
           <Route path="/ask" element={<AskPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
+          <Route path="/users" element={<UsersPage />} />
         </Routes>
       </main>
     </>

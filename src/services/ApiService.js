@@ -30,7 +30,7 @@ export default class ApiService {
   }
 
   async countUser(email) {
-    const { data } = await this.instance.get(`/users?countOnly=true&email=${email}`);
+    const { data } = await this.instance.get(`/users/count?email=${email}`);
 
     return data.count;
   }
@@ -69,6 +69,14 @@ export default class ApiService {
 
     return {
       accessToken: data.accessToken,
+    };
+  }
+
+  async fetchUsers({ sort, keyword }) {
+    const { data } = await this.instance.get(`/users?sort=${sort}&keyword=${keyword}&size=30`);
+
+    return {
+      users: data.users,
     };
   }
 
