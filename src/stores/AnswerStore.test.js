@@ -18,6 +18,14 @@ describe('AnswerStore', () => {
     });
   });
 
+  describe('fetchAnswerPreviews', () => {
+    it('loads answer previews', async () => {
+      await answerStore.fetchAnswerPreviews({ userId: 1 });
+
+      expect(answerStore.answerPreviews).toHaveLength(1);
+    });
+  });
+
   describe('fetchAnswer', () => {
     it('loads answer', async () => {
       const id = 1;

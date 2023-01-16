@@ -21,6 +21,18 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async fetchQuestionPreviews({ userId = '' }) {
+    this.startQuestionPreviewsLoad();
+
+    try {
+      const { questionPreviews } = await apiService.fetchQuestionPreviews({ userId });
+
+      this.completeQuestionPreviewsLoad(questionPreviews);
+    } catch (e) {
+      this.failQuestionPreviewsLoad();
+    }
+  }
+
   async fetchQuestion(id) {
     this.startQuestionLoad();
 
@@ -144,6 +156,24 @@ export default class QuestionStore extends Store {
     this.publish();
   }
 
+  startQuestionPreviewsLoad() {
+    this.isQuestionPreviewsLoading = true;
+    this.questionPreviews = [];
+    this.publish();
+  }
+
+  completeQuestionPreviewsLoad(questionPreviews) {
+    this.isQuestionPreviewsLoading = false;
+    this.questionPreviews = questionPreviews;
+    this.publish();
+  }
+
+  failQuestionPreviewsLoad() {
+    this.isQuestionPreviewsLoading = false;
+    this.questionPreviews = [];
+    this.publish();
+  }
+
   startQuestionLoad() {
     this.isQuestionLoading = true;
     this.question = null;
@@ -213,7 +243,9 @@ export default class QuestionStore extends Store {
   reset() {
     this.isQuestionsLoading = false;
     this.isQuestionLoading = false;
+    this.isQuestionPreviewsLoading = false;
     this.questions = [];
+    this.questionPreviews = [];
     this.question = null;
     this.keyword = '';
     this.createStatus = '';

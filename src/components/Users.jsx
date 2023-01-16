@@ -75,18 +75,18 @@ export default function Users() {
             .map((user) => (
               <li key={user.id}>
                 <Wrapper>
-                  <img alt="avatar" src={user.imageUrl} />
+                  <Link to={`/users/${user.id}`}>
+                    <img alt="avatar" src={user.imageUrl} />
+                  </Link>
                   <div>
-                    <Link to={`users/${user.id}`}>
+                    <Link to={`/users/${user.id}`}>
                       {user.displayName}
                     </Link>
                     <p>
                       {user.countOfLikes}
                       추천
                     </p>
-                    <ul>
-                      <Tags tags={user.tags} />
-                    </ul>
+                    <Tags tags={user.tags} />
                   </div>
                 </Wrapper>
               </li>

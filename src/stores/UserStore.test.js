@@ -79,6 +79,14 @@ describe('UserStore', () => {
     });
   });
 
+  describe('fetchUser', () => {
+    it('loads user', async () => {
+      await userStore.fetchUser(1);
+
+      expect(userStore.user).not.toBeNull();
+    });
+  });
+
   describe('changeKeyword', () => {
     it('changes keyword', () => {
       userStore.changeKeyword('CORS');

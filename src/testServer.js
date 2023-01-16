@@ -57,6 +57,17 @@ const server = setupServer(
     tags: [{ name: 'Web' }],
   }))),
 
+  rest.get(`${baseUrl}/users/1`, async (req, res, ctx) => res(ctx.json({
+    id: 1,
+    displayName: 'hong',
+    about: '저는 이런 사람입니다',
+    points: 100,
+    realName: '홍길동',
+    imageUrl: 'https://www.google.com/image.jpg',
+    countOfLikes: 20,
+    tags: [{ name: 'Web' }],
+  }))),
+
   rest.post(`${baseUrl}/users`, async (req, res, ctx) => {
     const {
       displayName, email, password,
@@ -137,6 +148,49 @@ const server = setupServer(
 
     return res(ctx.json({
       questions: [
+        {
+          id: 3,
+          status: 'closed',
+          title: 'No \'Access-Control-Allow-Origin\'',
+          body: '서버 배포 후 CORS에러가 발생합니다.',
+          tags: [{ name: 'Web' }],
+          points: 10,
+          likeUserIds: [{ id: 11 }],
+          selectedAnswerId: 1,
+          hits: 3,
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
+          author: { id: 1, displayName: '홍길동' },
+        },
+        {
+          id: 4,
+          status: 'closed',
+          title: 'CORS 에러가 발생합니다.',
+          body: '서버 배포 후 CORS에러가 발생합니다.',
+          tags: [{ name: 'Web' }],
+          points: 10,
+          likeUserIds: [{ id: 11 }],
+          selectedAnswerId: 2,
+          hits: 3,
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
+          author: { id: 1, displayName: '홍길동' },
+        },
+      ],
+    }));
+  }),
+
+  rest.get(`${baseUrl}/question-previews`, async (req, res, ctx) => {
+    const userId = req.url.searchParams.get('userId');
+
+    if (!userId) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(ctx.json({
+      questionPreviews: [
         {
           id: 3,
           status: 'closed',
@@ -278,6 +332,33 @@ const server = setupServer(
           createdAt: '2022-12-21T19:05:30.574542',
           updatedAt: '2022-12-21T19:05:30.574542',
           author: { id: 2, displayName: '동길홍' },
+        },
+      ],
+    }));
+  }),
+
+  rest.get(`${baseUrl}/answer-previews`, async (req, res, ctx) => {
+    const userId = req.url.searchParams.get('userId');
+
+    if (!userId) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(ctx.json({
+      answerPreviews: [
+        {
+          id: 1,
+          question: {
+            id: 1,
+            title: 'CORS에러가 발생합니다.',
+          },
+          likeUserIds: [{ id: 3 }],
+          body: '헤더를 추가해보세요',
+          author: { id: 2, displayName: '동길홍' },
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
         },
       ],
     }));
