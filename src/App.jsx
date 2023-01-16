@@ -21,6 +21,8 @@ import UsersPage from './pages/UsersPage';
 
 import { apiService } from './services/ApiService';
 import QuestionEditPage from './pages/QuestionEditPage';
+import UserDetailPage from './pages/UserDetailPage';
+import MyPage from './pages/MyPage';
 
 export default function App() {
   const [accessToken] = useLocalStorage('accessToken', '');
@@ -38,6 +40,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/questions" element={<QuestionsPage />} />
           <Route path="/questions/:id" element={<QuestionDetailPage />} />
@@ -46,6 +49,7 @@ export default function App() {
           <Route path="/ask" element={<AskPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/users/:id" element={<UserDetailPage />} />
         </Routes>
       </main>
     </>

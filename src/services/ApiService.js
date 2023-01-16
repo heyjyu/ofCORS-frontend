@@ -80,6 +80,12 @@ export default class ApiService {
     };
   }
 
+  async fetchUser(id) {
+    const { data } = await this.instance.get(`/users/${id}`);
+
+    return data;
+  }
+
   async fetchTopQuestions({ period = 'week' }) {
     const { data } = await this.instance.get(`/questions?sort=like&status=open&period=${period}&size=20`);
 
@@ -101,6 +107,14 @@ export default class ApiService {
 
     return {
       questions: data.questions,
+    };
+  }
+
+  async fetchQuestionPreviews({ userId }) {
+    const { data } = await this.instance.get(`/question-previews?userId=${userId}`);
+
+    return {
+      questionPreviews: data.questionPreviews,
     };
   }
 
@@ -129,6 +143,14 @@ export default class ApiService {
 
     return {
       answers: data.answers,
+    };
+  }
+
+  async fetchAnswerPreviews({ userId }) {
+    const { data } = await this.instance.get(`/answer-previews?userId=${userId}`);
+
+    return {
+      answerPreviews: data.answerPreviews,
     };
   }
 

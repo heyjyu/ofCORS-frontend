@@ -18,6 +18,14 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('fetchQuestionPreviews', () => {
+    it('loads question previews', async () => {
+      await questionStore.fetchQuestionPreviews({ userId: 1 });
+
+      expect(questionStore.questionPreviews).toHaveLength(2);
+    });
+  });
+
   describe('fetchQuestion', () => {
     it('loads question', async () => {
       await questionStore.fetchQuestion(1);

@@ -9,7 +9,7 @@ export default class AnswerStore extends Store {
     this.reset();
   }
 
-  async fetchAnswers({ questionId }) {
+  async fetchAnswers({ questionId = '' }) {
     this.startAnswersLoad();
 
     try {
@@ -18,6 +18,18 @@ export default class AnswerStore extends Store {
       this.completeAnswersLoad(answers);
     } catch (e) {
       this.failAnswersLoad();
+    }
+  }
+
+  async fetchAnswerPreviews({ userId = '' }) {
+    this.startAnswerPreviewsLoad();
+
+    try {
+      const { answerPreviews } = await apiService.fetchAnswerPreviews({ userId });
+
+      this.completeAnswerPreviewsLoad(answerPreviews);
+    } catch (e) {
+      this.failAnswerPreviewsLoad();
     }
   }
 
@@ -110,6 +122,24 @@ export default class AnswerStore extends Store {
     this.publish();
   }
 
+  startAnswerPreviewsLoad() {
+    this.isAnswerPreviewsLoading = true;
+    this.answerPreviews = [];
+    this.publish();
+  }
+
+  completeAnswerPreviewsLoad(answerPreviews) {
+    this.isAnswerPreviewsLoading = false;
+    this.answerPreviews = answerPreviews;
+    this.publish();
+  }
+
+  failAnswerPreviewsLoad() {
+    this.isAnswerPreviewsLoading = false;
+    this.answerPreviews = [];
+    this.publish();
+  }
+
   startAnswerLoad() {
     this.isAnswerLoading = true;
     this.answer = null;
@@ -161,7 +191,9 @@ export default class AnswerStore extends Store {
   reset() {
     this.isAnswersLoading = false;
     this.isAnswerLoading = false;
+    this.isAnswerPreviewsLoading = false;
     this.answers = [];
+    this.answerPreviews = [];
     this.answer = null;
     this.writeStatus = '';
     this.modifyStatus = '';
