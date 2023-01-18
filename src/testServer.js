@@ -57,6 +57,15 @@ const server = setupServer(
     tags: [{ name: 'Web' }],
   }))),
 
+  rest.patch(`${baseUrl}/users/me`, async (req, res, ctx) => {
+    const { displayName } = await req.json();
+    if (displayName.length >= 3) {
+      return res(ctx.status(204));
+    }
+
+    return res(ctx.status(400));
+  }),
+
   rest.get(`${baseUrl}/users/1`, async (req, res, ctx) => res(ctx.json({
     id: 1,
     displayName: 'hong',
@@ -445,6 +454,10 @@ const server = setupServer(
       ctx.status(400),
     );
   }),
+
+  rest.post('https://api.cloudinary.com/v1_1/ofcors-image-server/image/upload/', async (req, res, ctx) => res(ctx.json({
+    url: 'image.url.com',
+  }))),
 );
 
 export default server;

@@ -17,6 +17,6 @@ describe('Users', () => {
     renderUsers();
 
     screen.getByText('사람들');
-    screen.getByPlaceholderText('사람 검색');
+    screen.getByPlaceholderText('검색');
   });
 });

@@ -65,7 +65,7 @@ export default function Users() {
         </Title>
         <Wrapper>
           <form autoComplete="off" onSubmit={handleSubmit}>
-            <input name="search-users" type="text" placeholder="사람 검색" onChange={(e) => userStore.changeKeyword(e.target.value)} />
+            <input name="search-users" type="text" placeholder="검색" onChange={(e) => userStore.changeKeyword(e.target.value)} />
           </form>
         </Wrapper>
       </Header>

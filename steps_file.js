@@ -37,5 +37,6 @@ module.exports = () => actor({
     this.fillField('points', 20);
     this.click('올리기');
     this.click('예');
+    this.wait(2);
   },
 });

@@ -8,12 +8,14 @@ export default class UserStore extends Store {
 
     this.signUpStatus = '';
     this.loginStatus = '';
+    this.editStatus = '';
     this.users = [];
     this.user = null;
     this.keyword = '';
     this.searching = false;
     this.isUsersLoading = false;
     this.isUserLoading = false;
+    this.isEditing = false;
   }
 
   async signUp({
@@ -58,6 +60,28 @@ export default class UserStore extends Store {
     this.user = user;
 
     this.publish();
+  }
+
+  async editProfile({
+    displayName,
+    about,
+    imageUrl,
+    tags,
+  }) {
+    this.startEdit();
+
+    try {
+      await apiService.editProfile({
+        displayName,
+        about,
+        imageUrl,
+        tags,
+      });
+
+      this.completeEdit();
+    } catch (e) {
+      this.failEdit();
+    }
   }
 
   changeKeyword(keyword) {
@@ -110,6 +134,16 @@ export default class UserStore extends Store {
     this.publish();
   }
 
+  changeEditStatus(status) {
+    this.editStatus = status;
+    this.publish();
+  }
+
+  resetEditStatus() {
+    this.editStatus = '';
+    this.publish();
+  }
+
   startUsersLoad() {
     this.isUsersLoading = true;
     this.users = [];
@@ -154,6 +188,24 @@ export default class UserStore extends Store {
     this.publish();
   }
 
+  startEdit() {
+    this.isEditing = true;
+    this.changeEditStatus('processing');
+    this.publish();
+  }
+
+  completeEdit() {
+    this.isEditing = false;
+    this.changeEditStatus('successful');
+    this.publish();
+  }
+
+  failEdit() {
+    this.isEditing = false;
+    this.changeEditStatus('failed');
+    this.publish();
+  }
+
   get isSignUpSuccessful() {
     return this.signUpStatus === 'successful';
   }
@@ -168,6 +220,14 @@ export default class UserStore extends Store {
 
   get isLoginFailed() {
     return this.loginStatus === 'failed';
+  }
+
+  get isEditSuccessful() {
+    return this.editStatus === 'successful';
+  }
+
+  get isEditFailed() {
+    return this.editStatus === 'failed';
   }
 }
 
