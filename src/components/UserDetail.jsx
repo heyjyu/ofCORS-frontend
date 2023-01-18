@@ -72,7 +72,7 @@ export default function UserDetail() {
               {user.displayName}
             </p>
             <p>
-              자기소개
+              {user.about}
             </p>
             <p>
               {user.countOfLikes}
@@ -120,7 +120,8 @@ export default function UserDetail() {
                   .map((answer) => (
                     <li key={answer.id}>
                       <span>
-                        {answer.countOfLikes}
+                        {answer.likeUserIds.length}
+                        추천
                       </span>
                       <Link to={`/questions/${answer.question.id}`}>
                         {answer.question.title}
@@ -147,7 +148,8 @@ export default function UserDetail() {
                   .map((question) => (
                     <li key={question.id}>
                       <span>
-                        {question.countOfLikes}
+                        {question.likeUserIds.length}
+                        추천
                       </span>
                       <Link to={`/questions/${question.id}`}>
                         {question.title}
@@ -172,7 +174,8 @@ export default function UserDetail() {
                 .map((answer) => (
                   <li key={answer.id}>
                     <span>
-                      {answer.countOfLikes}
+                      {answer.likeUserIds.length}
+                      추천
                     </span>
                     <Link to={`/questions/${answer.question.id}`}>
                       {answer.question.title}
@@ -196,7 +199,8 @@ export default function UserDetail() {
                 .map((question) => (
                   <li key={question.id}>
                     <span>
-                      {question.countOfLikes}
+                      {question.likeUserIds.length}
+                      추천
                     </span>
                     <Link to={`/questions/${question.id}`}>
                       {question.title}

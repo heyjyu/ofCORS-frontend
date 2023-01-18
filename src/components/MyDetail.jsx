@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import useAnswerStore from '../hooks/useAnswerStore';
 import useQuestionStore from '../hooks/useQuestionStore';
 import useUserStore from '../hooks/useUserStore';
+import Tags from './Tags';
 
 const Container = styled.div`
   height: 100%;
@@ -70,7 +71,7 @@ export default function MyDetail() {
               {user.displayName}
             </p>
             <p>
-              자기소개
+              {user.about}
             </p>
             <p>
               {user.countOfLikes}
@@ -128,7 +129,8 @@ export default function MyDetail() {
                   .map((answer) => (
                     <li key={answer.id}>
                       <span>
-                        {answer.countOfLikes}
+                        {answer.likeUserIds.length}
+                        추천
                       </span>
                       <Link to={`/questions/${answer.question.id}`}>
                         {answer.question.title}
@@ -155,7 +157,8 @@ export default function MyDetail() {
                   .map((question) => (
                     <li key={question.id}>
                       <span>
-                        {question.countOfLikes}
+                        {question.likeUserIds.length}
+                        추천
                       </span>
                       <Link to={`/questions/${question.id}`}>
                         {question.title}
@@ -163,6 +166,7 @@ export default function MyDetail() {
                       <span>
                         {question.createdAt.split('T')[0].replaceAll('-', '.')}
                       </span>
+                      <Tags tags={question.tags} />
                     </li>
                   ))}
               </ul>
@@ -171,15 +175,55 @@ export default function MyDetail() {
         ) : null}
       {tab === 'answer'
         ? (
-          <div>
-            답변
-          </div>
+          <>
+            <div>
+              답변
+            </div>
+            <ul>
+              {answerStore.answerPreviews
+                .map((answer) => (
+                  <li key={answer.id}>
+                    <span>
+                      {answer.likeUserIds.length}
+                      추천
+                    </span>
+                    <Link to={`/questions/${answer.question.id}`}>
+                      {answer.question.title}
+                    </Link>
+                    <span>
+                      {answer.createdAt.split('T')[0].replaceAll('-', '.')}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          </>
         ) : null}
       {tab === 'question'
         ? (
-          <div>
-            질문
-          </div>
+          <>
+            <div>
+              질문
+            </div>
+            <ul>
+              {questionStore.questionPreviews
+                .map((question) => (
+                  <li key={question.id}>
+                    {/* TODO 채택 여부에 따라 배경색 바꾸기 */}
+                    <span>
+                      {question.points}
+                      pt
+                    </span>
+                    <Link to={`/questions/${question.id}`}>
+                      {question.title}
+                    </Link>
+                    <span>
+                      {question.createdAt.split('T')[0].replaceAll('-', '.')}
+                    </span>
+                    <Tags tags={question.tags} />
+                  </li>
+                ))}
+            </ul>
+          </>
         ) : null}
       {tab === 'scrap'
         ? (

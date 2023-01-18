@@ -118,4 +118,58 @@ describe('UserStore', () => {
       expect(userStore.loginStatus).toBe('');
     });
   });
+
+  describe('resetEditStatus', () => {
+    it('resets editStatus', () => {
+      userStore.changeEditStatus('processing');
+
+      expect(userStore.editStatus).toBe('processing');
+
+      userStore.resetEditStatus();
+
+      expect(userStore.editStatus).toBe('');
+    });
+  });
+
+  describe('editProfile', () => {
+    context('when edited successfully', () => {
+      it('changes editStatus to successful', async () => {
+        await userStore.fetchMe();
+
+        const displayName = 'hong';
+        const about = '저는 객체 지향 프로그래밍을 좋아합니다';
+        const imageUrl = 'https://image.com';
+        const tags = new Set();
+
+        await userStore.editProfile({
+          displayName,
+          about,
+          imageUrl,
+          tags,
+        });
+
+        expect(userStore.isEditSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to edit', () => {
+      it('changes editStatus to failed', async () => {
+        await userStore.fetchMe();
+
+        const displayName = '';
+        const about = '저는 객체 지향 프로그래밍을 좋아합니다';
+        const imageUrl = 'https://image.com';
+        const tags = new Set();
+
+        await userStore.editProfile({
+          displayName,
+          about,
+          imageUrl,
+          tags,
+        });
+
+        expect(userStore.isEditFailed).toBeTruthy();
+      });
+    });
+  });
 });
