@@ -458,6 +458,33 @@ const server = setupServer(
   rest.post('https://api.cloudinary.com/v1_1/ofcors-image-server/image/upload/', async (req, res, ctx) => res(ctx.json({
     url: 'image.url.com',
   }))),
+
+  rest.post(`${baseUrl}/charges`, async (req, res, ctx) => {
+    const {
+      quantity,
+    } = await req.json();
+
+    if (quantity > 0) {
+      return res(
+        ctx.json('https://redirect.url.com'),
+      );
+    }
+
+    return res(
+      ctx.status(400),
+    );
+  }),
+
+  rest.get(`${baseUrl}/charges/kakaoPaySuccess`, async (req, res, ctx) => res(
+    ctx.json({
+      quantity: 1,
+      partner_order_id: 'id',
+      approved_at: '2022-12-21T19:05:30.574542',
+      amount: {
+        total: 1000,
+      },
+    }),
+  )),
 );
 
 export default server;

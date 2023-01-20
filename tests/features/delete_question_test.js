@@ -12,6 +12,8 @@ Scenario('답변이 달리기 전 질문 삭제하는 경우', ({ I }) => {
 
   I.askQuestion();
 
+  I.wait(2);
+
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
 
   I.click('삭제');

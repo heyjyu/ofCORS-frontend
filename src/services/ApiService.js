@@ -271,6 +271,26 @@ export default class ApiService {
 
     return data.url;
   }
+
+  async charge(point) {
+    const url = `${baseUrl}/charges`;
+
+    const { data } = await this.instance.post(url, { quantity: point });
+
+    return data;
+  }
+
+  async fetchPaymentResult(pgToken) {
+    const url = `${baseUrl}/charges/kakaoPaySuccess`;
+
+    const { data } = await this.instance.get(url, {
+      params: {
+        pg_token: pgToken,
+      },
+    });
+
+    return data;
+  }
 }
 
 export const apiService = new ApiService();

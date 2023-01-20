@@ -24,6 +24,10 @@ import QuestionEditPage from './pages/QuestionEditPage';
 import UserDetailPage from './pages/UserDetailPage';
 import MyPage from './pages/MyPage';
 import ProfileEditPage from './pages/ProfileEditPage';
+import ChargePage from './pages/ChargePage';
+import ChargeCancelPage from './pages/ChargeCancelPage';
+import ChargeFailPage from './pages/ChargeFailPage';
+import ChargeSuccessPage from './pages/ChargeSuccessPage';
 
 export default function App() {
   const [accessToken] = useLocalStorage('accessToken', '');
@@ -52,6 +56,10 @@ export default function App() {
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/:id" element={<UserDetailPage />} />
+          <Route path="/charge" element={<ChargePage />} />
+          <Route path="/charge/cancel" element={<ChargeCancelPage />} />
+          <Route path="/charge/success" element={<ChargeSuccessPage />} />
+          <Route path="/charge/fail" element={<ChargeFailPage />} />
         </Routes>
       </main>
     </>
