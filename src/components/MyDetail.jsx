@@ -250,7 +250,7 @@ export default function MyDetail() {
             {user.points}
             pt
           </span>
-          <button type="button">
+          <button type="button" onClick={() => navigate('/charge')}>
             포인트 충전
           </button>
           <button type="button">
