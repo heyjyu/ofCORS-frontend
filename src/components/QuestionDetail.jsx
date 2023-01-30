@@ -59,7 +59,9 @@ export default function QuestionDetail() {
 
   const { question } = questionStore;
   const {
-    points, title, createdAt, hits, body, author, likeUserIds, status, selectedAnswerId,
+    points, title, createdAt,
+    hits, body, author, likeUserIds,
+    scrapUserIds, status, selectedAnswerId,
   } = question;
 
   const handleClickLike = () => {
@@ -75,6 +77,20 @@ export default function QuestionDetail() {
   const handleClickDelete = () => {
     questionStore.delete(id);
     navigate('/');
+  };
+
+  const handleClickScrap = () => {
+    if (!accessToken) {
+      navigate('/login');
+
+      return;
+    }
+
+    questionStore.scrap(id);
+  };
+
+  const handleClickCancelScrap = () => {
+    questionStore.cancelScrap(id);
   };
 
   const handleSubmit = (e) => {
@@ -112,9 +128,16 @@ export default function QuestionDetail() {
                 />
               </>
             ) : null}
-          <button type="button">
-            스크랩
-          </button>
+          {scrapUserIds.map((i) => i.id).includes(userStore.user?.id)
+            ? (
+              <button type="button" onClick={handleClickCancelScrap}>
+                스크랩 취소
+              </button>
+            ) : (
+              <button type="button" onClick={handleClickScrap}>
+                스크랩
+              </button>
+            )}
         </RightGroup>
       </Wrapper>
       <Title>{title}</Title>

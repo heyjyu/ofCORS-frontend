@@ -131,6 +131,7 @@ const server = setupServer(
             tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [],
+            scrapUserIds: [],
             selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
@@ -145,6 +146,7 @@ const server = setupServer(
             tags: [{ name: 'Web' }],
             points: 10,
             likeUserIds: [{ id: 11 }],
+            scrapUserIds: [],
             selectedAnswerId: null,
             hits: 3,
             createdAt: '2022-12-21T19:05:30.574542',
@@ -165,6 +167,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [{ id: 11 }],
+          scrapUserIds: [],
           selectedAnswerId: 1,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -179,6 +182,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [{ id: 11 }],
+          scrapUserIds: [],
           selectedAnswerId: 2,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -208,6 +212,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [{ id: 11 }],
+          scrapUserIds: [],
           selectedAnswerId: 1,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -222,6 +227,7 @@ const server = setupServer(
           tags: [{ name: 'Web' }],
           points: 10,
           likeUserIds: [{ id: 11 }],
+          scrapUserIds: [],
           selectedAnswerId: 2,
           hits: 3,
           createdAt: '2022-12-21T19:05:30.574542',
@@ -256,6 +262,7 @@ const server = setupServer(
     tags: [{ name: 'Web' }],
     points: 10,
     likeUserIds: [],
+    scrapUserIds: [],
     selectedAnswerId: null,
     hits: 3,
     createdAt: '2022-12-21T19:05:30.574542',
@@ -319,6 +326,22 @@ const server = setupServer(
     return res(
       ctx.json({
         likeUserIds: [{ id: 1 }],
+      }),
+    );
+  }),
+
+  rest.patch(`${baseUrl}/questions/1/scrapUserIds`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.json({
+        scrapUserIds: [{ id: 1 }],
       }),
     );
   }),

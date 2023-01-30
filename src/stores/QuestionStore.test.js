@@ -148,6 +148,58 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('scrap', () => {
+    context('when scrapped successfully', () => {
+      it('changes scrapStatus to successful', async () => {
+        apiService.setAccessToken('ACCESS.TOKEN');
+
+        const questionId = 1;
+
+        await questionStore.scrap(questionId);
+
+        expect(questionStore.isScrapSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to scrap', () => {
+      it('changes scrapStatus to failed', async () => {
+        apiService.setAccessToken('');
+
+        const questionId = 1;
+
+        await questionStore.scrap(questionId);
+
+        expect(questionStore.isScrapFailed).toBeTruthy();
+      });
+    });
+  });
+
+  describe('cancelScrap', () => {
+    context('when canceled scrap successfully', () => {
+      it('changes cancelScrapStatus to successful', async () => {
+        apiService.setAccessToken('ACCESS.TOKEN');
+
+        const questionId = 1;
+
+        await questionStore.cancelScrap(questionId);
+
+        expect(questionStore.isCancelScrapSuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to cancel scrap', () => {
+      it('changes cancelScrapStatus to failed', async () => {
+        apiService.setAccessToken('');
+
+        const questionId = 1;
+
+        await questionStore.cancelScrap(questionId);
+
+        expect(questionStore.isCancelScrapFailed).toBeTruthy();
+      });
+    });
+  });
+
   describe('adoptAnswer', () => {
     context('when adopted successfully', () => {
       it('changes adoptStatus to successful', async () => {

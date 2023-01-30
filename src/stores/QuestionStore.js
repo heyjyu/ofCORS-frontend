@@ -103,6 +103,32 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async scrap(id) {
+    this.startScrap();
+
+    try {
+      const { scrapUserIds } = await apiService.scrapQuestion(id);
+      this.question = { ...this.question, scrapUserIds };
+
+      this.completeScrap();
+    } catch (e) {
+      this.failScrap();
+    }
+  }
+
+  async cancelScrap(id) {
+    this.startCancelScrap();
+
+    try {
+      const { scrapUserIds } = await apiService.cancelScrapQuestion(id);
+      this.question = { ...this.question, scrapUserIds };
+
+      this.completeCancelScrap();
+    } catch (e) {
+      this.failCancelScrap();
+    }
+  }
+
   async adoptAnswer({
     questionId,
     answerId,
@@ -194,50 +220,92 @@ export default class QuestionStore extends Store {
 
   startWrite() {
     this.createStatus = 'processing';
+    this.publish();
   }
 
   completeWrite() {
     this.createStatus = 'successful';
+    this.publish();
   }
 
   failWrite() {
     this.createStatus = 'failed';
+    this.publish();
   }
 
   startModify() {
     this.modifyStatus = 'processing';
+    this.publish();
   }
 
   completeModify() {
     this.modifyStatus = 'successful';
+    this.publish();
   }
 
   failModify() {
     this.modifyStatus = 'failed';
+    this.publish();
   }
 
   startDelete() {
     this.deleteStatus = 'processing';
+    this.publish();
   }
 
   completeDelete() {
     this.deleteStatus = 'successful';
+    this.publish();
   }
 
   failDelete() {
     this.deleteStatus = 'failed';
+    this.publish();
+  }
+
+  startScrap() {
+    this.scrapStatus = 'processing';
+    this.publish();
+  }
+
+  completeScrap() {
+    this.scrapStatus = 'successful';
+    this.publish();
+  }
+
+  failScrap() {
+    this.scrapStatus = 'failed';
+    this.publish();
+  }
+
+  startCancelScrap() {
+    this.cancelScrapStatus = 'processing';
+    this.publish();
+  }
+
+  completeCancelScrap() {
+    this.cancelScrapStatus = 'successful';
+    this.publish();
+  }
+
+  failCancelScrap() {
+    this.cancelScrapStatus = 'failed';
+    this.publish();
   }
 
   startAdopt() {
     this.adoptStatus = 'processing';
+    this.publish();
   }
 
   completeAdopt() {
     this.adoptStatus = 'successful';
+    this.publish();
   }
 
   failAdopt() {
     this.adoptStatus = 'failed';
+    this.publish();
   }
 
   reset() {
@@ -252,6 +320,8 @@ export default class QuestionStore extends Store {
     this.modifyStatus = '';
     this.deleteStatus = '';
     this.adoptStatus = '';
+    this.scrapStatus = '';
+    this.cancelScrapStatus = '';
   }
 
   get isCreateSuccessful() {
@@ -276,6 +346,22 @@ export default class QuestionStore extends Store {
 
   get isDeleteFailed() {
     return this.deleteStatus === 'failed';
+  }
+
+  get isScrapSuccessful() {
+    return this.scrapStatus === 'successful';
+  }
+
+  get isScrapFailed() {
+    return this.scrapStatus === 'failed';
+  }
+
+  get isCancelScrapSuccessful() {
+    return this.cancelScrapStatus === 'successful';
+  }
+
+  get isCancelScrapFailed() {
+    return this.cancelScrapStatus === 'failed';
   }
 
   get isAdoptSuccessful() {

@@ -20,8 +20,15 @@ const Wrapper = styled.div`
   margin-block: 1em;
 `;
 
-const List = styled.ul`
+const ButtonList = styled.ul`
   display: flex;
+`;
+
+const List = styled.ul`
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
 export default function MyDetail() {
@@ -84,7 +91,7 @@ export default function MyDetail() {
           수정
         </button>
       </Wrapper>
-      <List>
+      <ButtonList>
         <li>
           <button type="button" onClick={handleClickSummaryTab}>
             요약
@@ -110,7 +117,7 @@ export default function MyDetail() {
             구독
           </button>
         </li>
-      </List>
+      </ButtonList>
       {tab === 'summary'
         ? (
           <div>
@@ -123,7 +130,7 @@ export default function MyDetail() {
                   전체보기
                 </button>
               </Wrapper>
-              <ul>
+              <List>
                 {answerStore.answerPreviews
                   .slice(0, 5)
                   .map((answer) => (
@@ -140,7 +147,7 @@ export default function MyDetail() {
                       </span>
                     </li>
                   ))}
-              </ul>
+              </List>
             </div>
             <div>
               <Wrapper>
@@ -151,7 +158,7 @@ export default function MyDetail() {
                   전체보기
                 </button>
               </Wrapper>
-              <ul>
+              <List>
                 {questionStore.questionPreviews
                   .slice(0, 5)
                   .map((question) => (
@@ -169,7 +176,7 @@ export default function MyDetail() {
                       <Tags tags={question.tags} />
                     </li>
                   ))}
-              </ul>
+              </List>
             </div>
           </div>
         ) : null}
@@ -179,7 +186,7 @@ export default function MyDetail() {
             <div>
               답변
             </div>
-            <ul>
+            <List>
               {answerStore.answerPreviews
                 .map((answer) => (
                   <li key={answer.id}>
@@ -195,7 +202,7 @@ export default function MyDetail() {
                     </span>
                   </li>
                 ))}
-            </ul>
+            </List>
           </>
         ) : null}
       {tab === 'question'
@@ -204,7 +211,7 @@ export default function MyDetail() {
             <div>
               질문
             </div>
-            <ul>
+            <List>
               {questionStore.questionPreviews
                 .map((question) => (
                   <li key={question.id}>
@@ -222,7 +229,7 @@ export default function MyDetail() {
                     <Tags tags={question.tags} />
                   </li>
                 ))}
-            </ul>
+            </List>
           </>
         ) : null}
       {tab === 'scrap'
