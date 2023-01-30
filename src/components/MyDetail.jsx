@@ -64,6 +64,22 @@ export default function MyDetail() {
     setTab('subscription');
   };
 
+  const handleClickSortAnswerByTime = () => {
+    answerStore.fetchAnswerPreviews({ userId: user.id, sort: 'createdAt' });
+  };
+
+  const handleClickSortAnswerByLike = () => {
+    answerStore.fetchAnswerPreviews({ userId: user.id, sort: 'like' });
+  };
+
+  const handleClickSortQuestionByTime = () => {
+    questionStore.fetchQuestionPreviews({ userId: user.id, sort: 'createdAt' });
+  };
+
+  const handleClickSortQuestionByPoint = () => {
+    questionStore.fetchQuestionPreviews({ userId: user.id, sort: 'points' });
+  };
+
   if (!user) {
     return null;
   }
@@ -186,6 +202,12 @@ export default function MyDetail() {
             <div>
               답변
             </div>
+            <button type="button" onClick={handleClickSortAnswerByLike}>
+              추천순
+            </button>
+            <button type="button" onClick={handleClickSortAnswerByTime}>
+              최신순
+            </button>
             <List>
               {answerStore.answerPreviews
                 .map((answer) => (
@@ -211,14 +233,20 @@ export default function MyDetail() {
             <div>
               질문
             </div>
+            <button type="button" onClick={handleClickSortQuestionByPoint}>
+              포인트순
+            </button>
+            <button type="button" onClick={handleClickSortQuestionByTime}>
+              최신순
+            </button>
             <List>
               {questionStore.questionPreviews
                 .map((question) => (
                   <li key={question.id}>
                     {/* TODO 채택 여부에 따라 배경색 바꾸기 */}
                     <span>
-                      {question.points}
-                      pt
+                      {question.likeUserIds.length}
+                      추천
                     </span>
                     <Link to={`/questions/${question.id}`}>
                       {question.title}

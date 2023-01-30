@@ -21,11 +21,11 @@ export default class AnswerStore extends Store {
     }
   }
 
-  async fetchAnswerPreviews({ userId = '' }) {
+  async fetchAnswerPreviews({ userId = '', sort = '' }) {
     this.startAnswerPreviewsLoad();
 
     try {
-      const { answerPreviews } = await apiService.fetchAnswerPreviews({ userId });
+      const { answerPreviews } = await apiService.fetchAnswerPreviews({ userId, sort });
 
       this.completeAnswerPreviewsLoad(answerPreviews);
     } catch (e) {

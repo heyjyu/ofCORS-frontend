@@ -21,11 +21,11 @@ export default class QuestionStore extends Store {
     }
   }
 
-  async fetchQuestionPreviews({ userId = '' }) {
+  async fetchQuestionPreviews({ userId = '', sort = '' }) {
     this.startQuestionPreviewsLoad();
 
     try {
-      const { questionPreviews } = await apiService.fetchQuestionPreviews({ userId });
+      const { questionPreviews } = await apiService.fetchQuestionPreviews({ userId, sort });
 
       this.completeQuestionPreviewsLoad(questionPreviews);
     } catch (e) {
