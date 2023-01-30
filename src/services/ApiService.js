@@ -209,6 +209,26 @@ export default class ApiService {
     await this.instance.delete(`/questions/${id}`);
   }
 
+  async scrapQuestion(id) {
+    const { data } = await this.instance.patch(`/questions/${id}/scrapUserIds`, {
+      scrapped: true,
+    });
+
+    return {
+      scrapUserIds: data.scrapUserIds,
+    };
+  }
+
+  async cancelScrapQuestion(id) {
+    const { data } = await this.instance.patch(`/questions/${id}/scrapUserIds`, {
+      scrapped: false,
+    });
+
+    return {
+      scrapUserIds: data.scrapUserIds,
+    };
+  }
+
   async createAnswer({
     questionId, body,
   }) {
