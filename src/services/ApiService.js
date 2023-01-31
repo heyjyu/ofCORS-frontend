@@ -127,8 +127,8 @@ export default class ApiService {
     };
   }
 
-  async fetchQuestionPreviews({ userId }) {
-    const { data } = await this.instance.get(`/question-previews?userId=${userId}`);
+  async fetchQuestionPreviews({ userId, sort }) {
+    const { data } = await this.instance.get(`/question-previews?userId=${userId}&sort=${sort}`);
 
     return {
       questionPreviews: data.questionPreviews,
@@ -163,8 +163,8 @@ export default class ApiService {
     };
   }
 
-  async fetchAnswerPreviews({ userId }) {
-    const { data } = await this.instance.get(`/answer-previews?userId=${userId}`);
+  async fetchAnswerPreviews({ userId, sort }) {
+    const { data } = await this.instance.get(`/answer-previews?userId=${userId}&sort=${sort}`);
 
     return {
       answerPreviews: data.answerPreviews,

@@ -65,6 +65,22 @@ export default function UserDetail() {
     setTab('question');
   };
 
+  const handleClickSortAnswerByTime = () => {
+    answerStore.fetchAnswerPreviews({ userId: user.id, sort: 'createdAt' });
+  };
+
+  const handleClickSortAnswerByLike = () => {
+    answerStore.fetchAnswerPreviews({ userId: user.id, sort: 'like' });
+  };
+
+  const handleClickSortQuestionByTime = () => {
+    questionStore.fetchQuestionPreviews({ userId: id, sort: 'createdAt' });
+  };
+
+  const handleClickSortQuestionByPoint = () => {
+    questionStore.fetchQuestionPreviews({ userId: id, sort: 'points' });
+  };
+
   if (!user) {
     return null;
   }
@@ -155,8 +171,8 @@ export default function UserDetail() {
                   .map((question) => (
                     <li key={question.id}>
                       <span>
-                        {question.likeUserIds.length}
-                        추천
+                        {question.points}
+                        pt
                       </span>
                       <Link to={`/questions/${question.id}`}>
                         {question.title}
@@ -176,6 +192,12 @@ export default function UserDetail() {
             <div>
               답변
             </div>
+            <button type="button" onClick={handleClickSortAnswerByLike}>
+              추천순
+            </button>
+            <button type="button" onClick={handleClickSortAnswerByTime}>
+              최신순
+            </button>
             <List>
               {answerStore.answerPreviews
                 .map((answer) => (
@@ -199,15 +221,23 @@ export default function UserDetail() {
         ? (
           <>
             <div>
-              질문
+              <span>
+                질문
+              </span>
+              <button type="button" onClick={handleClickSortQuestionByPoint}>
+                포인트순
+              </button>
+              <button type="button" onClick={handleClickSortQuestionByTime}>
+                최신순
+              </button>
             </div>
             <List>
               {questionStore.questionPreviews
                 .map((question) => (
                   <li key={question.id}>
                     <span>
-                      {question.likeUserIds.length}
-                      추천
+                      {question.points}
+                      pt
                     </span>
                     <Link to={`/questions/${question.id}`}>
                       {question.title}
