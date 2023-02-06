@@ -31,6 +31,10 @@ export default function MyPage() {
     await userStore.fetchMe();
     questionStore.fetchQuestionPreviews({ userId: userStore.user.id });
     answerStore.fetchAnswerPreviews({ userId: userStore.user.id });
+    questionStore.fetchScrappedQuestions();
+    // TODO
+    // questionStore.fetchQuestions({ userId: userStore.user.id, sort: 'createdAt' });
+    // answerStore.fetchAnswers({userId: userStore.user.id });
   };
 
   useEffect(() => {

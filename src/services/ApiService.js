@@ -135,6 +135,14 @@ export default class ApiService {
     };
   }
 
+  async fetchScrappedQuestions() {
+    const { data } = await this.instance.get('/scrapped-questions');
+
+    return {
+      questions: data.questions,
+    };
+  }
+
   async fetchQuestion(id) {
     const { data } = await this.instance.get(`/questions/${id}`);
 

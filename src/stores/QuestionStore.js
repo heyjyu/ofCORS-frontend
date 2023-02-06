@@ -45,6 +45,18 @@ export default class QuestionStore extends Store {
     }
   }
 
+  async fetchScrappedQuestions() {
+    this.startScrappedQuestionsLoad();
+
+    try {
+      const { questions } = await apiService.fetchScrappedQuestions();
+
+      this.completeScrappedQuestionsLoad(questions);
+    } catch (e) {
+      this.failScrappedQuestionsLoad();
+    }
+  }
+
   isMyQuestion(userId) {
     return this.question?.author.id === userId;
   }
@@ -218,6 +230,24 @@ export default class QuestionStore extends Store {
     this.publish();
   }
 
+  startScrappedQuestionsLoad() {
+    this.isScrappedQuestionsLoading = true;
+    this.scrappedQuestions = [];
+    this.publish();
+  }
+
+  completeScrappedQuestionsLoad(questions) {
+    this.isScrappedQuestionsLoading = false;
+    this.scrappedQuestions = questions;
+    this.publish();
+  }
+
+  failScrappedQuestionsLoad() {
+    this.isScrappedQuestionsLoading = false;
+    this.scrappedQuestions = [];
+    this.publish();
+  }
+
   startWrite() {
     this.createStatus = 'processing';
     this.publish();
@@ -312,8 +342,10 @@ export default class QuestionStore extends Store {
     this.isQuestionsLoading = false;
     this.isQuestionLoading = false;
     this.isQuestionPreviewsLoading = false;
+    this.isScrappedQuestionsLoading = false;
     this.questions = [];
     this.questionPreviews = [];
+    this.scrappedQuestions = [];
     this.question = null;
     this.keyword = '';
     this.createStatus = '';

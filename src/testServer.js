@@ -238,6 +238,51 @@ const server = setupServer(
     }));
   }),
 
+  rest.get(`${baseUrl}/scrapped-questions`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(ctx.json({
+      questions: [
+        {
+          id: 3,
+          status: 'closed',
+          title: 'No \'Access-Control-Allow-Origin\'',
+          body: '서버 배포 후 CORS에러가 발생합니다.',
+          tags: [{ name: 'Web' }],
+          points: 10,
+          likeUserIds: [{ id: 11 }],
+          scrapUserIds: [{ id: 1 }],
+          selectedAnswerId: 1,
+          hits: 3,
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
+          author: { id: 1, displayName: '홍길동' },
+        },
+        {
+          id: 4,
+          status: 'closed',
+          title: 'CORS 에러가 발생합니다.',
+          body: '서버 배포 후 CORS에러가 발생합니다.',
+          tags: [{ name: 'Web' }],
+          points: 10,
+          likeUserIds: [{ id: 11 }],
+          scrapUserIds: [{ id: 1 }],
+          selectedAnswerId: 2,
+          hits: 3,
+          createdAt: '2022-12-21T19:05:30.574542',
+          updatedAt: '2022-12-21T19:05:30.574542',
+          author: { id: 1, displayName: '홍길동' },
+        },
+      ],
+    }));
+  }),
+
   rest.post(`${baseUrl}/questions`, async (req, res, ctx) => {
     const {
       title, body,

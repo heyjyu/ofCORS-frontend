@@ -34,6 +34,16 @@ describe('QuestionStore', () => {
     });
   });
 
+  describe('fetchScrappedQuestions', () => {
+    it('loads scrapped questions', async () => {
+      apiService.setAccessToken('ACCESS.TOKEN');
+
+      await questionStore.fetchScrappedQuestions();
+
+      expect(questionStore.scrappedQuestions).toHaveLength(2);
+    });
+  });
+
   describe('changeKeyword', () => {
     it('changes keyword', () => {
       questionStore.changeKeyword('CORS');
