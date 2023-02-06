@@ -7,19 +7,21 @@ import AdoptPage from './AdoptPage';
 const context = describe;
 
 describe('AdoptPage', () => {
-  const renderAdoptPage = () => {
-    render((
-      <MemoryRouter initialEntries={['/questions/1/adopt']}>
-        <Routes>
-          <Route path="/questions/:id/adopt" element={<AdoptPage />} />
-        </Routes>
-      </MemoryRouter>
-    ));
+  const renderAdoptPage = async () => {
+    await act(() => {
+      render((
+        <MemoryRouter initialEntries={['/questions/1/adopt']}>
+          <Routes>
+            <Route path="/questions/:id/adopt" element={<AdoptPage />} />
+          </Routes>
+        </MemoryRouter>
+      ));
+    });
   };
 
   context('without login', () => {
-    it('renders error message', () => {
-      renderAdoptPage();
+    it('renders error message', async () => {
+      await renderAdoptPage();
 
       screen.getByText('잘못된 접근입니다.');
     });
@@ -29,7 +31,7 @@ describe('AdoptPage', () => {
     it('doesn\'t render title', async () => {
       localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
 
-      renderAdoptPage();
+      await renderAdoptPage();
 
       await waitFor(() => {
         expect(screen.queryByText('답변 채택하기')).toBeNull();
@@ -42,9 +44,7 @@ describe('AdoptPage', () => {
       localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
       selectAnswerFormStore.selectAnswerId(2);
 
-      await act(() => {
-        renderAdoptPage();
-      });
+      await renderAdoptPage();
 
       screen.getByText('잘못된 접근입니다.');
     });
@@ -54,7 +54,7 @@ describe('AdoptPage', () => {
     localStorage.setItem('accessToken', JSON.stringify('ACCESS.TOKEN'));
     selectAnswerFormStore.selectAnswerId(1);
 
-    renderAdoptPage();
+    await renderAdoptPage();
 
     await waitFor(() => {
       screen.getByText('답변 채택하기');

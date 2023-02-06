@@ -311,6 +311,26 @@ export default class ApiService {
 
     return data;
   }
+
+  async requestExchange({ points, bank, accountNumber }) {
+    const url = `${baseUrl}/exchanges`;
+
+    const { data } = await this.instance.post(url, {
+      quantity: points, bank, accountNumber,
+    });
+
+    return { id: data.id };
+  }
+
+  async validateAccount({ bank, accountNumber }) {
+    const url = `${baseUrl}/account/verify`;
+
+    const { data } = await this.instance.post(url, {
+      bank, accountNumber,
+    });
+
+    return { validated: data.validated };
+  }
 }
 
 export const apiService = new ApiService();
