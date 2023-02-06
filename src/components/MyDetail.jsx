@@ -262,9 +262,30 @@ export default function MyDetail() {
         ) : null}
       {tab === 'scrap'
         ? (
-          <div>
-            스크랩
-          </div>
+          <>
+            <div>
+              스크랩
+            </div>
+            <List>
+              {questionStore.scrappedQuestions
+                .map((question) => (
+                  <li key={question.id}>
+                    {/* TODO 채택 여부에 따라 배경색 바꾸기 */}
+                    <span>
+                      {question.likeUserIds.length}
+                      추천
+                    </span>
+                    <Link to={`/questions/${question.id}`}>
+                      {question.title}
+                    </Link>
+                    <span>
+                      {question.createdAt.split('T')[0].replaceAll('-', '.')}
+                    </span>
+                    <Tags tags={question.tags} />
+                  </li>
+                ))}
+            </List>
+          </>
         ) : null}
       {tab === 'subscription'
         ? (
