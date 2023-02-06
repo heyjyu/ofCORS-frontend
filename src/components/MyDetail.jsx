@@ -288,7 +288,7 @@ export default function MyDetail() {
           <button type="button" onClick={() => navigate('/charge')}>
             포인트 충전
           </button>
-          <button type="button">
+          <button type="button" onClick={() => navigate('/exchange')}>
             환전하기
           </button>
           <button type="button">

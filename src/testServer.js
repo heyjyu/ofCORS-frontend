@@ -508,6 +508,50 @@ const server = setupServer(
       },
     }),
   )),
+
+  rest.post(`${baseUrl}/exchanges`, async (req, res, ctx) => {
+    const {
+      quantity, bank, accountNumber,
+    } = await req.json();
+
+    if (quantity < 500) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    if (!bank || !accountNumber) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.json({
+        id: 1,
+      }),
+    );
+  }),
+
+  rest.post(`${baseUrl}/account/verify`, async (req, res, ctx) => {
+    const {
+      bank, accountNumber,
+    } = await req.json();
+
+    if (!bank || !accountNumber) {
+      return res(
+        ctx.json({
+          validated: false,
+        }),
+      );
+    }
+
+    return res(
+      ctx.json({
+        validated: true,
+      }),
+    );
+  }),
 );
 
 export default server;
