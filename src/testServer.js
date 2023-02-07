@@ -597,6 +597,37 @@ const server = setupServer(
       }),
     );
   }),
+
+  rest.get(`${baseUrl}/exchanges`, async (req, res, ctx) => {
+    const authorization = req.headers.get('Authorization');
+
+    if (!authorization) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.json({
+        exchanges: [
+          {
+            id: 1,
+            createdAt: '2022-12-21T19:05:30.574542',
+            quantity: 500,
+            totalAmount: 30000,
+            status: 'processing',
+          },
+          {
+            id: 2,
+            createdAt: '2022-12-21T19:05:30.574542',
+            quantity: 500,
+            totalAmount: 30000,
+            status: 'processing',
+          },
+        ],
+      }),
+    );
+  }),
 );
 
 export default server;

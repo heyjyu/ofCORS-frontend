@@ -339,6 +339,14 @@ export default class ApiService {
 
     return { validated: data.validated };
   }
+
+  async fetchExchanges() {
+    const { data } = await this.instance.get('/exchanges');
+
+    return {
+      exchanges: data.exchanges,
+    };
+  }
 }
 
 export const apiService = new ApiService();
