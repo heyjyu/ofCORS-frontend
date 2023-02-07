@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import useExchangeFormStore from '../hooks/useExchangeFormStore';
+import useExchangeStore from '../hooks/useExchangeStore';
 import useUserStore from '../hooks/useUserStore';
 
 const Container = styled.div`
@@ -56,6 +57,7 @@ const banks = [
 
 export default function ExchangeForm() {
   const exchangeFormStore = useExchangeFormStore();
+  const exchangeStore = useExchangeStore();
   const userStore = useUserStore();
 
   const handleSubmit = (e) => {
@@ -65,8 +67,9 @@ export default function ExchangeForm() {
 
   const handleClickExchange = async () => {
     await exchangeFormStore.requestExchange();
-    exchangeFormStore.reset();
     userStore.fetchMe();
+    exchangeStore.fetchExchanges();
+    exchangeFormStore.reset();
   };
 
   return (
@@ -89,14 +92,14 @@ export default function ExchangeForm() {
       <div>
         <div>환전할 포인트</div>
         <div>
-          <input type="number" onChange={(e) => exchangeFormStore.changePoints({ points: e.target.value, pointsOfUser: userStore.user.points })} />
+          <input type="number" value={exchangeFormStore.fields.points || ''} onChange={(e) => exchangeFormStore.changePoints({ points: e.target.value, pointsOfUser: userStore.user.points })} />
           <span>pt</span>
         </div>
         <p>1pt 당 KRW60으로 환전됩니다</p>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="banks">은행명</label>
-        <select name="banks" id="banks" onChange={(e) => exchangeFormStore.changeBank(e.target.value)}>
+        <select name="banks" value={exchangeFormStore.fields.bank || ''} id="banks" onChange={(e) => exchangeFormStore.changeBank(e.target.value)}>
           <option value="">
             선택해주세요
           </option>
@@ -107,7 +110,7 @@ export default function ExchangeForm() {
           ))}
         </select>
         <label htmlFor="account-number">계좌 번호</label>
-        <input name="account-number" id="account-number" onChange={(e) => exchangeFormStore.changeAccountNumber(e.target.value)} />
+        <input name="account-number" value={exchangeFormStore.fields.accountNumber || ''} id="account-number" onChange={(e) => exchangeFormStore.changeAccountNumber(e.target.value)} />
         <button type="submit">
           검증
         </button>
@@ -117,6 +120,33 @@ export default function ExchangeForm() {
       <button type="button" onClick={handleClickExchange} disabled={!exchangeFormStore.accountNumberValidated || !exchangeFormStore.isValidateSuccessful}>
         환전 신청하기
       </button>
+      <h1>환전 처리결과</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>환전 신청 일시</th>
+            <th>환전 신청 포인트</th>
+            <th>실수령금액</th>
+            <th>처리 결과</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exchangeStore.exchanges.map((exchange) => (
+            <tr key={exchange.id}>
+              <td>{exchange.createdAt.replace('T', ' ').split('.')[0]}</td>
+              <td>
+                {exchange.quantity}
+                pt
+              </td>
+              <td>
+                {exchange.totalAmount}
+                원
+              </td>
+              <td>{exchange.status === 'processing' ? '처리중' : '처리완료'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </Container>
   );
 }
