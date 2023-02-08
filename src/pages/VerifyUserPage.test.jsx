@@ -1,23 +1,23 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import App from './App';
+import VerifyUserPage from './VerifyUserPage';
 
 jest.mock('query-string', () => jest.fn());
 
-describe('App', () => {
+describe('VerifyUserPage', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('renders title', async () => {
     render((
-      <MemoryRouter initialEntries={['/']}>
-        <App />
+      <MemoryRouter initialEntries={['/verify-user']}>
+        <VerifyUserPage />
       </MemoryRouter>
     ));
 
     await waitFor(() => {
-      screen.getByText('인기 질문');
+      screen.getByText('실명 인증하기');
     });
   });
 });

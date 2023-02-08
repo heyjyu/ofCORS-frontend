@@ -31,7 +31,7 @@ const List = styled.ul`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
-export default function UserDetail() {
+export default function UserVerificationUserDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [accessToken] = useLocalStorage('accessToken', '');

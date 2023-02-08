@@ -29,6 +29,8 @@ import ChargeCancelPage from './pages/ChargeCancelPage';
 import ChargeFailPage from './pages/ChargeFailPage';
 import ChargeSuccessPage from './pages/ChargeSuccessPage';
 import ExchangePage from './pages/ExchangePage';
+import VerifyUserPage from './pages/VerifyUserPage';
+import VerifyUserResultPage from './pages/VerifyUserResultPage';
 
 export default function App() {
   const [accessToken] = useLocalStorage('accessToken', '');
@@ -62,6 +64,8 @@ export default function App() {
           <Route path="/charge/success" element={<ChargeSuccessPage />} />
           <Route path="/charge/fail" element={<ChargeFailPage />} />
           <Route path="/exchange" element={<ExchangePage />} />
+          <Route path="/verify-user" element={<VerifyUserPage />} />
+          <Route path="/verify-user/result" element={<VerifyUserResultPage />} />
         </Routes>
       </main>
     </>

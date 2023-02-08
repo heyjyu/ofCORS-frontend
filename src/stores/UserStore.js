@@ -6,16 +6,7 @@ export default class UserStore extends Store {
   constructor() {
     super();
 
-    this.signUpStatus = '';
-    this.loginStatus = '';
-    this.editStatus = '';
-    this.users = [];
-    this.user = null;
-    this.keyword = '';
-    this.searching = false;
-    this.isUsersLoading = false;
-    this.isUserLoading = false;
-    this.isEditing = false;
+    this.reset();
   }
 
   async signUp({
@@ -114,6 +105,18 @@ export default class UserStore extends Store {
     }
   }
 
+  async completeVerify(name) {
+    this.startCompleteVerify();
+
+    try {
+      await apiService.changeName(name);
+
+      this.completeCompleteVerify();
+    } catch (e) {
+      this.failCompleteVerify();
+    }
+  }
+
   changeSignUpStatus(status) {
     this.signUpStatus = status;
     this.publish();
@@ -141,6 +144,11 @@ export default class UserStore extends Store {
 
   resetEditStatus() {
     this.editStatus = '';
+    this.publish();
+  }
+
+  changeCompleteVerifyStatus(status) {
+    this.completeVerifyStatus = status;
     this.publish();
   }
 
@@ -206,6 +214,39 @@ export default class UserStore extends Store {
     this.publish();
   }
 
+  startCompleteVerify() {
+    this.isCompleteVerifying = true;
+    this.changeCompleteVerifyStatus('processing');
+    this.publish();
+  }
+
+  completeCompleteVerify() {
+    this.isCompleteVerifying = false;
+    this.changeCompleteVerifyStatus('successful');
+    this.publish();
+  }
+
+  failCompleteVerify() {
+    this.isCompleteVerifying = false;
+    this.changeCompleteVerifyStatus('failed');
+    this.publish();
+  }
+
+  reset() {
+    this.signUpStatus = '';
+    this.loginStatus = '';
+    this.editStatus = '';
+    this.completeVerifyStatus = '';
+    this.users = [];
+    this.user = null;
+    this.keyword = '';
+    this.searching = false;
+    this.isUsersLoading = false;
+    this.isUserLoading = false;
+    this.isEditing = false;
+    this.isCompleteVerifying = '';
+  }
+
   get isSignUpSuccessful() {
     return this.signUpStatus === 'successful';
   }
@@ -228,6 +269,14 @@ export default class UserStore extends Store {
 
   get isEditFailed() {
     return this.editStatus === 'failed';
+  }
+
+  get isCompleteVerifySuccessful() {
+    return this.completeVerifyStatus === 'successful';
+  }
+
+  get isCompleteVerifyFailed() {
+    return this.completeVerifyStatus === 'failed';
   }
 }
 
