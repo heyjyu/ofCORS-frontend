@@ -77,6 +77,12 @@ export default class ApiService {
     });
   }
 
+  async changeName(name) {
+    await this.instance.patch('/users/me/name', {
+      name,
+    });
+  }
+
   async postSession({
     email, password,
   }) {

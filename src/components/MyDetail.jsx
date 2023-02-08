@@ -297,10 +297,16 @@ export default function MyDetail() {
         <span>
           보유 포인트
         </span>
-        <button type="button">
-          실명 인증
-        </button>
-        <p>실명 인증 후 환전 가능합니다.</p>
+        {user.realName === ''
+          ? (
+            <>
+              <button type="button" onClick={() => navigate('/verify-user')}>
+                실명 인증
+              </button>
+              <p>실명 인증 후 환전 가능합니다.</p>
+            </>
+          )
+          : null}
         <div>
           <span>
             {user.points}
@@ -309,9 +315,13 @@ export default function MyDetail() {
           <button type="button" onClick={() => navigate('/charge')}>
             포인트 충전
           </button>
-          <button type="button" onClick={() => navigate('/exchange')}>
-            환전하기
-          </button>
+          {user.realName !== ''
+            ? (
+              <button type="button" onClick={() => navigate('/exchange')}>
+                환전하기
+              </button>
+            )
+            : null}
           <button type="button">
             구매 내역
           </button>

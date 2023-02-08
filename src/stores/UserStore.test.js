@@ -172,4 +172,22 @@ describe('UserStore', () => {
       });
     });
   });
+
+  describe('completeVerify', () => {
+    context('when successfully complete verified', () => {
+      it('changes completeVerifyStatus to successful', async () => {
+        await userStore.completeVerify('홍길동');
+
+        expect(userStore.isCompleteVerifySuccessful).toBeTruthy();
+      });
+    });
+
+    context('when failed to complete verify', () => {
+      it('changes completeVerifyStatus to failed', async () => {
+        await userStore.completeVerify('');
+
+        expect(userStore.isCompleteVerifyFailed).toBeTruthy();
+      });
+    });
+  });
 });

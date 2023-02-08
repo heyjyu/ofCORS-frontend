@@ -628,6 +628,22 @@ const server = setupServer(
       }),
     );
   }),
+
+  rest.patch(`${baseUrl}/users/me/name`, async (req, res, ctx) => {
+    const {
+      name,
+    } = await req.json();
+
+    if (!name) {
+      return res(
+        ctx.status(400),
+      );
+    }
+
+    return res(
+      ctx.status(204),
+    );
+  }),
 );
 
 export default server;
