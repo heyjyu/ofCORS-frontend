@@ -10,6 +10,6 @@ describe('ChargePage', () => {
       </MemoryRouter>
     ));
 
-    screen.getByText('포인트');
+    screen.getByText('포인트 구매');
   });
 });

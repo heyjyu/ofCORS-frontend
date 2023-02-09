@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useQuestionFormStore from '../hooks/useQuestionFormStore';
 import useQuestionStore from '../hooks/useQuestionStore';
+import Header from './ui/Header';
 import Input from './ui/Input';
+import Title from './ui/Title';
 
 const Container = styled.div`
   width: 30em;
@@ -53,7 +55,9 @@ export default function QuestionForm() {
 
   return (
     <Container>
-      <h1>질문하기</h1>
+      <Header>
+        <Title>질문하기</Title>
+      </Header>
       <form onSubmit={handleSubmit}>
         <Input
           name="title"

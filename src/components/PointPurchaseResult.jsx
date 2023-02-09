@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import usePointStore from '../hooks/usePointStore';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
 export default function PointPurchaseResult() {
   const navigate = useNavigate();
@@ -12,6 +14,11 @@ export default function PointPurchaseResult() {
 
   return (
     <div>
+      <Header>
+        <Title>
+          구매 결과
+        </Title>
+      </Header>
       <p>구매가 정상적으로 완료되었습니다</p>
       <p>구매일시</p>
       <p>{paymentResult.approved_at}</p>

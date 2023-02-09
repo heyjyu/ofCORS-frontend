@@ -2,24 +2,19 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useUserStore from '../hooks/useUserStore';
 import Tags from './Tags';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
-const Header = styled.div`
-  display: flex;
+const StyledHeader = styled(Header)`
   flex-direction: column;
-  gap: 1em;
-  border-bottom: 1px solid black;
+  align-items: flex-start;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5em;
-  margin-inline: 1em;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
+  margin-right: 1em;
 `;
 
 const List = styled.ul`
@@ -41,6 +36,17 @@ const List = styled.ul`
   }
 `;
 
+const Input = styled.input`
+  width: 15em;
+  margin-top: 2em;
+  padding: 0.5em 0.75em;
+  border: 1px solid #EAEAEC;
+
+  :focus {
+    outline: none;
+  }
+`;
+
 export default function Users() {
   const userStore = useUserStore();
 
@@ -59,16 +65,16 @@ export default function Users() {
 
   return (
     <div>
-      <Header>
+      <StyledHeader>
         <Title>
           사람들
         </Title>
         <Wrapper>
           <form autoComplete="off" onSubmit={handleSubmit}>
-            <input name="search-users" type="text" placeholder="검색" onChange={(e) => userStore.changeKeyword(e.target.value)} />
+            <Input name="search-users" type="text" placeholder="검색" onChange={(e) => userStore.changeKeyword(e.target.value)} />
           </form>
         </Wrapper>
-      </Header>
+      </StyledHeader>
       <List>
         {userStore.users.length
           ? userStore.users

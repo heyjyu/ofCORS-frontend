@@ -10,14 +10,11 @@ import AnswerForm from './AnswerForm';
 import Likes from './Likes';
 import Point from './Point';
 import Modal from './ui/Modal';
+import Title from './ui/Title';
 
 const Container = styled.div`
   height: 100%;
   padding: 0.5em 1em;
-`;
-
-const Title = styled.h1`
-  font-weight: bold;
 `;
 
 const Wrapper = styled.div`

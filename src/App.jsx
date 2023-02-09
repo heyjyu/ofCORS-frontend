@@ -37,6 +37,7 @@ const Main = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 3.25em;
   width: 100%;
   max-width: 1200px;
   height: calc(100vh - 3.25em);

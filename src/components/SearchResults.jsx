@@ -1,21 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
 import useSearchStore from '../hooks/useSearchStore';
 import AskLink from './AskLink';
 import SolutionItem from './SolutionItem';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 1em;
-  border-bottom: 1px solid black;
-`;
+import Header from './ui/Header';
+import Title from './ui/Title';
 
 export default function SearchResults() {
   const searchStore = useSearchStore();
@@ -31,12 +19,12 @@ export default function SearchResults() {
 
   return (
     <div>
-      <Wrapper>
+      <Header>
         <Title>
           검색 결과
         </Title>
         <AskLink />
-      </Wrapper>
+      </Header>
       {searchStore.results.length
         ? (
           searchStore.results

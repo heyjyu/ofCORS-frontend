@@ -15,6 +15,8 @@ export default class QuestionStore extends Store {
     try {
       const { questions } = await apiService.fetchQuestions({ sort, keyword });
 
+      this.sort = sort;
+
       this.completeQuestionsLoad(questions);
     } catch (e) {
       this.failQuestionsLoad();
@@ -354,6 +356,7 @@ export default class QuestionStore extends Store {
     this.adoptStatus = '';
     this.scrapStatus = '';
     this.cancelScrapStatus = '';
+    this.sort = '';
   }
 
   get isCreateSuccessful() {

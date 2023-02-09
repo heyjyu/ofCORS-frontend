@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Points from '../components/Points';
 import useUserStore from '../hooks/useUserStore';
 
-const Container = styled.main`
+const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 3em);
+  height: 100%;
   min-height: 50em;
 `;
 

@@ -4,7 +4,7 @@ import SignUpForm from '../components/SignUpForm';
 import useSignUpFormStore from '../hooks/useSignUpFormStore';
 import useUserStore from '../hooks/useUserStore';
 
-const Container = styled.main`
+const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
