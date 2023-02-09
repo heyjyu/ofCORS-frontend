@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     padding-top: 3.25em;
+    background: #F5F5F7;
   }
 
   button {

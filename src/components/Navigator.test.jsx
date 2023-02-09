@@ -14,9 +14,9 @@ describe('Header', () => {
   it('renders links', () => {
     renderHeader();
 
-    screen.getByText('홈');
-    screen.getByText('질문');
-    screen.getByText('해결완료');
-    screen.getByText('사람들');
+    screen.getByText(/홈/);
+    screen.getByText(/질문/);
+    screen.getByText(/해결완료/);
+    screen.getByText(/사람들/);
   });
 });
