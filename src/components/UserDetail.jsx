@@ -104,9 +104,9 @@ export default function UserVerificationUserDetail() {
             </p>
           </div>
         </div>
-        <button type="button" onClick={handleClickSubscribe}>
+        {/* <button type="button" onClick={handleClickSubscribe}>
           구독
-        </button>
+        </button> */}
       </Wrapper>
       <ButtonList>
         <li>

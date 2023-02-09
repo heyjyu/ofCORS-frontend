@@ -128,11 +128,11 @@ export default function MyDetail() {
             스크랩
           </button>
         </li>
-        <li>
+        {/* <li>
           <button type="button" onClick={handleClickSubscriptionTab}>
             구독
           </button>
-        </li>
+        </li> */}
       </ButtonList>
       {tab === 'summary'
         ? (
@@ -287,12 +287,12 @@ export default function MyDetail() {
             </List>
           </>
         ) : null}
-      {tab === 'subscription'
+      {/* {tab === 'subscription'
         ? (
           <div>
             구독
           </div>
-        ) : null}
+        ) : null} */}
       <div>
         <span>
           보유 포인트
@@ -322,9 +322,9 @@ export default function MyDetail() {
               </button>
             )
             : null}
-          <button type="button">
+          {/* <button type="button">
             구매 내역
-          </button>
+          </button> */}
         </div>
       </div>
     </Container>
