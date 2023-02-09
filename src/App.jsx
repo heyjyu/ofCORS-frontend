@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import { useLocalStorage } from 'usehooks-ts';
 
+import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyles';
 
 import Header from './components/Header';
@@ -32,6 +33,17 @@ import ExchangePage from './pages/ExchangePage';
 import VerifyUserPage from './pages/VerifyUserPage';
 import VerifyUserResultPage from './pages/VerifyUserResultPage';
 
+const Main = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  height: calc(100vh - 3.25em);
+  min-height: 600px;
+  margin: 0 auto;
+`;
+
 export default function App() {
   const [accessToken] = useLocalStorage('accessToken', '');
 
@@ -43,7 +55,7 @@ export default function App() {
     <>
       <GlobalStyle />
       <Header />
-      <main>
+      <Main>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignUpPage />} />
@@ -67,7 +79,7 @@ export default function App() {
           <Route path="/verify-user" element={<VerifyUserPage />} />
           <Route path="/verify-user/result" element={<VerifyUserResultPage />} />
         </Routes>
-      </main>
+      </Main>
     </>
   );
 }
