@@ -10,10 +10,10 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  height: 3em;
+  height: 3.25em;
   padding-inline: 1em;
-  border-bottom: 1px solid black;
-  background-color: lightgray;
+  border-bottom: 1px solid #E8E8E8; 
+  background-color: white;
   z-index: 100;
 
   form {
@@ -21,7 +21,7 @@ const Container = styled.div`
   }
 
   input {
-    width: 100%;
+    width: 70%;
     max-width: 50em;
   }
 
@@ -31,6 +31,49 @@ const Container = styled.div`
     gap: 1em;
     list-style: none;
   }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+`;
+
+const Logo = styled.div`
+  width: 5em;
+  height: 1.5em;
+  background: url(/assets/images/logo.svg) no-repeat center;
+`;
+
+const Input = styled.input`
+  width: 9em;
+  height: 2em;
+  margin-inline: 1em;
+  padding-left: 1em;
+  border: none;
+  border-radius: 1em;
+  background: url(/assets/images/search.svg) no-repeat center right 1em;
+  background-color: #F5F5F7;
+
+  :focus {
+    outline: none;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: #8E8E8E;
+`;
+
+const Button = styled.button`
+  padding: 0.6em 1em;
+  border: 1px solid #AB92FF;
+  border-radius: 2em;
+  background: #BAA5FF;
+  color: white;
 `;
 
 export default function Header() {
@@ -52,52 +95,56 @@ export default function Header() {
 
   return (
     <Container>
-      <a href="/">
-        ofCORS
-      </a>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <input name="search" type="text" onChange={(e) => searchStore.changeKeyword(e.target.value)} />
-      </form>
-      <ul>
-        {accessToken
-          ? (
-            <>
-              <li>
-                <Link to="/mypage">
-                  마이페이지
-                </Link>
-              </li>
-              {/* <li>
+      <Wrapper>
+        <a href="/">
+          <Logo id="logo" data-testid="logo" />
+        </a>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <Input name="search" type="text" onChange={(e) => searchStore.changeKeyword(e.target.value)} />
+        </form>
+        <nav>
+          <ul>
+            {accessToken
+              ? (
+                <>
+                  <li>
+                    <StyledLink to="/mypage">
+                      마이페이지
+                    </StyledLink>
+                  </li>
+                  {/* <li>
                 <button type="button">
                   알림
                 </button>
               </li> */}
-              <li>
-                <button type="button" onClick={handleLogout}>
-                  로그아웃
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link to="/login">
-                  로그인
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup">
-                  회원가입
-                </Link>
-              </li>
-              {/* <li>
+                  <li>
+                    <Button type="button" onClick={handleLogout}>
+                      로그아웃
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <StyledLink to="/login">
+                      로그인
+                    </StyledLink>
+                  </li>
+                  <li>
+                    <StyledLink to="/signup">
+                      회원가입
+                    </StyledLink>
+                  </li>
+                  {/* <li>
                 <button type="button">
                   체험하기
                 </button>
               </li> */}
-            </>
-          )}
-      </ul>
+                </>
+              )}
+          </ul>
+        </nav>
+      </Wrapper>
     </Container>
   );
 }

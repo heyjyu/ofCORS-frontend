@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.nav`
   position: sticky;
-  top: 3em;
+  top: 3.25em;
   width: 10em;
   height: calc(100vh - 3em);
   border-right: 1px solid black;

@@ -33,7 +33,7 @@ describe('Header', () => {
   it('renders link to home page', () => {
     renderHeader();
 
-    screen.getByText('ofCORS');
+    screen.getByTestId('logo');
   });
 
   it('renders search bar', () => {

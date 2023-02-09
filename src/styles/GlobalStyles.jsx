@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    padding-top: 3em;
+    padding-top: 3.25em;
   }
 
   button {
