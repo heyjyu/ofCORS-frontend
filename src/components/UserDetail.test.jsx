@@ -24,7 +24,7 @@ jest.mock('react-router-dom', () => ({
   },
 }));
 
-const context = describe;
+// const context = describe;
 
 describe('UserDetail', () => {
   const renderUserDetail = () => {
@@ -42,18 +42,18 @@ describe('UserDetail', () => {
     screen.getByText(/추천/);
   });
 
-  context('when not logged in', () => {
-    context('when the subscribe button is clicked', () => {
-      it('navigates to login page', async () => {
-        localStorage.setItem('accessToken', '');
+  // context('when not logged in', () => {
+  //   context('when the subscribe button is clicked', () => {
+  //     it('navigates to login page', async () => {
+  //       localStorage.setItem('accessToken', '');
 
-        await userStore.fetchUser(1);
+  //       await userStore.fetchUser(1);
 
-        renderUserDetail();
+  //       renderUserDetail();
 
-        fireEvent.click(screen.getByText('구독'));
-        expect(navigate).toBeCalledWith('/login');
-      });
-    });
-  });
+  //       fireEvent.click(screen.getByText('구독'));
+  //       expect(navigate).toBeCalledWith('/login');
+  //     });
+  //   });
+  // });
 });

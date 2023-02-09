@@ -67,11 +67,11 @@ export default function Header() {
                   마이페이지
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <button type="button">
                   알림
                 </button>
-              </li>
+              </li> */}
               <li>
                 <button type="button" onClick={handleLogout}>
                   로그아웃
@@ -90,11 +90,11 @@ export default function Header() {
                   회원가입
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <button type="button">
                   체험하기
                 </button>
-              </li>
+              </li> */}
             </>
           )}
       </ul>
