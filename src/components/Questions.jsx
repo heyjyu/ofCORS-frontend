@@ -40,7 +40,7 @@ const Select = styled.select`
 `;
 
 const Input = styled.input`
-  width: 15em;
+  width: 17em;
   margin-top: 2em;
   padding: 0.5em 0.75em;
   border: 1px solid #EAEAEC;

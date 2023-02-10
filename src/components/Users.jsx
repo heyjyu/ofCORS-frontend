@@ -13,31 +13,32 @@ const StyledHeader = styled(Header)`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5em;
+  gap: 0.75em;
   margin-right: 1em;
+
+  p {
+    font-size: 0.95em;
+    margin-block: 0.3em;
+  }
 `;
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1em;
   margin: 1em;
 
-  @media (max-width: 1264px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 1000px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 `;
 
 const Input = styled.input`
-  width: 15em;
+  width: 17em;
   margin-top: 2em;
   padding: 0.5em 0.75em;
   border: 1px solid #EAEAEC;
@@ -45,6 +46,24 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+`;
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  width: 15em;
+  height: 6em;
+  padding-inline: 0.75em;
+  background-color: white;
+`;
+
+const Image = styled.img`
+  border-radius: 50%;
+`;
+
+const StyledLink = styled(Link)`
+  font-size: 1.1em;
+  font-weight: 700;
 `;
 
 export default function Users() {
@@ -79,23 +98,24 @@ export default function Users() {
         {userStore.users.length
           ? userStore.users
             .map((user) => (
-              <li key={user.id}>
+              <User key={user.id}>
                 <Wrapper>
                   <Link to={`/users/${user.id}`}>
-                    <img alt="avatar" src={user.imageUrl} />
+                    <Image alt="avatar" src={user.imageUrl} />
                   </Link>
                   <div>
-                    <Link to={`/users/${user.id}`}>
+                    <StyledLink to={`/users/${user.id}`}>
                       {user.displayName}
-                    </Link>
+                    </StyledLink>
                     <p>
+                      추천수
+                      {' '}
                       {user.countOfLikes}
-                      추천
                     </p>
                     <Tags tags={user.tags} />
                   </div>
                 </Wrapper>
-              </li>
+              </User>
             ))
           : null}
         {userStore.users.length === 0 && userStore.searching
