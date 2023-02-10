@@ -8,7 +8,7 @@ const List = styled.ul`
   place-items: center;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1em;
-  margin: 1em;
+  margin: 3em 1em 1em;
 
   @media (max-width: 980px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -25,8 +25,26 @@ const Item = styled.li`
   justify-content: center;
   align-items: center;
   width: 15em;
-  height: 10em;
-  border: 1px solid black;
+  height: 12em;
+  background-color: white;
+`;
+
+const Point = styled.div`
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 0.75em;
+`;
+
+const Price = styled.span`
+  margin-right: 1em;
+  color: #8E8E8E;
+`;
+
+const Button = styled.button`
+  padding: 0.5em 1em;
+  border: 1px solid #EAEAEC;
+  background: white;
+  color: #8E8E8E;
 `;
 
 export default function Points() {
@@ -49,16 +67,17 @@ export default function Points() {
       <List>
         {points.map((point) => (
           <Item key={point}>
-            <div>
+            <img alt="coin" src="assets/images/coin.svg" />
+            <Point>
               {point}
-              pt
-            </div>
+              P
+            </Point>
             <div>
-              <span>
+              <Price>
                 {(point * 110).toLocaleString()}
                 원
-              </span>
-              <button type="button" onClick={() => handleClickCharge(point)}>구매</button>
+              </Price>
+              <Button type="button" onClick={() => handleClickCharge(point)}>구매</Button>
             </div>
           </Item>
         ))}
