@@ -26,6 +26,22 @@ const Select = styled.select`
   }
 `;
 
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
 export default function TopQuestions() {
   const topQuestionStore = useTopQuestionStore();
 
@@ -61,12 +77,14 @@ export default function TopQuestions() {
       </Header>
       {topQuestionStore.questions.length
         ? (
-          topQuestionStore.questions
-            .map((question) => (
-              <QuestionItem key={question.id} question={question} />
-            ))
+          <List>
+            {topQuestionStore.questions
+              .map((question) => (
+                <QuestionItem key={question.id} question={question} />
+              ))}
+          </List>
         ) : (
-          <p>질문을 등록해주세요!</p>
+          <Message>질문을 등록해주세요!</Message>
         )}
     </div>
   );

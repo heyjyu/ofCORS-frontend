@@ -8,9 +8,9 @@ const Container = styled.ul`
 const Tag = styled.div`
   display: inline-block;
   height: 1.5em;
-  padding: 0.4em 0.5em;
+  padding: 0.4em 0.6em 0.3em;
   border-radius: 0.25em;
-  background-color: skyblue;
+  background-color: #CFC8E4;
   color: white;
   line-height: 1em;
 `;
@@ -21,6 +21,7 @@ export default function Tags({ tags }) {
       {tags.map((tag) => (
         <li key={tag}>
           <Tag>
+            #
             {tag.name}
           </Tag>
         </li>

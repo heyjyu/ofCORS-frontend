@@ -50,6 +50,22 @@ const Input = styled.input`
   }
 `;
 
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
 export default function Questions() {
   const questionStore = useQuestionStore();
 
@@ -95,12 +111,14 @@ export default function Questions() {
       </StyledHeader>
       {questionStore.questions.length
         ? (
-          questionStore.questions
-            .map((question) => (
-              <QuestionItem key={question.id} question={question} />
-            ))
+          <List>
+            {questionStore.questions
+              .map((question) => (
+                <QuestionItem key={question.id} question={question} />
+              ))}
+          </List>
         ) : (
-          <p>질문이 아직 없습니다!</p>
+          <Message>질문이 아직 없습니다!</Message>
         )}
     </div>
   );

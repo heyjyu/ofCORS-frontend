@@ -38,6 +38,22 @@ const Select = styled.select`
   }
 `;
 
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
 export default function Solutions() {
   const solutionStore = useSolutionStore();
 
@@ -75,12 +91,14 @@ export default function Solutions() {
       </StyledHeader>
       {solutionStore.solutions.length
         ? (
-          solutionStore.solutions
-            .map((solution) => (
-              <SolutionItem key={solution.id} solution={solution} />
-            ))
+          <List>
+            {solutionStore.solutions
+              .map((solution) => (
+                <SolutionItem key={solution.id} solution={solution} />
+              ))}
+          </List>
         ) : (
-          <p>해결된 질문이 아직 없습니다!</p>
+          <Message>해결된 질문이 아직 없습니다!</Message>
         )}
     </div>
   );

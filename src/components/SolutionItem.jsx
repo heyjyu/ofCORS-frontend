@@ -1,43 +1,56 @@
 import styled from 'styled-components';
 import Tags from './Tags';
 
-const Container = styled.div`
+const Container = styled.li`
   display: flex;
-  align-items: center;  
+  flex-direction: column;
   gap: 1em;
   padding-block: 0.75em;
-  border-bottom: 1px solid black;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+  }
 `;
 
 const Wrapper = styled.div`
+  font-weight: 400;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 0.5em;
-  width: 5em;
+  color: #8E8E8E;
+
+  div:first-child::after {
+    content: "|";
+    color: #EAEAEC;
+  }
 `;
 
 export default function SolutionItem({ solution }) {
   return (
     <Container>
-      <Wrapper>
-        <div>
-          {solution.likeUserIds.length}
-          {' '}
-          추천
-        </div>
-        <div>
-          {solution.hits}
-          {' '}
-          조회
-        </div>
-      </Wrapper>
+      <h2>
+        <a href={`/questions/${solution.id}`}>
+          {solution.title}
+        </a>
+      </h2>
       <div>
-        <h2>
-          <a href={`/questions/${solution.id}`}>
-            {solution.title}
-          </a>
-        </h2>
+        <Wrapper>
+          <div>
+            추천수
+            {' '}
+            {solution.likeUserIds.length}
+          </div>
+          <div>
+            조회수
+            {' '}
+            {solution.hits}
+          </div>
+        </Wrapper>
         <Tags tags={solution.tags} />
       </div>
     </Container>
