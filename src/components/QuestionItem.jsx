@@ -2,44 +2,59 @@ import styled from 'styled-components';
 import Tags from './Tags';
 import Point from './Point';
 
-const Container = styled.div`
+const Container = styled.li`
   display: flex;
-  align-items: center;  
+  flex-direction: column;
   gap: 1em;
   padding-block: 0.75em;
-  border-bottom: 1px solid black;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+  }
 `;
 
 const Wrapper = styled.div`
+  font-weight: 400;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 0.5em;
-  width: 5em;
+  color: #8E8E8E;
+
+  div:first-child::after {
+    content: "|";
+    color: #EAEAEC;
+  }
 `;
 
 export default function QuestionItem({ question }) {
   return (
     <Container>
-      <Wrapper>
-        <div>
-          {question.likeUserIds.length}
-          {' '}
-          추천
-        </div>
-        <Point amount={question.points} />
-        <div>
-          {question.hits}
-          {' '}
-          조회
-        </div>
-      </Wrapper>
       <div>
+        <Point amount={question.points} />
         <h2>
           <a href={`/questions/${question.id}`}>
             {question.title}
           </a>
         </h2>
+      </div>
+      <div>
+        <Wrapper>
+          <div>
+            추천수
+            {' '}
+            {question.likeUserIds.length}
+          </div>
+          <div>
+            조회수
+            {' '}
+            {question.hits}
+          </div>
+        </Wrapper>
         <Tags tags={question.tags} />
       </div>
     </Container>
