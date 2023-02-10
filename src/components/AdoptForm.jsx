@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import useAnswerStore from '../hooks/useAnswerStore';
 import useQuestionStore from '../hooks/useQuestionStore';
 import useSelectAnswerFormStore from '../hooks/useSelectAnswerFormStore';
+import Header from './ui/Header';
 import Input from './ui/Input';
+import Title from './ui/Title';
 
 const Container = styled.div`
   width: 30em;
@@ -43,7 +45,9 @@ export default function AdoptForm() {
 
   return (
     <Container>
-      <h1>답변 채택하기</h1>
+      <Header>
+        <Title>답변 채택하기</Title>
+      </Header>
       <p>답변 작성자</p>
       <img alt="avatar" src={answerStore.answer?.author.imageUrl} />
       <p>{answerStore.answer?.author.displayName}</p>

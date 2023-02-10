@@ -2,43 +2,32 @@ import styled from 'styled-components';
 import useTopQuestionStore from '../hooks/useTopQuestionStore';
 import AskLink from './AskLink';
 import QuestionItem from './QuestionItem';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 1em;
-  border-bottom: 1px solid black;
 `;
 
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-inline: 1em;
-`;
+const Select = styled.select`
+  padding: 0.5em 2.5em 0.5em 0.75em;
+  border: 1px solid #EAEAEC;
+  border-radius: 0.5em;
+  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background-color: white;
+  color: #838383;
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1em;
-  margin: 0 1em 1em;
+  :focus {
+    outline: none;
+  }
 `;
 
 export default function TopQuestions() {
   const topQuestionStore = useTopQuestionStore();
-
-  const handleClickWeek = () => {
-    topQuestionStore.fetchQuestions({ period: 'week' });
-  };
-
-  const handleClickMonth = () => {
-    topQuestionStore.fetchQuestions({ period: 'month' });
-  };
 
   if (topQuestionStore.isQuestionsLoading) {
     return (
@@ -50,22 +39,26 @@ export default function TopQuestions() {
 
   return (
     <div>
-      <Wrapper>
-        <Header>
-          <Title>
-            인기 질문
-          </Title>
+      <Header>
+        <Title>
+          인기 질문
+        </Title>
+        <Wrapper>
+          <Select
+            name="sort"
+            value={topQuestionStore.period}
+            onChange={(e) => topQuestionStore.fetchQuestions({ period: e.target.value })}
+          >
+            <option value="week">
+              week
+            </option>
+            <option value="month">
+              month
+            </option>
+          </Select>
           <AskLink />
-        </Header>
-        <Buttons>
-          <button type="button" onClick={handleClickWeek}>
-            week
-          </button>
-          <button type="button" onClick={handleClickMonth}>
-            month
-          </button>
-        </Buttons>
-      </Wrapper>
+        </Wrapper>
+      </Header>
       {topQuestionStore.questions.length
         ? (
           topQuestionStore.questions

@@ -1,21 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import queryString from 'query-string';
 import Input from './ui/Input';
 import useVerifyUserFormStore from '../hooks/useUserVerifyFormStore';
 import useUserStore from '../hooks/useUserStore';
-
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  border-bottom: 1px solid black;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
+import Title from './ui/Title';
+import Header from './ui/Header';
 
 export default function UserVerification() {
   const verifyUserFormStore = useVerifyUserFormStore();

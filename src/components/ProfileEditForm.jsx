@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import useProfileEditFormStore from '../hooks/useProfileEditFormStore';
 import useUserStore from '../hooks/useUserStore';
+import Header from './ui/Header';
 import Input from './ui/Input';
+import Title from './ui/Title';
 
 const Container = styled.div`
   width: 30em;
@@ -58,7 +60,9 @@ export default function ProfileEditForm() {
 
   return (
     <Container>
-      <h1>프로필 수정</h1>
+      <Header>
+        <Title>프로필 수정</Title>
+      </Header>
       <form onSubmit={handleSubmit}>
         <img alt="avatar" src={profileEditFormStore.fields.imageUrl} width={50} height={50} />
         <Label htmlFor="input-image">

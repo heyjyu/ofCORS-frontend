@@ -2,43 +2,56 @@ import styled from 'styled-components';
 import useQuestionStore from '../hooks/useQuestionStore';
 import AskLink from './AskLink';
 import QuestionItem from './QuestionItem';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
-const Header = styled.div`
-  display: flex;
+const StyledHeader = styled(Header)`
   flex-direction: column;
-  gap: 1em;
-  border-bottom: 1px solid black;
+  align-items: flex-start;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-inline: 1em;
+  width: 100%;
+  margin-right: 1em;
+
+  div {
+    display: flex;
+    gap: 1em;
+  }
 `;
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
+const Select = styled.select`
+  padding: 0.5em 2.5em 0.5em 0.75em;
+  border: 1px solid #EAEAEC;
+  border-radius: 0.5em;
+  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background-color: white;
+  color: #838383;
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+
+  :focus {
+    outline: none;
+  }
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1em;
-  margin: 0 1em 1em;
+const Input = styled.input`
+  width: 15em;
+  margin-top: 2em;
+  padding: 0.5em 0.75em;
+  border: 1px solid #EAEAEC;
+
+  :focus {
+    outline: none;
+  }
 `;
 
 export default function Questions() {
   const questionStore = useQuestionStore();
-
-  const handleClickLatest = () => {
-    questionStore.fetchQuestions({ sort: 'createdAt' });
-  };
-
-  const handleClickPoint = () => {
-    questionStore.fetchQuestions({ sort: 'points' });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,27 +68,31 @@ export default function Questions() {
 
   return (
     <div>
-      <Header>
+      <StyledHeader>
         <Wrapper>
           <Title>
             모든 질문
           </Title>
-          <AskLink />
+          <div>
+            <Select
+              name="sort"
+              value={questionStore.sort}
+              onChange={(e) => questionStore.fetchQuestions({ sort: e.target.value })}
+            >
+              <option value="createdAt">
+                최신순
+              </option>
+              <option value="points">
+                포인트순
+              </option>
+            </Select>
+            <AskLink />
+          </div>
         </Wrapper>
-        <Wrapper>
-          <form autoComplete="off" onSubmit={handleSubmit}>
-            <input name="search" type="text" onChange={(e) => questionStore.changeKeyword(e.target.value)} />
-          </form>
-          <Buttons>
-            <button type="button" onClick={handleClickLatest}>
-              최신순
-            </button>
-            <button type="button" onClick={handleClickPoint}>
-              포인트순
-            </button>
-          </Buttons>
-        </Wrapper>
-      </Header>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <Input name="search" type="text" placeholder="검색" onChange={(e) => questionStore.changeKeyword(e.target.value)} />
+        </form>
+      </StyledHeader>
       {questionStore.questions.length
         ? (
           questionStore.questions

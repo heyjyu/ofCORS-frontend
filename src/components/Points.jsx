@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 import usePointStore from '../hooks/usePointStore';
-
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
+import Header from './ui/Header';
+import Title from './ui/Title';
 
 const List = styled.ul`
   display: grid;
@@ -52,7 +43,7 @@ export default function Points() {
     <div>
       <Header>
         <Title>
-          포인트
+          포인트 구매
         </Title>
       </Header>
       <List>

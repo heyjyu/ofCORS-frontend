@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import useExchangeFormStore from '../hooks/useExchangeFormStore';
 import useExchangeStore from '../hooks/useExchangeStore';
 import useUserStore from '../hooks/useUserStore';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
 const Container = styled.div`
   width: 30em;
@@ -74,6 +76,11 @@ export default function ExchangeForm() {
 
   return (
     <Container>
+      <Header>
+        <Title>
+          환전하기
+        </Title>
+      </Header>
       <p>
         홍길동님이 보유하신 포인트는 총
         {' '}

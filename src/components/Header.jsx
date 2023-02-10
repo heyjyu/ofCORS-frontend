@@ -65,10 +65,12 @@ const Input = styled.input`
 `;
 
 const StyledLink = styled(Link)`
+  font-size: 0.9em;
   color: #8E8E8E;
 `;
 
 const Button = styled.button`
+  font-size: 0.9em;
   padding: 0.6em 1em;
   border: 1px solid #AB92FF;
   border-radius: 2em;

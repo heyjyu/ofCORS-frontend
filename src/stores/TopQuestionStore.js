@@ -8,6 +8,7 @@ export default class TopQuestionStore extends Store {
 
     this.isQuestionsLoading = false;
     this.questions = [];
+    this.period = '';
   }
 
   async fetchQuestions({ period }) {
@@ -15,6 +16,8 @@ export default class TopQuestionStore extends Store {
 
     try {
       const { questions } = await apiService.fetchTopQuestions({ period });
+
+      this.period = period;
 
       this.completeLoad(questions);
     } catch (e) {

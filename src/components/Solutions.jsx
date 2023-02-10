@@ -2,43 +2,44 @@ import styled from 'styled-components';
 import useSolutionStore from '../hooks/useSolutionStore';
 import AskLink from './AskLink';
 import SolutionItem from './SolutionItem';
+import Header from './ui/Header';
+import Title from './ui/Title';
 
-const Header = styled.div`
-  display: flex;
+const StyledHeader = styled(Header)`
   flex-direction: column;
-  gap: 1em;
-  border-bottom: 1px solid black;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-inline: 1em;
+
+  div {
+    display: flex;
+    gap: 1em;
+  }
 `;
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  margin: 1em;
-`;
+const Select = styled.select`
+  padding: 0.5em 2.5em 0.5em 0.75em;
+  border: 1px solid #EAEAEC;
+  border-radius: 0.5em;
+  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background-color: white;
+  color: #838383;
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
 
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1em;
-  margin: 0 1em 1em;
+  :focus {
+    outline: none;
+  }
 `;
 
 export default function Solutions() {
   const solutionStore = useSolutionStore();
-
-  const handleClickLatest = () => {
-    solutionStore.fetchSolutions({ sort: 'createdAt' });
-  };
-
-  const handleClickLike = () => {
-    solutionStore.fetchSolutions({ sort: 'like' });
-  };
 
   if (solutionStore.isSolutionsLoading) {
     return (
@@ -50,24 +51,28 @@ export default function Solutions() {
 
   return (
     <div>
-      <Header>
+      <StyledHeader>
         <Wrapper>
           <Title>
             해결된 질문
           </Title>
-          <AskLink />
+          <div>
+            <Select
+              name="sort"
+              value={solutionStore.sort}
+              onChange={(e) => solutionStore.fetchSolutions({ sort: e.target.value })}
+            >
+              <option value="createdAt">
+                최신순
+              </option>
+              <option value="like">
+                추천순
+              </option>
+            </Select>
+            <AskLink />
+          </div>
         </Wrapper>
-        <Wrapper>
-          <Buttons>
-            <button type="button" onClick={handleClickLatest}>
-              최신순
-            </button>
-            <button type="button" onClick={handleClickLike}>
-              추천순
-            </button>
-          </Buttons>
-        </Wrapper>
-      </Header>
+      </StyledHeader>
       {solutionStore.solutions.length
         ? (
           solutionStore.solutions
