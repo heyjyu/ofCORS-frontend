@@ -7,11 +7,8 @@ import useQuestionStore from '../hooks/useQuestionStore';
 import useUserStore from '../hooks/useUserStore';
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   width: 100%;
+  height: 100%;
   min-height: 50em;
 `;
 
