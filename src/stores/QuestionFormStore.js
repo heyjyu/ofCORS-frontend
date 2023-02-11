@@ -27,6 +27,7 @@ export default class QuestionFormStore extends Store {
   changeTitle(title) {
     this.fields.title = title;
     this.validateTitle();
+    this.validateBody();
 
     this.publish();
   }
@@ -34,6 +35,7 @@ export default class QuestionFormStore extends Store {
   changeBody(body) {
     this.fields.body = body;
     this.validateBody();
+    this.validateTitle();
 
     this.publish();
   }

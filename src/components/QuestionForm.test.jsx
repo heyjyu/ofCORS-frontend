@@ -1,5 +1,5 @@
 import {
-  render, fireEvent, screen, waitFor,
+  render, fireEvent, screen, waitFor, act,
 } from '@testing-library/react';
 import { questionFormStore } from '../stores/QuestionFormStore';
 import QuestionForm from './QuestionForm';
@@ -32,12 +32,16 @@ describe('QuestionForm', () => {
 
       renderQuestionForm();
 
-      fireEvent.change(screen.getByLabelText('질문 제목'), {
-        target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/제목/), {
+          target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+        });
       });
 
-      fireEvent.change(screen.getByLabelText('상황 설명'), {
-        target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/문의/), {
+          target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+        });
       });
 
       fireEvent.change(screen.getByLabelText('태그'), {
@@ -50,7 +54,7 @@ describe('QuestionForm', () => {
         target: { value: 20 },
       });
 
-      fireEvent.click(screen.getByText('올리기'));
+      fireEvent.click(screen.getByText('등록'));
 
       await waitFor(() => {
         screen.getByText('예');
@@ -68,12 +72,16 @@ describe('QuestionForm', () => {
     it('renders error message', async () => {
       renderQuestionForm();
 
-      fireEvent.change(screen.getByLabelText('질문 제목'), {
-        target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/제목/), {
+          target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+        });
       });
 
-      fireEvent.change(screen.getByLabelText('상황 설명'), {
-        target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/문의/), {
+          target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+        });
       });
 
       fireEvent.change(screen.getByLabelText('태그'), {
@@ -96,21 +104,11 @@ describe('QuestionForm', () => {
     it('renders error message', async () => {
       renderQuestionForm();
 
-      fireEvent.change(screen.getByLabelText('상황 설명'), {
-        target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/문의/), {
+          target: { value: '서버를 배포 후 특정 요청에서 CORS에러가 발생합니다.' },
+        });
       });
-
-      fireEvent.change(screen.getByLabelText('태그'), {
-        target: { value: 'Web' },
-      });
-
-      fireEvent.click(screen.getByText('추가'));
-
-      fireEvent.change(screen.getByLabelText('포인트'), {
-        target: { value: 20 },
-      });
-
-      fireEvent.click(screen.getByText('올리기'));
 
       await waitFor(() => {
         screen.getByText(/제목을 입력해주세요/);
@@ -122,21 +120,11 @@ describe('QuestionForm', () => {
     it('renders error message', async () => {
       renderQuestionForm();
 
-      fireEvent.change(screen.getByLabelText('질문 제목'), {
-        target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+      await act(() => {
+        fireEvent.change(screen.getByPlaceholderText(/제목/), {
+          target: { value: 'No \'Access-Control-Allow-Origin\' header' },
+        });
       });
-
-      fireEvent.change(screen.getByLabelText('태그'), {
-        target: { value: 'Web' },
-      });
-
-      fireEvent.click(screen.getByText('추가'));
-
-      fireEvent.change(screen.getByLabelText('포인트'), {
-        target: { value: 20 },
-      });
-
-      fireEvent.click(screen.getByText('올리기'));
 
       await waitFor(() => {
         screen.getByText(/상황을 설명해주세요/);

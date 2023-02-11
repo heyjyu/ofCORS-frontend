@@ -28,6 +28,6 @@ describe('Points', () => {
   it('renders points', async () => {
     renderPoints();
 
-    screen.getAllByText(/pt/);
+    screen.getAllByText(/P/);
   });
 });

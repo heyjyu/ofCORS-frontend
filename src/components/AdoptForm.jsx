@@ -52,13 +52,18 @@ export default function AdoptForm() {
       <img alt="avatar" src={answerStore.answer?.author.imageUrl} />
       <p>{answerStore.answer?.author.displayName}</p>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="input-message">
+          감사 메시지
+        </label>
         <Input
           name="message"
-          label="감사 메시지"
           type="text"
           value={selectAnswerFormStore.fields.message || ''}
           onChange={(e) => selectAnswerFormStore.changeMessage(e.target.value)}
         />
+        <label htmlFor="input-bonus-point">
+          추가 포인트
+        </label>
         <Input
           name="bonus-point"
           label={`추가 포인트 (보유 포인트: ${selectAnswerFormStore.points})`}

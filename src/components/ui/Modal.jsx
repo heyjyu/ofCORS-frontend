@@ -16,18 +16,41 @@ const Container = styled.div`
 `;
 
 const Dialog = styled.div`
-  height: 10em;
-  width: 18em;
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 15em;
+  width: 23em;
+  padding: 2em;
   border-radius: 3px;
+  background-color: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   p {
     font-size: .9em;
   }
+
+  div {
+    font-size: 1.15em;
+    display: flex;
+    text-align: center;
+  }
 `;
 
-export default function Modal({ buttonName, content, onClose }) {
+const Button = styled.button`
+  font-weight: 700;
+  margin-top: 2.5em;
+  padding: 0.5em 3em;
+  border: 1px solid #AB92FF;
+  border-radius: 0.25em;
+  background: #BAA5FF;
+  color: white;
+`;
+
+export default function Modal({
+  buttonName, content, onClose, disabled,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef(null);
 
@@ -58,14 +81,14 @@ export default function Modal({ buttonName, content, onClose }) {
 
   return (
     <>
-      <button type="button" onClick={() => setIsOpen(true)}>{buttonName}</button>
+      <button type="button" onClick={() => setIsOpen(true)} disabled={disabled}>{buttonName}</button>
       {isOpen && (
         <Container>
           <Dialog ref={modalRef}>
             <div>
               {content}
             </div>
-            <button type="button" onClick={handleClose}>예</button>
+            <Button type="button" onClick={handleClose}>예</Button>
           </Dialog>
         </Container>
       )}

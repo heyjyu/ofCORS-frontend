@@ -74,25 +74,31 @@ export default function ProfileEditForm() {
           accept="image/*"
           onChange={(e) => profileEditFormStore.changeImage(e.target.files[0])}
         />
+        <label htmlFor="input-display-name">
+          닉네임
+        </label>
         <Input
           name="display-name"
-          label="닉네임"
           type="text"
           value={profileEditFormStore.fields.displayName || ''}
           onChange={(e) => profileEditFormStore.changeDisplayName(e.target.value)}
           message="3자 이상 입력해주세요"
           errorMessage={profileEditFormStore.errors.displayName}
         />
+        <label htmlFor="input-about">
+          한 줄 소개
+        </label>
         <Input
           name="about"
-          label="한 줄 소개"
           type="text"
           value={profileEditFormStore.fields.about || ''}
           onChange={(e) => profileEditFormStore.changeAbout(e.target.value)}
         />
+        <label htmlFor="input-tag">
+          태그
+        </label>
         <Input
           name="tag"
-          label="태그"
           type="text"
           value={profileEditFormStore.fields.tag || ''}
           onChange={(e) => profileEditFormStore.changeTag(e.target.value)}

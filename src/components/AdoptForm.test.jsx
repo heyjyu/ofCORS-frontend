@@ -39,7 +39,7 @@ describe('AdoptForm', () => {
         target: { value: '감사합니다.' },
       });
 
-      fireEvent.change(screen.getByLabelText('추가 포인트 (보유 포인트: 100)'), {
+      fireEvent.change(screen.getByLabelText('추가 포인트'), {
         target: { value: 10 },
       });
 
@@ -59,7 +59,7 @@ describe('AdoptForm', () => {
         target: { value: '감사합니다.' },
       });
 
-      fireEvent.change(screen.getByLabelText('추가 포인트 (보유 포인트: 100)'), {
+      fireEvent.change(screen.getByLabelText('추가 포인트'), {
         target: { value: 2000 },
       });
 
