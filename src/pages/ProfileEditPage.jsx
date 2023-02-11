@@ -14,6 +14,13 @@ const Container = styled.div`
   min-height: 50em;
 `;
 
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
 export default function ProfileEditPage() {
   const [accessToken] = useLocalStorage('accessToken', '');
   const userStore = useUserStore();
@@ -32,9 +39,9 @@ export default function ProfileEditPage() {
   if (!accessToken) {
     return (
       <Container>
-        <p>
+        <Message>
           잘못된 접근입니다.
-        </p>
+        </Message>
       </Container>
     );
   }

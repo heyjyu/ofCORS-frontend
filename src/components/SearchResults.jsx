@@ -15,6 +15,13 @@ const List = styled.ul`
   background: white;
 `;
 
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+
 export default function SearchResults() {
   const searchStore = useSearchStore();
   const [searchParams] = useSearchParams();
@@ -44,11 +51,11 @@ export default function SearchResults() {
               ))}
           </List>
         ) : (
-          <p>
+          <Message>
             채택된 질문 중 &apos;
             {searchParams.get('q')}
             &apos;에 대한 검색 결과를 찾지 못했습니다
-          </p>
+          </Message>
         )}
     </div>
   );
