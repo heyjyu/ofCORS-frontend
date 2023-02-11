@@ -14,18 +14,30 @@ const Container = styled.div`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledTextarea = styled.textarea`
+  font-family: Arial, sans-serif;
   font-size: 1em;
   font-weight: 400;
-  height: 3.75em;
+  height: 18em;
   padding: 1em;
   border: 1px solid #EAEAEC;
+  resize: none;
 
   :focus {
     font-size: 1em;
     border: 1px solid #6C40FF;
     outline: none;
   }
+`;
+
+const Label = styled.label`
+  font-weight: 700;
+  display: block;
+  color: inherit;
+`;
+
+const Required = styled.span`
+  color: #FF424D;
 `;
 
 const Message = styled.p`
@@ -36,15 +48,25 @@ const Error = styled.p`
   color: #FF424D;
 `;
 
-export default function Input({
-  name, type, value, maxLength = '', placeholder, onChange, message, errorMessage,
+export default function Textarea({
+  name, label, type, value, maxLength = '', placeholder, onChange, message, errorMessage, required = false,
 }) {
   return (
     <Container>
-      <StyledInput
+      <Label htmlFor={`textarea-${name}`}>
+        {label}
+        {required
+          ? (
+            <Required>
+              *
+            </Required>
+          )
+          : null}
+      </Label>
+      <StyledTextarea
         type={type}
         name={name}
-        id={`input-${name}`}
+        id={`textarea-${name}`}
         value={value}
         placeholder={placeholder}
         error={errorMessage}

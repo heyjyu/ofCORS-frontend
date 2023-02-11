@@ -35,7 +35,7 @@ describe('QuestionEditForm', () => {
       await questionStore.fetchQuestion(1);
       renderQuestionEditForm();
 
-      fireEvent.change(screen.getByLabelText('질문 제목'), {
+      fireEvent.change(screen.getByPlaceholderText(/제목/), {
         target: { value: 'No \'Access-Control-Allow-Origin\' header 에러 메시지가 발생합니다' },
       });
 
@@ -58,7 +58,7 @@ describe('QuestionEditForm', () => {
       await questionStore.fetchQuestion(1);
       renderQuestionEditForm();
 
-      fireEvent.change(screen.getByLabelText('질문 제목'), {
+      fireEvent.change(screen.getByPlaceholderText(/제목/), {
         target: { value: '' },
       });
 
@@ -71,7 +71,7 @@ describe('QuestionEditForm', () => {
       await questionStore.fetchQuestion(1);
       renderQuestionEditForm();
 
-      fireEvent.change(screen.getByLabelText('상황 설명'), {
+      fireEvent.change(screen.getByPlaceholderText(/문의/), {
         target: { value: '' },
       });
 

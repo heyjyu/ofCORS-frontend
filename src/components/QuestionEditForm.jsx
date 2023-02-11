@@ -5,6 +5,7 @@ import useQuestionFormStore from '../hooks/useQuestionFormStore';
 import useQuestionStore from '../hooks/useQuestionStore';
 import Header from './ui/Header';
 import Input from './ui/Input';
+import Modal from './ui/Modal';
 import Title from './ui/Title';
 
 const Container = styled.div`
@@ -20,33 +21,17 @@ export default function QuestionEditForm() {
   const { title, body } = questionFormStore.fields;
   const { tags } = questionFormStore;
 
-  const [confirmButtonOpened, setConfirmButtonOpened] = useState(false);
+  const handleClickSubmit = async () => {
+    await questionStore.modify({
+      title, body, tags,
+    });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    await questionFormStore.validate();
-
-    if (questionFormStore.isValidateSuccessful) {
-      await questionStore.modify({
-        title, body, tags,
-      });
-
-      navigate(`/questions/${id}`);
-    }
+    navigate(`/questions/${id}`);
   };
 
   const handleClickTag = () => {
     questionFormStore.addTag(questionFormStore.fields.tag);
     questionFormStore.changeTag('');
-  };
-
-  const handleClickOpenConfirmButton = async () => {
-    await questionFormStore.validate();
-
-    if (questionFormStore.isValidateSuccessful) {
-      setConfirmButtonOpened(true);
-    }
   };
 
   useEffect(() => {
@@ -64,10 +49,10 @@ export default function QuestionEditForm() {
       <Header>
         <Title>질문 수정하기</Title>
       </Header>
-      <form onSubmit={handleSubmit}>
+      <form>
         <Input
           name="title"
-          label="질문 제목"
+          placeholder="제목을 입력하세요"
           type="text"
           value={questionFormStore.fields.title || ''}
           onChange={(e) => questionFormStore.changeTitle(e.target.value)}
@@ -75,48 +60,43 @@ export default function QuestionEditForm() {
         />
         <Input
           name="body"
-          label="상황 설명"
+          placeholder="문의하실 내용을 입력하세요"
           type="text"
           value={questionFormStore.fields.body || ''}
           onChange={(e) => questionFormStore.changeBody(e.target.value)}
           errorMessage={questionFormStore.errors.body}
         />
-        <Input
-          name="tag"
-          label="태그"
-          type="text"
-          value={questionFormStore.fields.tag || ''}
-          onChange={(e) => questionFormStore.changeTag(e.target.value)}
-          errorMessage={questionFormStore.errors.tag}
-        />
-        <button type="button" onClick={handleClickTag}>
-          추가
-        </button>
-        {[...tags].map((tag) => (
-          <div key={tag}>
-            {tag}
-            <button type="button" onClick={() => questionFormStore.removeTag(tag)}>
-              x
+        <div>
+          <label htmlFor="tag">
+            태그
+          </label>
+          <div>
+            <input
+              name="tag"
+              id="tag"
+              type="text"
+              value={questionFormStore.fields.tag || ''}
+              onChange={(e) => questionFormStore.changeTag(e.target.value)}
+            />
+            <button type="button" onClick={handleClickTag}>
+              추가
             </button>
           </div>
-        ))}
-        <div>
-          <button type="button" onClick={handleClickOpenConfirmButton}>
-            수정
-          </button>
-        </div>
-        {confirmButtonOpened
-          ? (
-            <>
-              <div>
-                질문을 수정하시겠습니까?
-              </div>
-              <button type="submit">
-                예
+          {[...tags].map((tag) => (
+            <div key={tag}>
+              {tag}
+              <button type="button" onClick={() => questionFormStore.removeTag(tag)}>
+                x
               </button>
-            </>
-          )
-          : null}
+            </div>
+          ))}
+        </div>
+        <Modal
+          buttonName="수정"
+          content="질문을 수정하시겠습니까?"
+          onClose={handleClickSubmit}
+          disabled={!questionFormStore.isValidateSuccessful}
+        />
       </form>
     </Container>
   );

@@ -17,7 +17,7 @@ Scenario('로그인 한 경우', ({ I }) => {
   I.fillField('tag', 'Web');
   I.click('추가');
   I.fillField('points', 20);
-  I.click('올리기');
+  I.click('등록');
   I.click('예');
 
   I.see('모든 질문');
@@ -42,7 +42,6 @@ Scenario('보유 포인트보다 많은 포인트를 입력한 경우', ({ I }) 
   I.fillField('tag', 'Web');
   I.click('추가');
   I.fillField('points', 1000);
-  I.click('올리기');
 
   I.see('보유 포인트보다 많은 포인트를 입력하셨습니다');
 });

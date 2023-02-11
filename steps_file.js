@@ -35,7 +35,7 @@ module.exports = () => actor({
     this.fillField('tag', 'Web');
     this.click('추가');
     this.fillField('points', 20);
-    this.click('올리기');
+    this.click('등록');
     this.click('예');
     this.wait(2);
   },

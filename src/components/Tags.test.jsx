@@ -30,6 +30,6 @@ describe('Tags', () => {
 
     renderTags({ tags });
 
-    screen.getByText('Web');
+    screen.getByText(/Web/);
   });
 });
