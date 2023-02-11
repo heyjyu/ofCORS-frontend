@@ -1,10 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
+import styled from 'styled-components';
 import Input from './ui/Input';
 import useVerifyUserFormStore from '../hooks/useUserVerifyFormStore';
 import useUserStore from '../hooks/useUserStore';
 import Title from './ui/Title';
 import Header from './ui/Header';
+
+const StyledTitle = styled(Title)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  font-weight: 700;
+  width: 100%;
+  height: 3em;
+  padding: 0.5em 3em;
+  border: 1px solid #AB92FF;
+  border-radius: 0.25em;
+  background: #BAA5FF;
+  color: white;
+`;
 
 export default function UserVerification() {
   const verifyUserFormStore = useVerifyUserFormStore();
@@ -14,7 +32,9 @@ export default function UserVerification() {
   const callback = (response) => {
     const query = queryString.stringify(response);
 
-    userStore.completeVerify(verifyUserFormStore.fields.name);
+    if (response.success) {
+      userStore.completeVerify(verifyUserFormStore.fields.name);
+    }
 
     navigate(`/verify-user/result?${query}`);
   };
@@ -43,14 +63,14 @@ export default function UserVerification() {
   return (
     <div>
       <Header>
-        <Title>
+        <StyledTitle>
           실명 인증하기
-        </Title>
+        </StyledTitle>
       </Header>
       <form onSubmit={handleSubmit}>
         <Input
           name="name"
-          label="이름"
+          placeholder="이름 입력"
           type="text"
           value={verifyUserFormStore.fields.name || ''}
           onChange={(e) => verifyUserFormStore.changeName(e.target.value)}
@@ -58,15 +78,15 @@ export default function UserVerification() {
         />
         <Input
           name="phoneNumber"
-          label="전화번호"
+          placeholder="전화번호 입력 (숫자로만 입력하세요)"
           type="number"
           value={verifyUserFormStore.fields.phoneNumber || ''}
           onChange={(e) => verifyUserFormStore.changePhoneNumber(e.target.value)}
           errorMessage={verifyUserFormStore.errors.phoneNumber}
         />
-        <button type="submit">
+        <Button type="submit">
           본인인증하기
-        </button>
+        </Button>
       </form>
     </div>
   );

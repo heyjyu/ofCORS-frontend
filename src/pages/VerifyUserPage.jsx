@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import UserVerification from '../components/UserVerification';
+import useVerifyUserFormStore from '../hooks/useUserVerifyFormStore';
 
 const Container = styled.div`
   display: flex;
   position: relative;
-  width: 100%;
+  width: 30%;
 `;
 
 const Wrapper = styled.div`
@@ -12,6 +14,12 @@ const Wrapper = styled.div`
 `;
 
 export default function VerifyUserPage() {
+  const verifyUserFormStore = useVerifyUserFormStore();
+
+  useEffect(() => () => {
+    verifyUserFormStore.reset();
+  }, []);
+
   return (
     <Container>
       <Wrapper>

@@ -26,6 +26,10 @@ const StyledInput = styled.input`
     border: 1px solid #6C40FF;
     outline: none;
   }
+
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 `;
 
 const Message = styled.p`

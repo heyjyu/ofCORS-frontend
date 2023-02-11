@@ -3,20 +3,15 @@ import UserVerificationResult from '../components/UserVerificationResult';
 
 const Container = styled.div`
   display: flex;
-  position: relative;
-  width: 100%;
-`;
-
-const Wrapper = styled.div`
-  flex: 1;
+  align-items: center;
+  height: 100%;
+  min-height: 50em;
 `;
 
 export default function VerifyUserResultPage() {
   return (
     <Container>
-      <Wrapper>
-        <UserVerificationResult />
-      </Wrapper>
+      <UserVerificationResult />
     </Container>
   );
 }
