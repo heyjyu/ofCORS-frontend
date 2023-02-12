@@ -8,7 +8,7 @@ const Container = styled.div`
 const Message = styled.p`
   display: block;
   font-weight: 700;
-  margin-top: 2em;
+  margin-top: 1em;
   padding: 1.25em;
   border: 1px solid #EAEAEC;
   background: white;
