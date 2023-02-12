@@ -7,12 +7,15 @@ import useAnswerStore from '../hooks/useAnswerStore';
 import useSelectAnswerFormStore from '../hooks/useSelectAnswerFormStore';
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   width: 100%;
-  min-height: 50em;
+  height: 100%;
+`;
+
+const Message = styled.p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
 `;
 
 export default function AdoptPage() {
@@ -37,9 +40,9 @@ export default function AdoptPage() {
     || (answerStore.answer && answerStore.answer?.questionId !== Number(id))) {
     return (
       <Container>
-        <p>
+        <Message>
           잘못된 접근입니다.
-        </p>
+        </Message>
       </Container>
     );
   }

@@ -35,7 +35,7 @@ describe('AdoptForm', () => {
 
       renderAdoptForm();
 
-      fireEvent.change(screen.getByLabelText('감사 메시지'), {
+      fireEvent.change(screen.getByPlaceholderText('감사 메시지'), {
         target: { value: '감사합니다.' },
       });
 
@@ -55,7 +55,7 @@ describe('AdoptForm', () => {
     it('renders error message', async () => {
       renderAdoptForm();
 
-      fireEvent.change(screen.getByLabelText('감사 메시지'), {
+      fireEvent.change(screen.getByPlaceholderText('감사 메시지'), {
         target: { value: '감사합니다.' },
       });
 
