@@ -3,31 +3,43 @@ import styled from 'styled-components';
 import { useLocalStorage } from 'usehooks-ts';
 import useLoginFormStore from '../hooks/useLoginFormStore';
 import useUserStore from '../hooks/useUserStore';
+import Input from './ui/Input';
 
 const Container = styled.div`
-  width: 20em;
-`;
-
-const Label = styled.label`
-  color: #666666;
-`;
-
-const Input = styled.input`
-  font-size: 1em;
-  font-weight: 400;
   width: 100%;
-  height: 3.75em;
-  margin-block: 1em;
-  padding: 1em;
-  border: ${(props) => (`1px solid${props.error ? '#FF424D' : '#D8D8D8'}`)};
-  color: #666666;
 
-  :focus {
-    font-size: 1em;
-    border: ${(props) => (`1px solid${props.error ? '#FF424D' : '#22DAAB'}`)};
-    outline: none;
-    color: #666666;
+  label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #A0A0A0;
   }
+`;
+
+const Title = styled.h1`
+  font-size: 2.5em;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 1em;
+  padding-block: 0.5em;
+  border-bottom: 1px solid black;
+  text-align: center;
+`;
+
+const Error = styled.p`
+  font-size: 0.9em;
+  margin-bottom: 2em;
+  color: #FF424D;
+`;
+
+const Button = styled.button`
+  font-weight: 700;
+  width: 100%;
+  height: 4em;
+  padding: 0.5em 3em;
+  border: 1px solid #AB92FF;
+  border-radius: 0.25em;
+  background: #BAA5FF;
+  color: white;
 `;
 
 export default function LoginForm() {
@@ -77,22 +89,24 @@ export default function LoginForm() {
 
   return (
     <Container>
+      <Title>
+        LOGIN
+      </Title>
       <form onSubmit={handleSubmit}>
-        <Label htmlFor="input-email">
+        <label htmlFor="input-email">
           이메일
-        </Label>
+        </label>
         <Input
           type="text"
           name="email"
           id="input-email"
-          label="이메일"
           value={loginFormStore.fields.email || ''}
           error={loginFormStore.errors.email || userStore.isLoginFailed}
           onChange={handleChangeUsername}
         />
-        <Label htmlFor="input-password">
+        <label htmlFor="input-password">
           비밀번호
-        </Label>
+        </label>
         <Input
           type="password"
           name="password"
@@ -101,17 +115,17 @@ export default function LoginForm() {
           error={loginFormStore.errors.password || userStore.isLoginFailed}
           onChange={handleChangePassword}
         />
-        <p>
+        <Error>
           {loginFormStore.errorMessage
             ? loginFormStore.errorMessage
             : null}
           {userStore.isLoginFailed
             ? '이메일 혹은 비밀번호가 맞지 않습니다'
             : null}
-        </p>
-        <button type="submit">
+        </Error>
+        <Button type="submit">
           로그인
-        </button>
+        </Button>
       </form>
     </Container>
   );
