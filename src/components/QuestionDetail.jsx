@@ -15,26 +15,72 @@ import Title from './ui/Title';
 const Container = styled.div`
   height: 100%;
   padding: 0.5em 1em;
+
+  h2 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-top: 2.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #E8E8E8;
+  }
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  width: 100%;
   margin-block: 1em;
-`;
+  padding: 2em;
+  border: 1px solid #EAEAEC;
+  background-color: white;
 
-const RightGroup = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
+  div {
+    display: flex;
+    gap: 1em;
+  }
+
+  hr {
+    margin-top: 1em;
+    border: 1px solid #E8E8E8;
+  }
 `;
 
 const QuestionBody = styled.p`
   width: 100%;
   padding-block: 1em;
-  border-bottom: 1px solid black;
+`;
+
+const Footer = styled.div`
+  margin-top: 1em;
+  color: #8E8E8E;
+
+  a {
+    color: #8E8E8E;
+  }
+
+  p::after {
+    content: "|";
+    margin-left: 1em;
+    color: #EAEAEC;
+  }
+
+  div:first-child {
+    flex: 1;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  border: 1px solid #EAEAEC;
+  background: white;
+  color: #8E8E8E;
+`;
+
+const Button = styled.button`
+  padding: 0.5em 1em;
+  border: 1px solid #EAEAEC;
+  background: white;
+  color: #8E8E8E;
 `;
 
 export default function QuestionDetail() {
@@ -110,59 +156,65 @@ export default function QuestionDetail() {
   return (
     <Container>
       <Wrapper>
-        <Point amount={points} />
-        <RightGroup>
-          {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
-            ? (
-              <>
-                <Link to={`/questions/${question.id}/edit`}>
-                  수정
-                </Link>
-                <Modal
-                  buttonName="삭제"
-                  content="질문을 정말 삭제하시겠습니까?"
-                  onClose={handleClickDelete}
-                />
-              </>
-            ) : null}
-          {scrapUserIds.map((i) => i.id).includes(userStore.user?.id)
-            ? (
-              <button type="button" onClick={handleClickCancelScrap}>
-                스크랩 취소
-              </button>
-            ) : (
-              <button type="button" onClick={handleClickScrap}>
-                스크랩
-              </button>
-            )}
-        </RightGroup>
-      </Wrapper>
-      <Title>{title}</Title>
-      <Wrapper>
-        <p>{createdAt.split('T')[0]}</p>
-        <p>
-          {hits}
-          {' '}
-          조회
-        </p>
-        <Link to={`/users/${author.id}`}>{author.displayName}</Link>
-      </Wrapper>
-      <hr />
-      <Wrapper>
-        <Likes
-          count={likeUserIds.length}
-          selected={likeUserIds.map((i) => i.id).includes(userStore.user?.id)}
-          onClick={handleClickLike}
-        />
-        <QuestionBody>{body}</QuestionBody>
-      </Wrapper>
-      <Wrapper>
         <div>
-          {answerStore.answers.length}
-          {' '}
-          답변
+          <Point amount={points} />
+          <Title>{title}</Title>
         </div>
+        <hr />
+        <QuestionBody>{body}</QuestionBody>
+        <Footer>
+          <div>
+            <p>{createdAt.split('T')[0]}</p>
+            <p>
+              조회수
+              {' '}
+              {hits}
+            </p>
+            <p>
+              추천수
+              {' '}
+              {likeUserIds.length}
+            </p>
+            <Link to={`/users/${author.id}`}>{author.displayName}</Link>
+          </div>
+          <div>
+            {questionStore.isMyQuestion(userStore.user?.id) && answerStore.answers.length === 0
+              ? (
+                <>
+                  <StyledLink to={`/questions/${question.id}/edit`}>
+                    수정
+                  </StyledLink>
+                  <Modal
+                    buttonName="삭제"
+                    content="질문을 정말 삭제하시겠습니까?"
+                    onClose={handleClickDelete}
+                  />
+                </>
+              ) : (
+                <Likes
+                  selected={likeUserIds.map((i) => i.id).includes(userStore.user?.id)}
+                  onClick={handleClickLike}
+                />
+              )}
+            {scrapUserIds.map((i) => i.id).includes(userStore.user?.id)
+              ? (
+                <Button type="button" onClick={handleClickCancelScrap}>
+                  스크랩 취소
+                </Button>
+              ) : (
+                <Button type="button" onClick={handleClickScrap}>
+                  스크랩
+                </Button>
+              )}
+          </div>
+        </Footer>
       </Wrapper>
+      <h2>
+        답변
+        {' '}
+        {answerStore.answers.length}
+        개
+      </h2>
       {answerStore.answers.map((answer) => (
         <Answer
           key={answer.id}
