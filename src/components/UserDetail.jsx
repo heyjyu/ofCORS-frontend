@@ -12,12 +12,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1em;
-  width: 100%;
   margin-block: 1em;
+  padding: 2em;
+  border: 1px solid #EAEAEC;
+  background-color: white;
 `;
 
 const ButtonList = styled.ul`
@@ -161,7 +159,7 @@ export default function UserVerificationUserDetail() {
                 <h2>
                   질문
                 </h2>
-                <button type="button" onClick={handleClickAnswerTab}>
+                <button type="button" onClick={handleClickQuestionTab}>
                   전체보기
                 </button>
               </Wrapper>
