@@ -19,20 +19,31 @@ const Wrapper = styled.div`
 
 const List = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1em;
   margin: 1em;
 
-  @media (max-width: 1264px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @media (max-width: 980px) {
+  @media (max-width: 1100px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 800px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+`;
+
+const Item = styled.li`
+  display: flex;
+  align-items: center;
+  width: 15em;
+  height: 6em;
+  padding-left: 0.5em;
+  background: white;
+
+  p {
+    font-size: 0.9em;
+    margin-block: 0.25em;
+    color: #8E8E8E;
   }
 `;
 
@@ -45,6 +56,14 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+`;
+
+const Image = styled.img`
+  border-radius: 50%;
+`;
+
+const StyledLink = styled(Link)`
+  font-weight: 700;
 `;
 
 export default function Users() {
@@ -79,23 +98,24 @@ export default function Users() {
         {userStore.users.length
           ? userStore.users
             .map((user) => (
-              <li key={user.id}>
+              <Item key={user.id}>
                 <Wrapper>
                   <Link to={`/users/${user.id}`}>
-                    <img alt="avatar" src={user.imageUrl} />
+                    <Image alt="avatar" src={user.imageUrl} />
                   </Link>
                   <div>
-                    <Link to={`/users/${user.id}`}>
+                    <StyledLink to={`/users/${user.id}`}>
                       {user.displayName}
-                    </Link>
+                    </StyledLink>
                     <p>
+                      추천수
+                      {' '}
                       {user.countOfLikes}
-                      추천
                     </p>
                     <Tags tags={user.tags} />
                   </div>
                 </Wrapper>
-              </li>
+              </Item>
             ))
           : null}
         {userStore.users.length === 0 && userStore.searching
