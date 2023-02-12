@@ -7,6 +7,33 @@ import Input from './ui/Input';
 
 const Container = styled.div`
   width: 30em;
+
+  label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #A0A0A0;
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 2.5em;
+  font-weight: 700;
+  width: 100%;
+  margin-bottom: 1em;
+  padding-block: 0.5em;
+  border-bottom: 1px solid black;
+  text-align: center;
+`;
+
+const Button = styled.button`
+  font-weight: 700;
+  width: 100%;
+  height: 4em;
+  padding: 0.5em 3em;
+  border: 1px solid #AB92FF;
+  border-radius: 0.25em;
+  background: #BAA5FF;
+  color: white;
 `;
 
 export default function SignUpForm() {
@@ -38,6 +65,9 @@ export default function SignUpForm() {
 
   return (
     <Container>
+      <Title>
+        SIGN UP
+      </Title>
       <form onSubmit={handleSubmit}>
         <label htmlFor="input-display-name">
           닉네임
@@ -47,7 +77,7 @@ export default function SignUpForm() {
           type="text"
           value={signUpFormStore.fields.displayName || ''}
           onChange={(e) => signUpFormStore.changeDisplayName(e.target.value)}
-          message="3자 이상 입력해주세요"
+          placeholder="3자 이상 입력해주세요"
           errorMessage={signUpFormStore.errors.displayName}
         />
         <label htmlFor="input-email">
@@ -68,7 +98,7 @@ export default function SignUpForm() {
           type="password"
           value={signUpFormStore.fields.password || ''}
           onChange={(e) => signUpFormStore.changePassword(e.target.value)}
-          message="8글자 이상의 영문(대소문자), 숫자, 특수문자가 모두 포함되어야 함"
+          placeholder="8글자 이상의 영문(대소문자), 숫자, 특수문자가 모두 포함되어야 함"
           errorMessage={signUpFormStore.errors.password}
         />
         <label htmlFor="input-password-check">
@@ -81,9 +111,9 @@ export default function SignUpForm() {
           onChange={(e) => signUpFormStore.changePasswordCheck(e.target.value)}
           errorMessage={signUpFormStore.errors.passwordCheck}
         />
-        <button type="submit">
+        <Button type="submit">
           회원가입
-        </button>
+        </Button>
       </form>
     </Container>
   );

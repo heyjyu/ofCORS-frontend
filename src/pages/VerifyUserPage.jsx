@@ -6,7 +6,7 @@ import useVerifyUserFormStore from '../hooks/useUserVerifyFormStore';
 const Container = styled.div`
   display: flex;
   position: relative;
-  width: 30%;
+  width: 20em;
 `;
 
 const Wrapper = styled.div`
