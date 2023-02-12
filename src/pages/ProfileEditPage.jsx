@@ -6,10 +6,6 @@ import ProfileEditForm from '../components/ProfileEditForm';
 import useProfileEditFormStore from '../hooks/useProfileEditFormStore';
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   width: 100%;
   min-height: 50em;
 `;
