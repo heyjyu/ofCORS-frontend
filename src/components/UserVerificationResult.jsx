@@ -13,9 +13,14 @@ const Message = styled.p`
   background: white;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const Button = styled.button`
   font-weight: 700;
-  width: 100%;
+  width: 10em;
   height: 3em;
   padding: 0.5em 3em;
   border: 1px solid #AB92FF;
@@ -34,9 +39,11 @@ export default function UserVerificationResult() {
   return (
     <Container>
       <Message>{`실명인증에 ${resultType}하였습니다`}</Message>
-      <Button type="button" onClick={() => navigate('/mypage')}>
-        돌아가기
-      </Button>
+      <ButtonWrapper>
+        <Button type="button" onClick={() => navigate('/mypage')}>
+          돌아가기
+        </Button>
+      </ButtonWrapper>
     </Container>
   );
 }

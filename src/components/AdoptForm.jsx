@@ -5,7 +5,6 @@ import useAnswerStore from '../hooks/useAnswerStore';
 import useQuestionStore from '../hooks/useQuestionStore';
 import useSelectAnswerFormStore from '../hooks/useSelectAnswerFormStore';
 import Header from './ui/Header';
-import Input from './ui/Input';
 import Textarea from './ui/Textarea';
 import Title from './ui/Title';
 

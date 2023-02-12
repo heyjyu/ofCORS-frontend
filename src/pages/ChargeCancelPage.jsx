@@ -6,8 +6,10 @@ const Container = styled.div`
 `;
 
 const Message = styled.p`
+  display: block;
   font-weight: 700;
   padding: 1.25em;
+  margin-top: 1em;
   border: 1px solid #EAEAEC;
   background: white;
 `;
