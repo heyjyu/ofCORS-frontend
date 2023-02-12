@@ -6,7 +6,7 @@ import useUserStore from '../hooks/useUserStore';
 import Input from './ui/Input';
 
 const Container = styled.div`
-  width: 30em;
+  width: 100%;
 
   label {
     display: block;
