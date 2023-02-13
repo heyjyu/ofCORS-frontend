@@ -177,7 +177,8 @@ export default function ExchangeForm() {
       </Header>
       <Wrapper>
         <p>
-          홍길동님이 보유하신 포인트는 총
+          {userStore.user.realName}
+          님이 보유하신 포인트는 총
           {' '}
           {userStore.user.points}
           pt입니다
