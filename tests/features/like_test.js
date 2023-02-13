@@ -12,6 +12,10 @@ Scenario('질문 추천하기', ({ I }) => {
 
   I.askQuestion();
 
+  I.click('로그아웃');
+
+  I.login('tester2@example.com');
+
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
 
   I.click('like');
