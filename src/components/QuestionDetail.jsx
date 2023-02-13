@@ -61,7 +61,7 @@ const Footer = styled.div`
     color: #EAEAEC;
   }
 
-  div:first-child {
+  >div:first-child {
     flex: 1;
   }
 `;
@@ -81,6 +81,21 @@ const Button = styled.button`
   border: 1px solid #EAEAEC;
   background: white;
   color: #8E8E8E;
+  white-space: nowrap;
+`;
+
+const ModalWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  >button {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    border: 1px solid #EAEAEC;
+    background: white;
+    color: #8E8E8E;
+  }
 `;
 
 export default function QuestionDetail() {
@@ -184,11 +199,13 @@ export default function QuestionDetail() {
                   <StyledLink to={`/questions/${question.id}/edit`}>
                     수정
                   </StyledLink>
-                  <Modal
-                    buttonName="삭제"
-                    content="질문을 정말 삭제하시겠습니까?"
-                    onClose={handleClickDelete}
-                  />
+                  <ModalWrapper>
+                    <Modal
+                      buttonName="삭제"
+                      content="질문을 정말 삭제하시겠습니까?"
+                      onClose={handleClickDelete}
+                    />
+                  </ModalWrapper>
                 </>
               ) : (
                 <Likes

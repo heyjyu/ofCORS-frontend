@@ -13,9 +13,19 @@ Scenario('채택하지 않은 내 질문인 경우', ({ I }) => {
 
   I.askQuestion();
 
+  I.click('로그아웃');
+
+  I.login('tester2@example.com');
+
   I.click('CORS에러는 어떻게 해결하면 좋을까요?');
+
+  I.fillField('input-answer', '응답 헤더에 해당 값을 넣어보세요.');
+
+  I.click('등록');
+
+  I.wait(2);
 
   I.see('CORS에러는 어떻게 해결하면 좋을까요?');
   I.see('서버를 배포 후 POST요청에서 No ‘Access-Control-Allow-Origin’ header 에러 메시지가 발생합니다.');
-  I.see('채택');
+  I.see('수정');
 });

@@ -32,7 +32,7 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 0.25em;
+      gap: 0.5em;
       margin-left: 3em;
 
       p {
