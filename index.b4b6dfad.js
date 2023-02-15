@@ -35051,7 +35051,7 @@ _c1 = Wrapper;
 const Logo = (0, _styledComponentsDefault.default).div`
   width: 5em;
   height: 1.5em;
-  background: url(/assets/images/logo.svg) no-repeat center;
+  background: url(/ofcors-frontend/assets/images/logo.svg) no-repeat center;
 `;
 _c2 = Logo;
 const Input = (0, _styledComponentsDefault.default).input`
@@ -35061,7 +35061,7 @@ const Input = (0, _styledComponentsDefault.default).input`
   padding-left: 1em;
   border: none;
   border-radius: 1em;
-  background: url(/assets/images/search.svg) no-repeat center right 1em;
+  background: url(/ofcors-frontend/assets/images/search.svg) no-repeat center right 1em;
   background-color: #F5F5F7;
 
   :focus {
@@ -40090,7 +40090,7 @@ const Select = (0, _styledComponentsDefault.default).select`
   padding: 0.5em 2.5em 0.5em 0.75em;
   border: 1px solid #EAEAEC;
   border-radius: 0.5em;
-  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background: url(/ofcors-frontend/assets/images/triangle.svg) no-repeat center right 0.75em;
   background-color: white;
   color: #838383;
   -moz-appearance:none; /* Firefox */
@@ -42232,7 +42232,7 @@ const Select = (0, _styledComponentsDefault.default).select`
   padding: 0.5em 2.5em 0.5em 0.75em;
   border: 1px solid #EAEAEC;
   border-radius: 0.5em;
-  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background: url(/ofcors-frontend/assets/images/triangle.svg) no-repeat center right 0.75em;
   background-color: white;
   color: #838383;
   -moz-appearance:none; /* Firefox */
@@ -44035,7 +44035,7 @@ const LikeButton = (0, _styledComponentsDefault.default).button`
   width: 2em;
   margin-top: 0.5em;
   border: none;
-  background: ${(props)=>props.selected ? "url(/assets/images/heart-filled.svg) no-repeat center center/contain" : "url(/assets/images/heart-lined.svg) no-repeat center center/contain"};
+  background: ${(props)=>props.selected ? "url(/ofcors-frontend/assets/images/heart-filled.svg) no-repeat center center/contain" : "url(/ofcors-frontend/assets/images/heart-lined.svg) no-repeat center center/contain"};
   text-indent: -1000em;
   cursor: pointer;
 `;
@@ -44567,7 +44567,7 @@ const Select = (0, _styledComponentsDefault.default).select`
   padding: 0.5em 2.5em 0.5em 0.75em;
   border: 1px solid #EAEAEC;
   border-radius: 0.5em;
-  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background: url(/ofcors-frontend/assets/images/triangle.svg) no-repeat center right 0.75em;
   background-color: white;
   color: #838383;
   -moz-appearance:none; /* Firefox */
@@ -48194,7 +48194,7 @@ function MyDetail() {
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                         alt: "coin",
-                                        src: "assets/images/coin.svg",
+                                        src: "ofcors-frontend/assets/images/coin.svg",
                                         width: 30,
                                         height: 30
                                     }, void 0, false, {
@@ -48240,7 +48240,7 @@ function MyDetail() {
                                             "실명 인증",
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                                 alt: "right-arrow",
-                                                src: "assets/images/right-arrow.svg",
+                                                src: "ofcors-frontend/assets/images/right-arrow.svg",
                                                 width: 18,
                                                 height: 18
                                             }, void 0, false, {
@@ -48261,7 +48261,7 @@ function MyDetail() {
                                             "환전하기",
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                                 alt: "right-arrow",
-                                                src: "assets/images/right-arrow.svg",
+                                                src: "ofcors-frontend/assets/images/right-arrow.svg",
                                                 width: 18,
                                                 height: 18
                                             }, void 0, false, {
@@ -49197,7 +49197,7 @@ function Points() {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                 alt: "coin",
-                                src: "assets/images/coin.svg"
+                                src: "ofcors-frontend/assets/images/coin.svg"
                             }, void 0, false, {
                                 fileName: "src/components/Points.jsx",
                                 lineNumber: 70,
@@ -49876,7 +49876,7 @@ const Select = (0, _styledComponentsDefault.default).select`
   padding: 0.5em 2.5em 0.5em 0.75em;
   border: 1px solid #EAEAEC;
   border-radius: 0.5em;
-  background: url(/assets/images/triangle.svg) no-repeat center right 0.75em;
+  background: url(/ofcors-frontend/assets/images/triangle.svg) no-repeat center right 0.75em;
   background-color: white;
   color: #838383;
   -moz-appearance:none; /* Firefox */
