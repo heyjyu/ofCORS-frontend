@@ -35099,8 +35099,8 @@ function Header() {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                    href: "/",
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                    to: "/",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Logo, {
                         id: "logo",
                         "data-testid": "logo"
