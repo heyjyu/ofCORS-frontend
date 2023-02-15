@@ -2913,7 +2913,7 @@ const accessToken = JSON.parse(data);
 const container = document.getElementById("app");
 const root = (0, _clientDefault.default).createRoot(container);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
-    basename: "/ofcors-frontend",
+    basename: "/ofCORS-frontend",
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
         fileName: "src/index.jsx",
         lineNumber: 17,
