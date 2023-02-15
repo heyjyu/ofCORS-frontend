@@ -2913,7 +2913,7 @@ const accessToken = JSON.parse(data);
 const container = document.getElementById("app");
 const root = (0, _clientDefault.default).createRoot(container);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
-    basename: "/ofCORS-frontend",
+    basename: "/ofcors-frontend",
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
         fileName: "src/index.jsx",
         lineNumber: 17,
@@ -51524,6 +51524,6 @@ $RefreshReg$(_c4, "UserVerificationResult");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","styled-components":"1U3k6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequire6488")
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","styled-components":"1U3k6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequire40a1")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
