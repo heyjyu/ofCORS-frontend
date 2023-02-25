@@ -48242,7 +48242,7 @@ function MyDetail() {
                                             "실명 인증",
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                                 alt: "right-arrow",
-                                                src: "ofcors-frontend/assets/images/right-arrow.svg",
+                                                src: "/ofcors-frontend/assets/images/right-arrow.svg",
                                                 width: 18,
                                                 height: 18
                                             }, void 0, false, {
@@ -48263,7 +48263,7 @@ function MyDetail() {
                                             "환전하기",
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                                 alt: "right-arrow",
-                                                src: "ofcors-frontend/assets/images/right-arrow.svg",
+                                                src: "/ofcors-frontend/assets/images/right-arrow.svg",
                                                 width: 18,
                                                 height: 18
                                             }, void 0, false, {
@@ -49199,7 +49199,7 @@ function Points() {
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                 alt: "coin",
-                                src: "ofcors-frontend/assets/images/coin.svg"
+                                src: "/ofcors-frontend/assets/images/coin.svg"
                             }, void 0, false, {
                                 fileName: "src/components/Points.jsx",
                                 lineNumber: 70,
