@@ -48196,7 +48196,7 @@ function MyDetail() {
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                                         alt: "coin",
-                                        src: "ofcors-frontend/assets/images/coin.svg",
+                                        src: "/ofcors-frontend/assets/images/coin.svg",
                                         width: 30,
                                         height: 30
                                     }, void 0, false, {
