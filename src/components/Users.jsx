@@ -101,7 +101,7 @@ export default function Users() {
               <Item key={user.id}>
                 <Wrapper>
                   <Link to={`/users/${user.id}`}>
-                    <Image alt="avatar" src={user.imageUrl} />
+                    <Image alt="avatar" src={user.imageUrl} width={75} height={75} />
                   </Link>
                   <div>
                     <StyledLink to={`/users/${user.id}`}>
