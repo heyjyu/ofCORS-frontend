@@ -45983,7 +45983,9 @@ function Users() {
                                         to: `/users/${user.id}`,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Image, {
                                             alt: "avatar",
-                                            src: user.imageUrl
+                                            src: user.imageUrl,
+                                            width: 75,
+                                            height: 75
                                         }, void 0, false, {
                                             fileName: "src/components/Users.jsx",
                                             lineNumber: 104,
