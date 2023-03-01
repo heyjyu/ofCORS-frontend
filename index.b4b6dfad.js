@@ -35007,6 +35007,8 @@ var _styledComponentsDefault = parcelHelpers.interopDefault(_styledComponents);
 var _usehooksTs = require("usehooks-ts");
 var _useSearchStore = require("../hooks/useSearchStore");
 var _useSearchStoreDefault = parcelHelpers.interopDefault(_useSearchStore);
+var _useUserStore = require("../hooks/useUserStore");
+var _useUserStoreDefault = parcelHelpers.interopDefault(_useUserStore);
 var _s = $RefreshSig$();
 const Container = (0, _styledComponentsDefault.default).div`
   display: flex;
@@ -35088,8 +35090,15 @@ function Header() {
     const navigate = (0, _reactRouterDom.useNavigate)();
     const [accessToken, setAccessToken] = (0, _usehooksTs.useLocalStorage)("accessToken", "");
     const searchStore = (0, _useSearchStoreDefault.default)();
-    const handleLogout = ()=>{
+    const userStore = (0, _useUserStoreDefault.default)();
+    const handleClickLogout = ()=>{
         setAccessToken("");
+        navigate("/");
+    };
+    const handleClickTrial = async ()=>{
+        const trialAccessToken = await userStore.trialLogin();
+        if (userStore.isLoginFailed) return;
+        setAccessToken(trialAccessToken);
         navigate("/");
     };
     const handleSubmit = (e)=>{
@@ -35106,12 +35115,12 @@ function Header() {
                         "data-testid": "logo"
                     }, void 0, false, {
                         fileName: "src/components/Header.jsx",
-                        lineNumber: 102,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Header.jsx",
-                    lineNumber: 101,
+                    lineNumber: 115,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -35123,12 +35132,12 @@ function Header() {
                         onChange: (e)=>searchStore.changeKeyword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/Header.jsx",
-                        lineNumber: 105,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Header.jsx",
-                    lineNumber: 104,
+                    lineNumber: 118,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("nav", {
@@ -35141,44 +35150,59 @@ function Header() {
                                         children: "마이페이지"
                                     }, void 0, false, {
                                         fileName: "src/components/Header.jsx",
-                                        lineNumber: 113,
+                                        lineNumber: 127,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/Header.jsx",
-                                    lineNumber: 112,
+                                    lineNumber: 126,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
                                         type: "button",
-                                        onClick: handleLogout,
+                                        onClick: handleClickLogout,
                                         children: "로그아웃"
                                     }, void 0, false, {
                                         fileName: "src/components/Header.jsx",
-                                        lineNumber: 123,
+                                        lineNumber: 137,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/Header.jsx",
-                                    lineNumber: 122,
+                                    lineNumber: 136,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                                        type: "button",
+                                        onClick: handleClickTrial,
+                                        children: "체험하기"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Header.jsx",
+                                        lineNumber: 145,
+                                        columnNumber: 21
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "src/components/Header.jsx",
+                                    lineNumber: 144,
+                                    columnNumber: 19
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(StyledLink, {
                                         to: "/login",
                                         children: "로그인"
                                     }, void 0, false, {
                                         fileName: "src/components/Header.jsx",
-                                        lineNumber: 131,
+                                        lineNumber: 150,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/Header.jsx",
-                                    lineNumber: 130,
+                                    lineNumber: 149,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
@@ -35187,44 +35211,45 @@ function Header() {
                                         children: "회원가입"
                                     }, void 0, false, {
                                         fileName: "src/components/Header.jsx",
-                                        lineNumber: 136,
+                                        lineNumber: 155,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/Header.jsx",
-                                    lineNumber: 135,
+                                    lineNumber: 154,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "src/components/Header.jsx",
-                        lineNumber: 108,
+                        lineNumber: 122,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/Header.jsx",
-                    lineNumber: 107,
+                    lineNumber: 121,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/Header.jsx",
-            lineNumber: 100,
+            lineNumber: 114,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/Header.jsx",
-        lineNumber: 99,
+        lineNumber: 113,
         columnNumber: 5
     }, this);
 }
 exports.default = Header;
-_s(Header, "Zzy07wWvF0UfrF/8/fZOGR+yiOM=", false, function() {
+_s(Header, "rSYxRLyzkbJ7udTMxxGB0gsBDdw=", false, function() {
     return [
         (0, _reactRouterDom.useNavigate),
         (0, _usehooksTs.useLocalStorage),
-        (0, _useSearchStoreDefault.default)
+        (0, _useSearchStoreDefault.default),
+        (0, _useUserStoreDefault.default)
     ];
 });
 _c6 = Header;
@@ -35242,7 +35267,7 @@ $RefreshReg$(_c6, "Header");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","styled-components":"1U3k6","usehooks-ts":"dmUe4","../hooks/useSearchStore":"bLvpA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bLvpA":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-router-dom":"9xmpe","styled-components":"1U3k6","usehooks-ts":"dmUe4","../hooks/useSearchStore":"bLvpA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../hooks/useUserStore":"gJqal"}],"bLvpA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _searchStore = require("../stores/SearchStore");
@@ -35387,6 +35412,12 @@ class ApiService {
             email,
             password
         });
+        return {
+            accessToken: data.accessToken
+        };
+    }
+    async postTrialSession() {
+        const { data  } = await this.instance.post("/session/trial");
         return {
             accessToken: data.accessToken
         };
@@ -39830,7 +39861,262 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"2fa21ef27148f52c":"786KC"}],"9Nmxq":[function(require,module,exports) {
+},{"2fa21ef27148f52c":"786KC"}],"gJqal":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _userStore = require("../stores/UserStore");
+var _useStore = require("./useStore");
+var _useStoreDefault = parcelHelpers.interopDefault(_useStore);
+var _s = $RefreshSig$();
+function useUserStore() {
+    _s();
+    return (0, _useStoreDefault.default)((0, _userStore.userStore));
+}
+exports.default = useUserStore;
+_s(useUserStore, "tRpAAnpj2/w/nb/IphdrVKKBg0Y=", false, function() {
+    return [
+        (0, _useStoreDefault.default)
+    ];
+});
+
+},{"../stores/UserStore":"8RuVk","./useStore":"fZWj8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8RuVk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "userStore", ()=>userStore);
+var _apiService = require("../services/ApiService");
+var _store = require("./Store");
+var _storeDefault = parcelHelpers.interopDefault(_store);
+class UserStore extends (0, _storeDefault.default) {
+    constructor(){
+        super();
+        this.reset();
+    }
+    async signUp({ displayName , email , password  }) {
+        this.changeSignUpStatus("processing");
+        try {
+            const { id  } = await (0, _apiService.apiService).createUser({
+                displayName,
+                email,
+                password
+            });
+            this.changeSignUpStatus("successful");
+            return id;
+        } catch  {
+            this.changeSignUpStatus("failed");
+            return "";
+        }
+    }
+    async login({ email , password  }) {
+        this.changeLoginStatus("processing");
+        try {
+            const { accessToken  } = await (0, _apiService.apiService).postSession({
+                email,
+                password
+            });
+            this.changeLoginStatus("successful");
+            return accessToken;
+        } catch  {
+            this.changeLoginStatus("failed");
+            return "";
+        }
+    }
+    async trialLogin() {
+        this.changeLoginStatus("processing");
+        try {
+            const { accessToken  } = await (0, _apiService.apiService).postTrialSession();
+            this.changeLoginStatus("successful");
+            return accessToken;
+        } catch  {
+            this.changeLoginStatus("failed");
+            return "";
+        }
+    }
+    async fetchMe() {
+        const user = await (0, _apiService.apiService).fetchMe();
+        this.user = user;
+        this.publish();
+    }
+    async editProfile({ displayName , about , imageUrl , tags  }) {
+        this.startEdit();
+        try {
+            await (0, _apiService.apiService).editProfile({
+                displayName,
+                about,
+                imageUrl,
+                tags
+            });
+            this.completeEdit();
+        } catch (e) {
+            this.failEdit();
+        }
+    }
+    changeKeyword(keyword) {
+        this.keyword = keyword;
+        this.publish();
+    }
+    async fetchUsers({ sort , keyword =""  }) {
+        this.startUsersLoad();
+        try {
+            const { users  } = await (0, _apiService.apiService).fetchUsers({
+                sort,
+                keyword
+            });
+            this.completeUsersLoad(users, keyword);
+        } catch (e) {
+            this.failUsersLoad();
+        }
+    }
+    async fetchUser(id) {
+        this.startUserLoad();
+        try {
+            const user = await (0, _apiService.apiService).fetchUser(id);
+            this.completeUserLoad(user);
+        } catch (e) {
+            this.failUserLoad();
+        }
+    }
+    async completeVerify(name) {
+        this.startCompleteVerify();
+        try {
+            await (0, _apiService.apiService).changeName(name);
+            this.completeCompleteVerify();
+        } catch (e) {
+            this.failCompleteVerify();
+        }
+    }
+    changeSignUpStatus(status) {
+        this.signUpStatus = status;
+        this.publish();
+    }
+    resetSignUpStatus() {
+        this.signUpStatus = "";
+        this.publish();
+    }
+    changeLoginStatus(status) {
+        this.loginStatus = status;
+        this.publish();
+    }
+    resetLoginStatus() {
+        this.loginStatus = "";
+        this.publish();
+    }
+    changeEditStatus(status) {
+        this.editStatus = status;
+        this.publish();
+    }
+    resetEditStatus() {
+        this.editStatus = "";
+        this.publish();
+    }
+    changeCompleteVerifyStatus(status) {
+        this.completeVerifyStatus = status;
+        this.publish();
+    }
+    startUsersLoad() {
+        this.isUsersLoading = true;
+        this.users = [];
+        this.publish();
+    }
+    completeUsersLoad(users, keyword) {
+        if (keyword) this.searching = true;
+        if (!keyword) this.searching = false;
+        this.isUsersLoading = false;
+        this.users = users;
+        this.publish();
+    }
+    failUsersLoad() {
+        this.isUsersLoading = false;
+        this.users = [];
+        this.publish();
+    }
+    startUserLoad() {
+        this.isUserLoading = true;
+        this.user = null;
+        this.publish();
+    }
+    completeUserLoad(user) {
+        this.isUserLoading = false;
+        this.user = user;
+        this.publish();
+    }
+    failUserLoad() {
+        this.isUserLoading = false;
+        this.user = null;
+        this.publish();
+    }
+    startEdit() {
+        this.isEditing = true;
+        this.changeEditStatus("processing");
+        this.publish();
+    }
+    completeEdit() {
+        this.isEditing = false;
+        this.changeEditStatus("successful");
+        this.publish();
+    }
+    failEdit() {
+        this.isEditing = false;
+        this.changeEditStatus("failed");
+        this.publish();
+    }
+    startCompleteVerify() {
+        this.isCompleteVerifying = true;
+        this.changeCompleteVerifyStatus("processing");
+        this.publish();
+    }
+    completeCompleteVerify() {
+        this.isCompleteVerifying = false;
+        this.changeCompleteVerifyStatus("successful");
+        this.publish();
+    }
+    failCompleteVerify() {
+        this.isCompleteVerifying = false;
+        this.changeCompleteVerifyStatus("failed");
+        this.publish();
+    }
+    reset() {
+        this.signUpStatus = "";
+        this.loginStatus = "";
+        this.editStatus = "";
+        this.completeVerifyStatus = "";
+        this.users = [];
+        this.user = null;
+        this.keyword = "";
+        this.searching = false;
+        this.isUsersLoading = false;
+        this.isUserLoading = false;
+        this.isEditing = false;
+        this.isCompleteVerifying = "";
+    }
+    get isSignUpSuccessful() {
+        return this.signUpStatus === "successful";
+    }
+    get isSignUpFailed() {
+        return this.signUpStatus === "failed";
+    }
+    get isLoginSuccessful() {
+        return this.loginStatus === "successful";
+    }
+    get isLoginFailed() {
+        return this.loginStatus === "failed";
+    }
+    get isEditSuccessful() {
+        return this.editStatus === "successful";
+    }
+    get isEditFailed() {
+        return this.editStatus === "failed";
+    }
+    get isCompleteVerifySuccessful() {
+        return this.completeVerifyStatus === "successful";
+    }
+    get isCompleteVerifyFailed() {
+        return this.completeVerifyStatus === "failed";
+    }
+}
+exports.default = UserStore;
+const userStore = new UserStore();
+
+},{"../services/ApiService":"7vwf0","./Store":"iykk4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9Nmxq":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$0b12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40121,9 +40407,7 @@ _c3 = List;
 function TopQuestions() {
     _s();
     const topQuestionStore = (0, _useTopQuestionStoreDefault.default)();
-    if (topQuestionStore.isQuestionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (topQuestionStore.isQuestionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/TopQuestions.jsx",
         lineNumber: 50,
         columnNumber: 7
@@ -40136,7 +40420,7 @@ function TopQuestions() {
                         children: "인기 질문"
                     }, void 0, false, {
                         fileName: "src/components/TopQuestions.jsx",
-                        lineNumber: 59,
+                        lineNumber: 57,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
@@ -40153,7 +40437,7 @@ function TopQuestions() {
                                         children: "week"
                                     }, void 0, false, {
                                         fileName: "src/components/TopQuestions.jsx",
-                                        lineNumber: 68,
+                                        lineNumber: 66,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -40161,30 +40445,30 @@ function TopQuestions() {
                                         children: "month"
                                     }, void 0, false, {
                                         fileName: "src/components/TopQuestions.jsx",
-                                        lineNumber: 71,
+                                        lineNumber: 69,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TopQuestions.jsx",
-                                lineNumber: 63,
+                                lineNumber: 61,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _askLinkDefault.default), {}, void 0, false, {
                                 fileName: "src/components/TopQuestions.jsx",
-                                lineNumber: 75,
+                                lineNumber: 73,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/TopQuestions.jsx",
-                        lineNumber: 62,
+                        lineNumber: 60,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/TopQuestions.jsx",
-                lineNumber: 58,
+                lineNumber: 56,
                 columnNumber: 7
             }, this),
             topQuestionStore.questions.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -40192,24 +40476,24 @@ function TopQuestions() {
                         question: question
                     }, question.id, false, {
                         fileName: "src/components/TopQuestions.jsx",
-                        lineNumber: 83,
+                        lineNumber: 81,
                         columnNumber: 17
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/TopQuestions.jsx",
-                lineNumber: 80,
+                lineNumber: 78,
                 columnNumber: 11
             }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
                 children: "질문을 등록해주세요!"
             }, void 0, false, {
                 fileName: "src/components/TopQuestions.jsx",
-                lineNumber: 87,
+                lineNumber: 85,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/TopQuestions.jsx",
-        lineNumber: 57,
+        lineNumber: 55,
         columnNumber: 5
     }, this);
 }
@@ -40351,6 +40635,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _styledComponents = require("styled-components");
 var _styledComponentsDefault = parcelHelpers.interopDefault(_styledComponents);
+var _reactRouterDom = require("react-router-dom");
 var _tags = require("./Tags");
 var _tagsDefault = parcelHelpers.interopDefault(_tags);
 var _point = require("./Point");
@@ -40393,27 +40678,27 @@ function QuestionItem({ question  }) {
                         amount: question.points
                     }, void 0, false, {
                         fileName: "src/components/QuestionItem.jsx",
-                        lineNumber: 38,
+                        lineNumber: 39,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                            href: `/questions/${question.id}`,
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: `/questions/${question.id}`,
                             children: question.title
                         }, void 0, false, {
                             fileName: "src/components/QuestionItem.jsx",
-                            lineNumber: 40,
+                            lineNumber: 41,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/QuestionItem.jsx",
-                        lineNumber: 39,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/QuestionItem.jsx",
-                lineNumber: 37,
+                lineNumber: 38,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40428,7 +40713,7 @@ function QuestionItem({ question  }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionItem.jsx",
-                                lineNumber: 47,
+                                lineNumber: 48,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -40439,32 +40724,32 @@ function QuestionItem({ question  }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionItem.jsx",
-                                lineNumber: 52,
+                                lineNumber: 53,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/QuestionItem.jsx",
-                        lineNumber: 46,
+                        lineNumber: 47,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tagsDefault.default), {
                         tags: question.tags
                     }, void 0, false, {
                         fileName: "src/components/QuestionItem.jsx",
-                        lineNumber: 58,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/QuestionItem.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/QuestionItem.jsx",
-        lineNumber: 36,
+        lineNumber: 37,
         columnNumber: 5
     }, this);
 }
@@ -40480,7 +40765,7 @@ $RefreshReg$(_c2, "QuestionItem");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","styled-components":"1U3k6","./Tags":"3simz","./Point":"3vneY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3simz":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","styled-components":"1U3k6","./Tags":"3simz","./Point":"3vneY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}],"3simz":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7502 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40977,251 +41262,7 @@ class LoginFormStore extends (0, _storeDefault.default) {
 exports.default = LoginFormStore;
 const loginFormStore = new LoginFormStore();
 
-},{"./Store":"iykk4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJqal":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _userStore = require("../stores/UserStore");
-var _useStore = require("./useStore");
-var _useStoreDefault = parcelHelpers.interopDefault(_useStore);
-var _s = $RefreshSig$();
-function useUserStore() {
-    _s();
-    return (0, _useStoreDefault.default)((0, _userStore.userStore));
-}
-exports.default = useUserStore;
-_s(useUserStore, "tRpAAnpj2/w/nb/IphdrVKKBg0Y=", false, function() {
-    return [
-        (0, _useStoreDefault.default)
-    ];
-});
-
-},{"../stores/UserStore":"8RuVk","./useStore":"fZWj8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8RuVk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "userStore", ()=>userStore);
-var _apiService = require("../services/ApiService");
-var _store = require("./Store");
-var _storeDefault = parcelHelpers.interopDefault(_store);
-class UserStore extends (0, _storeDefault.default) {
-    constructor(){
-        super();
-        this.reset();
-    }
-    async signUp({ displayName , email , password  }) {
-        this.changeSignUpStatus("processing");
-        try {
-            const { id  } = await (0, _apiService.apiService).createUser({
-                displayName,
-                email,
-                password
-            });
-            this.changeSignUpStatus("successful");
-            return id;
-        } catch  {
-            this.changeSignUpStatus("failed");
-            return "";
-        }
-    }
-    async login({ email , password  }) {
-        this.changeLoginStatus("processing");
-        try {
-            const { accessToken  } = await (0, _apiService.apiService).postSession({
-                email,
-                password
-            });
-            this.changeLoginStatus("successful");
-            return accessToken;
-        } catch  {
-            this.changeLoginStatus("failed");
-            return "";
-        }
-    }
-    async fetchMe() {
-        const user = await (0, _apiService.apiService).fetchMe();
-        this.user = user;
-        this.publish();
-    }
-    async editProfile({ displayName , about , imageUrl , tags  }) {
-        this.startEdit();
-        try {
-            await (0, _apiService.apiService).editProfile({
-                displayName,
-                about,
-                imageUrl,
-                tags
-            });
-            this.completeEdit();
-        } catch (e) {
-            this.failEdit();
-        }
-    }
-    changeKeyword(keyword) {
-        this.keyword = keyword;
-        this.publish();
-    }
-    async fetchUsers({ sort , keyword =""  }) {
-        this.startUsersLoad();
-        try {
-            const { users  } = await (0, _apiService.apiService).fetchUsers({
-                sort,
-                keyword
-            });
-            this.completeUsersLoad(users, keyword);
-        } catch (e) {
-            this.failUsersLoad();
-        }
-    }
-    async fetchUser(id) {
-        this.startUserLoad();
-        try {
-            const user = await (0, _apiService.apiService).fetchUser(id);
-            this.completeUserLoad(user);
-        } catch (e) {
-            this.failUserLoad();
-        }
-    }
-    async completeVerify(name) {
-        this.startCompleteVerify();
-        try {
-            await (0, _apiService.apiService).changeName(name);
-            this.completeCompleteVerify();
-        } catch (e) {
-            this.failCompleteVerify();
-        }
-    }
-    changeSignUpStatus(status) {
-        this.signUpStatus = status;
-        this.publish();
-    }
-    resetSignUpStatus() {
-        this.signUpStatus = "";
-        this.publish();
-    }
-    changeLoginStatus(status) {
-        this.loginStatus = status;
-        this.publish();
-    }
-    resetLoginStatus() {
-        this.loginStatus = "";
-        this.publish();
-    }
-    changeEditStatus(status) {
-        this.editStatus = status;
-        this.publish();
-    }
-    resetEditStatus() {
-        this.editStatus = "";
-        this.publish();
-    }
-    changeCompleteVerifyStatus(status) {
-        this.completeVerifyStatus = status;
-        this.publish();
-    }
-    startUsersLoad() {
-        this.isUsersLoading = true;
-        this.users = [];
-        this.publish();
-    }
-    completeUsersLoad(users, keyword) {
-        if (keyword) this.searching = true;
-        if (!keyword) this.searching = false;
-        this.isUsersLoading = false;
-        this.users = users;
-        this.publish();
-    }
-    failUsersLoad() {
-        this.isUsersLoading = false;
-        this.users = [];
-        this.publish();
-    }
-    startUserLoad() {
-        this.isUserLoading = true;
-        this.user = null;
-        this.publish();
-    }
-    completeUserLoad(user) {
-        this.isUserLoading = false;
-        this.user = user;
-        this.publish();
-    }
-    failUserLoad() {
-        this.isUserLoading = false;
-        this.user = null;
-        this.publish();
-    }
-    startEdit() {
-        this.isEditing = true;
-        this.changeEditStatus("processing");
-        this.publish();
-    }
-    completeEdit() {
-        this.isEditing = false;
-        this.changeEditStatus("successful");
-        this.publish();
-    }
-    failEdit() {
-        this.isEditing = false;
-        this.changeEditStatus("failed");
-        this.publish();
-    }
-    startCompleteVerify() {
-        this.isCompleteVerifying = true;
-        this.changeCompleteVerifyStatus("processing");
-        this.publish();
-    }
-    completeCompleteVerify() {
-        this.isCompleteVerifying = false;
-        this.changeCompleteVerifyStatus("successful");
-        this.publish();
-    }
-    failCompleteVerify() {
-        this.isCompleteVerifying = false;
-        this.changeCompleteVerifyStatus("failed");
-        this.publish();
-    }
-    reset() {
-        this.signUpStatus = "";
-        this.loginStatus = "";
-        this.editStatus = "";
-        this.completeVerifyStatus = "";
-        this.users = [];
-        this.user = null;
-        this.keyword = "";
-        this.searching = false;
-        this.isUsersLoading = false;
-        this.isUserLoading = false;
-        this.isEditing = false;
-        this.isCompleteVerifying = "";
-    }
-    get isSignUpSuccessful() {
-        return this.signUpStatus === "successful";
-    }
-    get isSignUpFailed() {
-        return this.signUpStatus === "failed";
-    }
-    get isLoginSuccessful() {
-        return this.loginStatus === "successful";
-    }
-    get isLoginFailed() {
-        return this.loginStatus === "failed";
-    }
-    get isEditSuccessful() {
-        return this.editStatus === "successful";
-    }
-    get isEditFailed() {
-        return this.editStatus === "failed";
-    }
-    get isCompleteVerifySuccessful() {
-        return this.completeVerifyStatus === "successful";
-    }
-    get isCompleteVerifyFailed() {
-        return this.completeVerifyStatus === "failed";
-    }
-}
-exports.default = UserStore;
-const userStore = new UserStore();
-
-},{"../services/ApiService":"7vwf0","./Store":"iykk4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5BjiN":[function(require,module,exports) {
+},{"./Store":"iykk4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5BjiN":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5df0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -41894,9 +41935,7 @@ function SearchResults() {
     _s();
     const searchStore = (0, _useSearchStoreDefault.default)();
     const [searchParams] = (0, _reactRouterDom.useSearchParams)();
-    if (searchStore.isResultsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (searchStore.isResultsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/SearchResults.jsx",
         lineNumber: 31,
         columnNumber: 7
@@ -41909,18 +41948,18 @@ function SearchResults() {
                         children: "검색 결과"
                     }, void 0, false, {
                         fileName: "src/components/SearchResults.jsx",
-                        lineNumber: 40,
+                        lineNumber: 38,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _askLinkDefault.default), {}, void 0, false, {
                         fileName: "src/components/SearchResults.jsx",
-                        lineNumber: 43,
+                        lineNumber: 41,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SearchResults.jsx",
-                lineNumber: 39,
+                lineNumber: 37,
                 columnNumber: 7
             }, this),
             searchStore.results.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -41928,12 +41967,12 @@ function SearchResults() {
                         solution: result
                     }, result.id, false, {
                         fileName: "src/components/SearchResults.jsx",
-                        lineNumber: 50,
+                        lineNumber: 48,
                         columnNumber: 17
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/SearchResults.jsx",
-                lineNumber: 47,
+                lineNumber: 45,
                 columnNumber: 11
             }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
                 children: [
@@ -41943,13 +41982,13 @@ function SearchResults() {
                 ]
             }, void 0, true, {
                 fileName: "src/components/SearchResults.jsx",
-                lineNumber: 54,
+                lineNumber: 52,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/SearchResults.jsx",
-        lineNumber: 38,
+        lineNumber: 36,
         columnNumber: 5
     }, this);
 }
@@ -41981,6 +42020,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _reactRouterDom = require("react-router-dom");
 var _styledComponents = require("styled-components");
 var _styledComponentsDefault = parcelHelpers.interopDefault(_styledComponents);
 var _tags = require("./Tags");
@@ -42018,17 +42058,17 @@ function SolutionItem({ solution  }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                    href: `/questions/${solution.id}`,
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                    to: `/questions/${solution.id}`,
                     children: solution.title
                 }, void 0, false, {
                     fileName: "src/components/SolutionItem.jsx",
-                    lineNumber: 37,
+                    lineNumber: 38,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/SolutionItem.jsx",
-                lineNumber: 36,
+                lineNumber: 37,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42043,7 +42083,7 @@ function SolutionItem({ solution  }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/SolutionItem.jsx",
-                                lineNumber: 43,
+                                lineNumber: 44,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42054,32 +42094,32 @@ function SolutionItem({ solution  }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/SolutionItem.jsx",
-                                lineNumber: 48,
+                                lineNumber: 49,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/SolutionItem.jsx",
-                        lineNumber: 42,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tagsDefault.default), {
                         tags: solution.tags
                     }, void 0, false, {
                         fileName: "src/components/SolutionItem.jsx",
-                        lineNumber: 54,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/SolutionItem.jsx",
-                lineNumber: 41,
+                lineNumber: 42,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/SolutionItem.jsx",
-        lineNumber: 35,
+        lineNumber: 36,
         columnNumber: 5
     }, this);
 }
@@ -42095,7 +42135,7 @@ $RefreshReg$(_c2, "SolutionItem");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","styled-components":"1U3k6","./Tags":"3simz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iJTdc":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","styled-components":"1U3k6","./Tags":"3simz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}],"iJTdc":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8ba0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42281,9 +42321,7 @@ function Questions() {
             keyword: questionStore.keyword
         });
     };
-    if (questionStore.isQuestionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (questionStore.isQuestionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/Questions.jsx",
         lineNumber: 79,
         columnNumber: 7
@@ -42298,7 +42336,7 @@ function Questions() {
                                 children: "모든 질문"
                             }, void 0, false, {
                                 fileName: "src/components/Questions.jsx",
-                                lineNumber: 89,
+                                lineNumber: 87,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -42315,7 +42353,7 @@ function Questions() {
                                                 children: "최신순"
                                             }, void 0, false, {
                                                 fileName: "src/components/Questions.jsx",
-                                                lineNumber: 98,
+                                                lineNumber: 96,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -42323,30 +42361,30 @@ function Questions() {
                                                 children: "포인트순"
                                             }, void 0, false, {
                                                 fileName: "src/components/Questions.jsx",
-                                                lineNumber: 101,
+                                                lineNumber: 99,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/Questions.jsx",
-                                        lineNumber: 93,
+                                        lineNumber: 91,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _askLinkDefault.default), {}, void 0, false, {
                                         fileName: "src/components/Questions.jsx",
-                                        lineNumber: 105,
+                                        lineNumber: 103,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Questions.jsx",
-                                lineNumber: 92,
+                                lineNumber: 90,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Questions.jsx",
-                        lineNumber: 88,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -42359,18 +42397,18 @@ function Questions() {
                             onChange: (e)=>questionStore.changeKeyword(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/Questions.jsx",
-                            lineNumber: 109,
+                            lineNumber: 107,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/Questions.jsx",
-                        lineNumber: 108,
+                        lineNumber: 106,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Questions.jsx",
-                lineNumber: 87,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
             questionStore.questions.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -42378,24 +42416,24 @@ function Questions() {
                         question: question
                     }, question.id, false, {
                         fileName: "src/components/Questions.jsx",
-                        lineNumber: 117,
+                        lineNumber: 115,
                         columnNumber: 17
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/Questions.jsx",
-                lineNumber: 114,
+                lineNumber: 112,
                 columnNumber: 11
             }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
                 children: "질문이 아직 없습니다!"
             }, void 0, false, {
                 fileName: "src/components/Questions.jsx",
-                lineNumber: 121,
+                lineNumber: 119,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Questions.jsx",
-        lineNumber: 86,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }
@@ -43018,9 +43056,7 @@ function QuestionDetail() {
     const answerStore = (0, _useAnswerStoreDefault.default)();
     const answerFormStore = (0, _useAnswerFormStoreDefault.default)();
     const userStore = (0, _useUserStoreDefault.default)();
-    if (questionStore.isQuestionLoading || !questionStore.question) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (questionStore.isQuestionLoading || !questionStore.question) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/QuestionDetail.jsx",
         lineNumber: 112,
         columnNumber: 7
@@ -43034,8 +43070,8 @@ function QuestionDetail() {
         }
         questionStore.toggleLike(id);
     };
-    const handleClickDelete = ()=>{
-        questionStore.delete(id);
+    const handleClickDelete = async ()=>{
+        await questionStore.delete(id);
         navigate("/");
     };
     const handleClickScrap = ()=>{
@@ -43073,32 +43109,32 @@ function QuestionDetail() {
                                 amount: points
                             }, void 0, false, {
                                 fileName: "src/components/QuestionDetail.jsx",
-                                lineNumber: 175,
+                                lineNumber: 173,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _titleDefault.default), {
                                 children: title
                             }, void 0, false, {
                                 fileName: "src/components/QuestionDetail.jsx",
-                                lineNumber: 176,
+                                lineNumber: 174,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/QuestionDetail.jsx",
-                        lineNumber: 174,
+                        lineNumber: 172,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
                         fileName: "src/components/QuestionDetail.jsx",
-                        lineNumber: 178,
+                        lineNumber: 176,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(QuestionBody, {
                         children: body
                     }, void 0, false, {
                         fileName: "src/components/QuestionDetail.jsx",
-                        lineNumber: 179,
+                        lineNumber: 177,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Footer, {
@@ -43109,7 +43145,7 @@ function QuestionDetail() {
                                         children: createdAt.split("T")[0]
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 182,
+                                        lineNumber: 180,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -43120,7 +43156,7 @@ function QuestionDetail() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 183,
+                                        lineNumber: 181,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -43131,7 +43167,7 @@ function QuestionDetail() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 188,
+                                        lineNumber: 186,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -43139,13 +43175,13 @@ function QuestionDetail() {
                                         children: author.displayName
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 193,
+                                        lineNumber: 191,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionDetail.jsx",
-                                lineNumber: 181,
+                                lineNumber: 179,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -43157,7 +43193,7 @@ function QuestionDetail() {
                                                 children: "수정"
                                             }, void 0, false, {
                                                 fileName: "src/components/QuestionDetail.jsx",
-                                                lineNumber: 199,
+                                                lineNumber: 197,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(ModalWrapper, {
@@ -43167,12 +43203,12 @@ function QuestionDetail() {
                                                     onClose: handleClickDelete
                                                 }, void 0, false, {
                                                     fileName: "src/components/QuestionDetail.jsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 201,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "src/components/QuestionDetail.jsx",
-                                                lineNumber: 202,
+                                                lineNumber: 200,
                                                 columnNumber: 19
                                             }, this)
                                         ]
@@ -43181,7 +43217,7 @@ function QuestionDetail() {
                                         onClick: handleClickLike
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 211,
+                                        lineNumber: 209,
                                         columnNumber: 17
                                     }, this),
                                     scrapUserIds.map((i)=>i.id).includes(userStore.user?.id) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
@@ -43190,7 +43226,7 @@ function QuestionDetail() {
                                         children: "스크랩 취소"
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 218,
+                                        lineNumber: 216,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
                                         type: "button",
@@ -43198,25 +43234,25 @@ function QuestionDetail() {
                                         children: "스크랩"
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionDetail.jsx",
-                                        lineNumber: 222,
+                                        lineNumber: 220,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionDetail.jsx",
-                                lineNumber: 195,
+                                lineNumber: 193,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/QuestionDetail.jsx",
-                        lineNumber: 180,
+                        lineNumber: 178,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/QuestionDetail.jsx",
-                lineNumber: 173,
+                lineNumber: 171,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -43228,7 +43264,7 @@ function QuestionDetail() {
                 ]
             }, void 0, true, {
                 fileName: "src/components/QuestionDetail.jsx",
-                lineNumber: 229,
+                lineNumber: 227,
                 columnNumber: 7
             }, this),
             answerStore.answers.map((answer)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _answerDefault.default), {
@@ -43237,20 +43273,20 @@ function QuestionDetail() {
                     selected: selectedAnswerId === answer.id
                 }, answer.id, false, {
                     fileName: "src/components/QuestionDetail.jsx",
-                    lineNumber: 236,
+                    lineNumber: 234,
                     columnNumber: 9
                 }, this)),
             questionStore.isMyQuestion(userStore.user?.id) ? null : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _answerFormDefault.default), {
                 onSubmit: handleSubmit
             }, void 0, false, {
                 fileName: "src/components/QuestionDetail.jsx",
-                lineNumber: 245,
+                lineNumber: 243,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/QuestionDetail.jsx",
-        lineNumber: 172,
+        lineNumber: 170,
         columnNumber: 5
     }, this);
 }
@@ -44218,6 +44254,7 @@ const ButtonWrapper = (0, _styledComponentsDefault.default).div`
 _c = ButtonWrapper;
 const Button = (0, _styledComponentsDefault.default).button`
   font-size: 1em;
+  margin-bottom: 2em;
   padding: 1em 2em;
   border: 1px solid #AB92FF;
   border-radius: 0.25em;
@@ -44234,7 +44271,7 @@ function AnswerForm({ onSubmit  }) {
                 children: "답변하기"
             }, void 0, false, {
                 fileName: "src/components/AnswerForm.jsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -44247,7 +44284,7 @@ function AnswerForm({ onSubmit  }) {
                         onChange: (e)=>answerFormStore.changeBody(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/AnswerForm.jsx",
-                        lineNumber: 26,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(ButtonWrapper, {
@@ -44256,18 +44293,18 @@ function AnswerForm({ onSubmit  }) {
                             children: "등록"
                         }, void 0, false, {
                             fileName: "src/components/AnswerForm.jsx",
-                            lineNumber: 33,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/AnswerForm.jsx",
-                        lineNumber: 32,
+                        lineNumber: 33,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/AnswerForm.jsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 7
             }, this)
         ]
@@ -44598,9 +44635,7 @@ _c4 = List;
 function Solutions() {
     _s();
     const solutionStore = (0, _useSolutionStoreDefault.default)();
-    if (solutionStore.isSolutionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (solutionStore.isSolutionsLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/Solutions.jsx",
         lineNumber: 62,
         columnNumber: 7
@@ -44614,7 +44649,7 @@ function Solutions() {
                             children: "해결된 질문"
                         }, void 0, false, {
                             fileName: "src/components/Solutions.jsx",
-                            lineNumber: 72,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -44631,7 +44666,7 @@ function Solutions() {
                                             children: "최신순"
                                         }, void 0, false, {
                                             fileName: "src/components/Solutions.jsx",
-                                            lineNumber: 81,
+                                            lineNumber: 79,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
@@ -44639,35 +44674,35 @@ function Solutions() {
                                             children: "추천순"
                                         }, void 0, false, {
                                             fileName: "src/components/Solutions.jsx",
-                                            lineNumber: 84,
+                                            lineNumber: 82,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/Solutions.jsx",
-                                    lineNumber: 76,
+                                    lineNumber: 74,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _askLinkDefault.default), {}, void 0, false, {
                                     fileName: "src/components/Solutions.jsx",
-                                    lineNumber: 88,
+                                    lineNumber: 86,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/Solutions.jsx",
-                            lineNumber: 75,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Solutions.jsx",
-                    lineNumber: 71,
+                    lineNumber: 69,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/Solutions.jsx",
-                lineNumber: 70,
+                lineNumber: 68,
                 columnNumber: 7
             }, this),
             solutionStore.solutions.length ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -44675,24 +44710,24 @@ function Solutions() {
                         solution: solution
                     }, solution.id, false, {
                         fileName: "src/components/Solutions.jsx",
-                        lineNumber: 97,
+                        lineNumber: 95,
                         columnNumber: 17
                     }, this))
             }, void 0, false, {
                 fileName: "src/components/Solutions.jsx",
-                lineNumber: 94,
+                lineNumber: 92,
                 columnNumber: 11
             }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
                 children: "해결된 질문이 아직 없습니다!"
             }, void 0, false, {
                 fileName: "src/components/Solutions.jsx",
-                lineNumber: 101,
+                lineNumber: 99,
                 columnNumber: 11
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Solutions.jsx",
-        lineNumber: 69,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }
@@ -44966,6 +45001,7 @@ const ModalWrapper = (0, _styledComponentsDefault.default).div`
 
   >button {
     font-size: 1em;
+    margin-bottom: 1em;
     padding: 1em 2em;
     border: 1px solid #AB92FF;
     border-radius: 0.25em;
@@ -45004,12 +45040,12 @@ function QuestionForm() {
                     children: "질문하기"
                 }, void 0, false, {
                     fileName: "src/components/QuestionForm.jsx",
-                    lineNumber: 138,
+                    lineNumber: 139,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/QuestionForm.jsx",
-                lineNumber: 137,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
@@ -45023,7 +45059,7 @@ function QuestionForm() {
                         errorMessage: questionFormStore.errors.title
                     }, void 0, false, {
                         fileName: "src/components/QuestionForm.jsx",
-                        lineNumber: 141,
+                        lineNumber: 142,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _textareaDefault.default), {
@@ -45035,7 +45071,7 @@ function QuestionForm() {
                         errorMessage: questionFormStore.errors.body
                     }, void 0, false, {
                         fileName: "src/components/QuestionForm.jsx",
-                        lineNumber: 149,
+                        lineNumber: 150,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
@@ -45047,7 +45083,7 @@ function QuestionForm() {
                                         children: "태그"
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 159,
+                                        lineNumber: 160,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -45059,7 +45095,7 @@ function QuestionForm() {
                                         onChange: (e)=>questionFormStore.changeTag(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 162,
+                                        lineNumber: 163,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
@@ -45068,13 +45104,13 @@ function QuestionForm() {
                                         children: "추가"
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 171,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionForm.jsx",
-                                lineNumber: 158,
+                                lineNumber: 159,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -45086,7 +45122,7 @@ function QuestionForm() {
                                                 children: tag
                                             }, void 0, false, {
                                                 fileName: "src/components/QuestionForm.jsx",
-                                                lineNumber: 177,
+                                                lineNumber: 178,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -45095,24 +45131,24 @@ function QuestionForm() {
                                                 children: "X"
                                             }, void 0, false, {
                                                 fileName: "src/components/QuestionForm.jsx",
-                                                lineNumber: 180,
+                                                lineNumber: 181,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, tag, true, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 176,
+                                        lineNumber: 177,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "src/components/QuestionForm.jsx",
-                                lineNumber: 174,
+                                lineNumber: 175,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/QuestionForm.jsx",
-                        lineNumber: 157,
+                        lineNumber: 158,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
@@ -45124,7 +45160,7 @@ function QuestionForm() {
                                         children: "포인트"
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 189,
+                                        lineNumber: 190,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -45136,7 +45172,7 @@ function QuestionForm() {
                                         onChange: (e)=>questionFormStore.changePoints(e.target.value)
                                     }, void 0, false, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 192,
+                                        lineNumber: 193,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -45147,26 +45183,26 @@ function QuestionForm() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/QuestionForm.jsx",
-                                        lineNumber: 200,
+                                        lineNumber: 201,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/QuestionForm.jsx",
-                                lineNumber: 188,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
                             questionFormStore.errors.points ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Error, {
                                 children: questionFormStore.errors.points
                             }, void 0, false, {
                                 fileName: "src/components/QuestionForm.jsx",
-                                lineNumber: 207,
+                                lineNumber: 208,
                                 columnNumber: 15
                             }, this) : null
                         ]
                     }, void 0, true, {
                         fileName: "src/components/QuestionForm.jsx",
-                        lineNumber: 187,
+                        lineNumber: 188,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(ModalWrapper, {
@@ -45180,24 +45216,24 @@ function QuestionForm() {
                             disabled: !questionFormStore.isValidateSuccessful
                         }, void 0, false, {
                             fileName: "src/components/QuestionForm.jsx",
-                            lineNumber: 211,
+                            lineNumber: 212,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/QuestionForm.jsx",
-                        lineNumber: 210,
+                        lineNumber: 211,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/QuestionForm.jsx",
-                lineNumber: 140,
+                lineNumber: 141,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/QuestionForm.jsx",
-        lineNumber: 136,
+        lineNumber: 137,
         columnNumber: 5
     }, this);
 }
@@ -45926,9 +45962,7 @@ function Users() {
             keyword: userStore.keyword
         });
     };
-    if (userStore.isUsersLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (userStore.isUsersLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/Users.jsx",
         lineNumber: 79,
         columnNumber: 7
@@ -45941,7 +45975,7 @@ function Users() {
                         children: "사람들"
                     }, void 0, false, {
                         fileName: "src/components/Users.jsx",
-                        lineNumber: 88,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
@@ -45955,23 +45989,23 @@ function Users() {
                                 onChange: (e)=>userStore.changeKeyword(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/Users.jsx",
-                                lineNumber: 93,
+                                lineNumber: 91,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/Users.jsx",
-                            lineNumber: 92,
+                            lineNumber: 90,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/Users.jsx",
-                        lineNumber: 91,
+                        lineNumber: 89,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Users.jsx",
-                lineNumber: 87,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(List, {
@@ -45988,12 +46022,12 @@ function Users() {
                                             height: 75
                                         }, void 0, false, {
                                             fileName: "src/components/Users.jsx",
-                                            lineNumber: 104,
+                                            lineNumber: 102,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/components/Users.jsx",
-                                        lineNumber: 103,
+                                        lineNumber: 101,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46003,7 +46037,7 @@ function Users() {
                                                 children: user.displayName
                                             }, void 0, false, {
                                                 fileName: "src/components/Users.jsx",
-                                                lineNumber: 107,
+                                                lineNumber: 105,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -46014,50 +46048,50 @@ function Users() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "src/components/Users.jsx",
-                                                lineNumber: 110,
+                                                lineNumber: 108,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tagsDefault.default), {
                                                 tags: user.tags
                                             }, void 0, false, {
                                                 fileName: "src/components/Users.jsx",
-                                                lineNumber: 115,
+                                                lineNumber: 113,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/Users.jsx",
-                                        lineNumber: 106,
+                                        lineNumber: 104,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/Users.jsx",
-                                lineNumber: 102,
+                                lineNumber: 100,
                                 columnNumber: 17
                             }, this)
                         }, user.id, false, {
                             fileName: "src/components/Users.jsx",
-                            lineNumber: 101,
+                            lineNumber: 99,
                             columnNumber: 15
                         }, this)) : null,
                     userStore.users.length === 0 && userStore.searching ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: "검색결과가 없습니다"
                     }, void 0, false, {
                         fileName: "src/components/Users.jsx",
-                        lineNumber: 123,
+                        lineNumber: 121,
                         columnNumber: 13
                     }, this) : null
                 ]
             }, void 0, true, {
                 fileName: "src/components/Users.jsx",
-                lineNumber: 97,
+                lineNumber: 95,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/Users.jsx",
-        lineNumber: 86,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }
@@ -49559,9 +49593,7 @@ function PointPurchaseResult() {
     const navigate = (0, _reactRouterDom.useNavigate)();
     const pointStore = (0, _usePointStoreDefault.default)();
     const { paymentResult  } = pointStore;
-    if (!paymentResult) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-        children: "Loading..."
-    }, void 0, false, {
+    if (!paymentResult) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
         fileName: "src/components/PointPurchaseResult.jsx",
         lineNumber: 51,
         columnNumber: 12
