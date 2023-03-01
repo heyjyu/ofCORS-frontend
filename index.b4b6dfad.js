@@ -47334,6 +47334,13 @@ const Wrapper = (0, _styledComponentsDefault.default).div`
   flex: 1;
 `;
 _c2 = Wrapper;
+const Message = (0, _styledComponentsDefault.default).p`
+  font-weight: 700;
+  padding: 1.25em;
+  border: 1px solid #EAEAEC;
+  background: white;
+`;
+_c3 = Message;
 function MyPage() {
     _s();
     const [accessToken] = (0, _usehooksTs.useLocalStorage)("accessToken", "");
@@ -47356,17 +47363,22 @@ function MyPage() {
     (0, _react.useEffect)(()=>{
         loadData();
     }, []);
-    if (!accessToken || !userStore.user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+    if (!userStore.user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
+        fileName: "src/pages/MyPage.jsx",
+        lineNumber: 53,
+        columnNumber: 12
+    }, this);
+    if (!accessToken) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
             children: "잘못된 접근입니다."
         }, void 0, false, {
             fileName: "src/pages/MyPage.jsx",
-            lineNumber: 48,
+            lineNumber: 59,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/pages/MyPage.jsx",
-        lineNumber: 47,
+        lineNumber: 58,
         columnNumber: 7
     }, this);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
@@ -47374,29 +47386,29 @@ function MyPage() {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LeftSideBar, {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigatorDefault.default), {}, void 0, false, {
                     fileName: "src/pages/MyPage.jsx",
-                    lineNumber: 58,
+                    lineNumber: 69,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/MyPage.jsx",
-                lineNumber: 57,
+                lineNumber: 68,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _myDetailDefault.default), {}, void 0, false, {
                     fileName: "src/pages/MyPage.jsx",
-                    lineNumber: 61,
+                    lineNumber: 72,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/MyPage.jsx",
-                lineNumber: 60,
+                lineNumber: 71,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/MyPage.jsx",
-        lineNumber: 56,
+        lineNumber: 67,
         columnNumber: 5
     }, this);
 }
@@ -47409,12 +47421,13 @@ _s(MyPage, "yR+gqcS4oMAx8LhDGLUt/RIvAaU=", false, function() {
         (0, _useAnswerStoreDefault.default)
     ];
 });
-_c3 = MyPage;
-var _c, _c1, _c2, _c3;
+_c4 = MyPage;
+var _c, _c1, _c2, _c3, _c4;
 $RefreshReg$(_c, "Container");
 $RefreshReg$(_c1, "LeftSideBar");
 $RefreshReg$(_c2, "Wrapper");
-$RefreshReg$(_c3, "MyPage");
+$RefreshReg$(_c3, "Message");
+$RefreshReg$(_c4, "MyPage");
 
   $parcel$ReactRefreshHelpers$3f52.postlude(module);
 } finally {
