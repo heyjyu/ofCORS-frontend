@@ -117,6 +117,12 @@ const server = setupServer(
     );
   }),
 
+  rest.post(`${baseUrl}/session/trial`, async (req, res, ctx) => res(
+    ctx.json({
+      accessToken: 'ACCESS.TOKEN',
+    }),
+  )),
+
   rest.get(`${baseUrl}/questions`, async (req, res, ctx) => {
     const status = req.url.searchParams.get('status');
 

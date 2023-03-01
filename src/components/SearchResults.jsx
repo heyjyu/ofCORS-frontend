@@ -28,9 +28,7 @@ export default function SearchResults() {
 
   if (searchStore.isResultsLoading) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 

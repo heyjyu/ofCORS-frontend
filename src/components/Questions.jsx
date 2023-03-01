@@ -76,9 +76,7 @@ export default function Questions() {
 
   if (questionStore.isQuestionsLoading) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 

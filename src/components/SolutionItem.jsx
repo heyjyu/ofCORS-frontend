@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Tags from './Tags';
 
@@ -34,9 +35,9 @@ export default function SolutionItem({ solution }) {
   return (
     <Container>
       <h2>
-        <a href={`/questions/${solution.id}`}>
+        <Link to={`/questions/${solution.id}`}>
           {solution.title}
-        </a>
+        </Link>
       </h2>
       <div>
         <Wrapper>

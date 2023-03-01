@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Tags from './Tags';
 import Point from './Point';
 
@@ -37,9 +38,9 @@ export default function QuestionItem({ question }) {
       <div>
         <Point amount={question.points} />
         <h2>
-          <a href={`/questions/${question.id}`}>
+          <Link to={`/questions/${question.id}`}>
             {question.title}
-          </a>
+          </Link>
         </h2>
       </div>
       <div>

@@ -76,9 +76,7 @@ export default function Users() {
 
   if (userStore.isUsersLoading) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 

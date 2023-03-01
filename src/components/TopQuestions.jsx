@@ -47,9 +47,7 @@ export default function TopQuestions() {
 
   if (topQuestionStore.isQuestionsLoading) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 

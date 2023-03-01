@@ -48,7 +48,7 @@ export default function PointPurchaseResult() {
   const { paymentResult } = pointStore;
 
   if (!paymentResult) {
-    return <p>Loading...</p>;
+    return <p />;
   }
 
   return (

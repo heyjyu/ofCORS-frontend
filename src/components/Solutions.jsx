@@ -59,9 +59,7 @@ export default function Solutions() {
 
   if (solutionStore.isSolutionsLoading) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 
