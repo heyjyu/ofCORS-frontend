@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLocalStorage } from 'usehooks-ts';
 import useSearchStore from '../hooks/useSearchStore';
+import useUserStore from '../hooks/useUserStore';
 
 const Container = styled.div`
   display: flex;
@@ -84,9 +85,22 @@ export default function Header() {
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
   const searchStore = useSearchStore();
+  const userStore = useUserStore();
 
-  const handleLogout = () => {
+  const handleClickLogout = () => {
     setAccessToken('');
+    navigate('/');
+  };
+
+  const handleClickTrial = async () => {
+    const trialAccessToken = await userStore.trialLogin();
+
+    if (userStore.isLoginFailed) {
+      return;
+    }
+
+    setAccessToken(trialAccessToken);
+
     navigate('/');
   };
 
@@ -98,9 +112,9 @@ export default function Header() {
   return (
     <Container>
       <Wrapper>
-        <a href="/">
+        <Link to="/">
           <Logo id="logo" data-testid="logo" />
-        </a>
+        </Link>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <Input name="search" type="text" onChange={(e) => searchStore.changeKeyword(e.target.value)} />
         </form>
@@ -120,13 +134,18 @@ export default function Header() {
                 </button>
               </li> */}
                   <li>
-                    <Button type="button" onClick={handleLogout}>
+                    <Button type="button" onClick={handleClickLogout}>
                       로그아웃
                     </Button>
                   </li>
                 </>
               ) : (
                 <>
+                  <li>
+                    <Button type="button" onClick={handleClickTrial}>
+                      체험하기
+                    </Button>
+                  </li>
                   <li>
                     <StyledLink to="/login">
                       로그인
@@ -137,11 +156,6 @@ export default function Header() {
                       회원가입
                     </StyledLink>
                   </li>
-                  {/* <li>
-                <button type="button">
-                  체험하기
-                </button>
-              </li> */}
                 </>
               )}
           </ul>

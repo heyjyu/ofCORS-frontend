@@ -9,6 +9,7 @@ const ButtonWrapper = styled.div`
 
 const Button = styled.button`
   font-size: 1em;
+  margin-bottom: 2em;
   padding: 1em 2em;
   border: 1px solid #AB92FF;
   border-radius: 0.25em;

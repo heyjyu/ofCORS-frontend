@@ -95,6 +95,14 @@ export default class ApiService {
     };
   }
 
+  async postTrialSession() {
+    const { data } = await this.instance.post('/session/trial');
+
+    return {
+      accessToken: data.accessToken,
+    };
+  }
+
   async fetchUsers({ sort, keyword }) {
     const { data } = await this.instance.get(`/users?sort=${sort}&keyword=${keyword}&size=30`);
 

@@ -109,9 +109,7 @@ export default function QuestionDetail() {
 
   if (questionStore.isQuestionLoading || !questionStore.question) {
     return (
-      <p>
-        Loading...
-      </p>
+      <p />
     );
   }
 
@@ -132,8 +130,8 @@ export default function QuestionDetail() {
     questionStore.toggleLike(id);
   };
 
-  const handleClickDelete = () => {
-    questionStore.delete(id);
+  const handleClickDelete = async () => {
+    await questionStore.delete(id);
     navigate('/');
   };
 

@@ -45,6 +45,22 @@ export default class UserStore extends Store {
     }
   }
 
+  async trialLogin() {
+    this.changeLoginStatus('processing');
+
+    try {
+      const { accessToken } = await apiService.postTrialSession();
+
+      this.changeLoginStatus('successful');
+
+      return accessToken;
+    } catch {
+      this.changeLoginStatus('failed');
+
+      return '';
+    }
+  }
+
   async fetchMe() {
     const user = await apiService.fetchMe();
 
