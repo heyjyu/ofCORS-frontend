@@ -467,22 +467,22 @@ export default function MyDetail() {
               : null}
           </div>
           <div>
-            {user.realName === ''
+            {/* {user.realName === ''
               ? (
                 <Button type="button" onClick={() => navigate('/verify-user')}>
                   실명 인증
-                  <img alt="right-arrow" src="assets/images/right-arrow.svg" width={18} height={18} />
+                <img alt="right-arrow" src="assets/images/right-arrow.svg" width={18} height={18} />
                 </Button>
               )
               : null}
             {user.realName !== ''
-              ? (
-                <Button type="button" onClick={() => navigate('/exchange')}>
-                  환전하기
-                  <img alt="right-arrow" src="assets/images/right-arrow.svg" width={18} height={18} />
-                </Button>
-              )
-              : null}
+              ? ( */}
+            <Button type="button" onClick={() => navigate('/exchange')}>
+              환전하기
+              <img alt="right-arrow" src="assets/images/right-arrow.svg" width={18} height={18} />
+            </Button>
+            {/* )
+              : null} */}
             {/* <button type="button">
             구매 내역
           </button> */}
