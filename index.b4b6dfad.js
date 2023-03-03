@@ -39643,7 +39643,7 @@ exports.default = isAxiosError;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const config = {
-    apiBaseUrl: "https://ofcors-spring.herokuapp.com",
+    apiBaseUrl: "https://ofcors-spring.fly.dev",
     cloudinaryName: "ofcors-image-server",
     cloudinaryKey: "243471839498281"
 };
@@ -47334,13 +47334,6 @@ const Wrapper = (0, _styledComponentsDefault.default).div`
   flex: 1;
 `;
 _c2 = Wrapper;
-const Message = (0, _styledComponentsDefault.default).p`
-  font-weight: 700;
-  padding: 1.25em;
-  border: 1px solid #EAEAEC;
-  background: white;
-`;
-_c3 = Message;
 function MyPage() {
     _s();
     const [accessToken] = (0, _usehooksTs.useLocalStorage)("accessToken", "");
@@ -47363,22 +47356,17 @@ function MyPage() {
     (0, _react.useEffect)(()=>{
         loadData();
     }, []);
-    if (!userStore.user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {}, void 0, false, {
-        fileName: "src/pages/MyPage.jsx",
-        lineNumber: 53,
-        columnNumber: 12
-    }, this);
-    if (!accessToken) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Message, {
+    if (!accessToken || !userStore.user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: "잘못된 접근입니다."
         }, void 0, false, {
             fileName: "src/pages/MyPage.jsx",
-            lineNumber: 59,
+            lineNumber: 48,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "src/pages/MyPage.jsx",
-        lineNumber: 58,
+        lineNumber: 47,
         columnNumber: 7
     }, this);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Container, {
@@ -47386,29 +47374,29 @@ function MyPage() {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LeftSideBar, {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigatorDefault.default), {}, void 0, false, {
                     fileName: "src/pages/MyPage.jsx",
-                    lineNumber: 69,
+                    lineNumber: 58,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/MyPage.jsx",
-                lineNumber: 68,
+                lineNumber: 57,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Wrapper, {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _myDetailDefault.default), {}, void 0, false, {
                     fileName: "src/pages/MyPage.jsx",
-                    lineNumber: 72,
+                    lineNumber: 61,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "src/pages/MyPage.jsx",
-                lineNumber: 71,
+                lineNumber: 60,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/pages/MyPage.jsx",
-        lineNumber: 67,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 }
@@ -47421,13 +47409,12 @@ _s(MyPage, "yR+gqcS4oMAx8LhDGLUt/RIvAaU=", false, function() {
         (0, _useAnswerStoreDefault.default)
     ];
 });
-_c4 = MyPage;
-var _c, _c1, _c2, _c3, _c4;
+_c3 = MyPage;
+var _c, _c1, _c2, _c3;
 $RefreshReg$(_c, "Container");
 $RefreshReg$(_c1, "LeftSideBar");
 $RefreshReg$(_c2, "Wrapper");
-$RefreshReg$(_c3, "Message");
-$RefreshReg$(_c4, "MyPage");
+$RefreshReg$(_c3, "MyPage");
 
   $parcel$ReactRefreshHelpers$3f52.postlude(module);
 } finally {
