@@ -48268,51 +48268,28 @@ function MyDetail() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                children: [
-                                    user.realName === "" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
-                                        type: "button",
-                                        onClick: ()=>navigate("/verify-user"),
-                                        children: [
-                                            "실명 인증",
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                                alt: "right-arrow",
-                                                src: "/ofcors-frontend/assets/images/right-arrow.svg",
-                                                width: 18,
-                                                height: 18
-                                            }, void 0, false, {
-                                                fileName: "src/components/MyDetail.jsx",
-                                                lineNumber: 474,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/MyDetail.jsx",
-                                        lineNumber: 472,
-                                        columnNumber: 17
-                                    }, this) : null,
-                                    user.realName !== "" ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
-                                        type: "button",
-                                        onClick: ()=>navigate("/exchange"),
-                                        children: [
-                                            "환전하기",
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                                alt: "right-arrow",
-                                                src: "/ofcors-frontend/assets/images/right-arrow.svg",
-                                                width: 18,
-                                                height: 18
-                                            }, void 0, false, {
-                                                fileName: "src/components/MyDetail.jsx",
-                                                lineNumber: 482,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/MyDetail.jsx",
-                                        lineNumber: 480,
-                                        columnNumber: 17
-                                    }, this) : null
-                                ]
-                            }, void 0, true, {
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                                    type: "button",
+                                    onClick: ()=>navigate("/exchange"),
+                                    children: [
+                                        "환전하기",
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                            alt: "right-arrow",
+                                            src: "assets/images/right-arrow.svg",
+                                            width: 18,
+                                            height: 18
+                                        }, void 0, false, {
+                                            fileName: "src/components/MyDetail.jsx",
+                                            lineNumber: 482,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/MyDetail.jsx",
+                                    lineNumber: 480,
+                                    columnNumber: 13
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "src/components/MyDetail.jsx",
                                 lineNumber: 469,
                                 columnNumber: 11
