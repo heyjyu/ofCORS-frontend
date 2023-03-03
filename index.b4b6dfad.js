@@ -39643,7 +39643,7 @@ exports.default = isAxiosError;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const config = {
-    apiBaseUrl: "https://ofcors-spring.fly.dev",
+    apiBaseUrl: "https://ofcors-spring.herokuapp.com",
     cloudinaryName: "ofcors-image-server",
     cloudinaryKey: "243471839498281"
 };
